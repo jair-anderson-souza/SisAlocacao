@@ -41,7 +41,7 @@ public class UsuarioDao implements IUsuarioDao {
      */
     @Override
     public Usuario find(String username, String password) throws SQLException, ClassNotFoundException {
-        String sql = "select * from usuario where username = ? and senha = ? or email = ? and senha = ?;";
+        String sql = "select * from usuario where binary username = ? and binary senha = ? or binary email = ? and binary senha = ?;";
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(url, "root", "12345");
         PreparedStatement ps = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
