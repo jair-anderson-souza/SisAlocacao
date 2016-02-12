@@ -10,7 +10,7 @@ import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
 
 /**
- * Fabrica de DAO's
+ * Fabrica abstrata de DAO's
  * @author Anderson Souza
  * @since 2015
  */

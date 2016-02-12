@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.sistema.alocacao.core.actions;
+package io.github.jass2125.sistema.alocacao.core.commands;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
-import io.github.jass2125.sistema.alocacao.core.factory.FactoryImpl;
+import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 
 
-public class LoginUsuario implements Action {
+public class LoginUsuario implements Command {
     
     /**
      * Método por executar a ação de carregar feriado pra edição
@@ -36,7 +36,7 @@ public class LoginUsuario implements Action {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            Factory factory = new FactoryImpl();
+            Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
             
             User usuario = dao.findByUsernameAndPassword(username, password);

@@ -6,8 +6,8 @@
 
 package io.github.jass2125.sistema.alocacao.controller;
 
-import io.github.jass2125.sistema.alocacao.core.actions.Action;
-import io.github.jass2125.sistema.alocacao.core.util.ActionFactory;
+import io.github.jass2125.sistema.alocacao.core.commands.Command;
+import io.github.jass2125.sistema.alocacao.core.util.CommandFactory;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,8 +37,8 @@ public class FrontController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            Action action = ActionFactory.getAction(request);
-            String view = action.execute(request, response);
+            Command command = CommandFactory.getCommand(request);
+            String view = command.execute(request, response);
 //            request.getRequestDispatcher("").forward(request, response);
             response.sendRedirect(view);
         }catch(Exception e){

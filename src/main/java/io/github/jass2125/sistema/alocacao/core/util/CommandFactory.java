@@ -7,41 +7,39 @@
 package io.github.jass2125.sistema.alocacao.core.util;
 
 
-import io.github.jass2125.sistema.alocacao.core.actions.Action;
-import io.github.jass2125.sistema.alocacao.core.actions.CadastroUsuario;
-import io.github.jass2125.sistema.alocacao.core.actions.LoginUsuario;
-import io.github.jass2125.sistema.alocacao.core.actions.Logout;
+import io.github.jass2125.sistema.alocacao.core.commands.CadastroUsuario;
+import io.github.jass2125.sistema.alocacao.core.commands.Command;
+import io.github.jass2125.sistema.alocacao.core.commands.LoginUsuario;
+import io.github.jass2125.sistema.alocacao.core.commands.Logout;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Classe que atua como fabrica de actions
+ * Classe que atua como fabrica de commands
  * @author Anderson Souza
  * @since 2015
  */
-public class ActionFactory {
-    private static Map<String, Action> actions;
+public class CommandFactory {
+    private static Map<String, Command> commands;
     
-    public ActionFactory() {}
+    public CommandFactory() {}
      /**
-     * Método estatico retornar a action específica
-     * 
-     * @param request HttpServletRequest
-     * @return actions  clear
-     * Action 
+     * Método estatico retornar o command específica
+     * @param request Requisição do usuario
+     * @return commands Comando a ser executado
      */
-    public static Action getAction(HttpServletRequest request){
-        actions = new HashMap<>();
+    public static Command getCommand(HttpServletRequest request){
+        commands = new HashMap<>();
         
         //Usuarios         
-        actions.put("login", new LoginUsuario());
+        commands.put("login", new LoginUsuario());
 //        actions.put("login", new LoginUsuario());
         
-        actions.put("logout", new Logout());
+        commands.put("logout", new Logout());
 //        actions.put("POST/logout", new Logout());
         
-        actions.put("cadastrarusuario", new CadastroUsuario());
+        commands.put("cadastrarusuario", new CadastroUsuario());
 //        actions.put("POST/cadastrarusuario", new CadastroUsuario());
         
 //        actions.put("GET/listar", new ListarUsuarios());
@@ -92,7 +90,7 @@ public class ActionFactory {
 //        actions.put("GET/leitorcsv", new LeitorCSV());
 //        actions.put("POST/leitorcsv", new LeitorCSV());
         
-        return actions.get(request.getParameter("action"));
+        return commands.get(request.getParameter("command"));
     }
 
 }

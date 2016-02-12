@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.sistema.alocacao.core.actions;
+package io.github.jass2125.sistema.alocacao.core.commands;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
-import io.github.jass2125.sistema.alocacao.core.factory.FactoryImpl;
+import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anderson Souza
  * @since 2015
  */
-public class CadastroUsuario implements Action {
+public class CadastroUsuario implements Command {
 //    private ValidacaoUsuarioTemplate validacao;
 
     public CadastroUsuario() {
@@ -39,7 +39,7 @@ public class CadastroUsuario implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             String email = request.getParameter("email");
-            Factory factory = new FactoryImpl();
+            Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
             String username = request.getParameter("username");
             User user = dao.findByUsernameOrEmail(username, email);

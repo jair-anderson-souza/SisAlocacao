@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.sistema.alocacao.core.actions;
+package io.github.jass2125.sistema.alocacao.core.commands;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class Logout implements Action {
+public class Logout implements Command {
 
     /**
      * Método por executar a ação de logout na aplicação

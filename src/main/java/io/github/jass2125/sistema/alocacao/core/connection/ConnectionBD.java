@@ -14,7 +14,6 @@ import java.util.Properties;
 /**
  *
  * @author Anderson Souza
- * @email <jair_anderson_bs@hotmail.com>
  * @since 2015, Feb 10, 2016
  */
 public class ConnectionBD {

@@ -15,11 +15,11 @@ import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
 
 
 /**
- * Classe que implementa as fabricas de DAO
+ * Classe que implementa as fábricas de DAO
  * @author Anderson Souza
  * @since 2015
  */
-public class FactoryImpl extends Factory {
+public class FactoryDao extends Factory {
     
     /** 
      * Método que que instancia DAO de usuario
