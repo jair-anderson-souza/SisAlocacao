@@ -125,7 +125,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Usuarios</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualização</p>
-                            <a href="front?action=listarusuarios" class="btn btn-primary">Abrir</a>
+                            <a href="../front?action=cadastrarusuario" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

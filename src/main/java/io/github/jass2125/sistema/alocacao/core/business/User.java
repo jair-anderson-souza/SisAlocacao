@@ -6,44 +6,46 @@
 
 package io.github.jass2125.sistema.alocacao.core.business;
 
+import java.io.Serializable;
+
 /**
  * CLasse que representa o Usuario
  * @author Anderson Souza
  * @since 2015
  */
-public class Usuario {
-    private int id;
-    private String nome;
+public class User implements Serializable {
+    private int idUser;
+    private String name;
     private String email;
     private String username;
-    private String senha;
-    private String matricula;
-    private String papel;
+    private String password;
+    private String registry;
+    private String role;
     private boolean status;
 
-    public Usuario(int id, String nome, String username, String senha, String email, String matricula, String papel, boolean status) {
-        this(nome, username, senha, email, matricula, papel, status);
-        this.id = id;
+    public User(int idUser, String name, String username, String password, String email, String registry, String role, boolean status) {
+        this(name, username, password, email, registry, role, status);
+        this.idUser = idUser;
     }
     
-    public Usuario(String nome, String username, String senha, String email, String matricula, String papel, boolean status) {
+    public User(String name, String username, String password, String email, String registry, String role, boolean status) {
         this.email = email;
         this.username = username;
-        this.nome = nome;
-        this.senha = senha;
-        this.matricula = matricula;
-        this.papel = papel;
+        this.name = name;
+        this.password = password;
+        this.registry = registry;
+        this.role = role;
         this.status = status;
     }
     
-    public Usuario(){
+    public User(){
     }
     /**
      * Metodo que retorna o Id do usuario
      * @return int Int
      */
-    public int getId() {
-        return id;
+    public int getIdUser() {
+        return idUser;
     }
     
     /**
@@ -81,47 +83,47 @@ public class Usuario {
      * Metodo que retorna a senha do usuario
      * @return password String
      */
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return this.password;
     }
     
     /**
      * Metodo que altera o password do usario
-     * @param senha String
+     * @param password String
      */
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     /**
      * Metodo que retorna a matricula do usuario
-     * @return matricula String
+     * @return registry String
      */
-    public String getMatricula() {
-        return matricula;
+    public String getRegistry() {
+        return this.registry;
     }
     /**
      * Metodo que altera a matricula do usario
-     * @param matricula String
+     * @param registry String
      */
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setRegistry(String registry) {
+        this.registry = registry;
     }
 
     /**
      * Metodo que retorna o papel do usuario
      * @return papel String
      */
-    public String getPapel() {
-        return papel;
+    public String getRole() {
+        return this.role;
     }
     
     /**
      * Metodo que altera o papel do usario
-     * @param papel String
+     * @param role String
      */
-    public void setPapel(String papel) {
-        this.papel = papel;
+    public void setRole(String role) {
+        this.role = role;
     }
     
     /**
@@ -144,7 +146,7 @@ public class Usuario {
      * Metodo que retorna o nome do usuario
      * @return nome String
      */
-    public String getNome() {
-        return this.nome;
+    public String getName() {
+        return this.name;
     }
 }

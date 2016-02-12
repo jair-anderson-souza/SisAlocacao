@@ -6,7 +6,7 @@
 
 package io.github.jass2125.sistema.alocacao.core.dao;
 
-import io.github.jass2125.sistema.alocacao.core.business.Feriado;
+import io.github.jass2125.sistema.alocacao.core.business.Holiday;
 import java.sql.SQLException;
 import java.util.Set;
 
@@ -15,14 +15,14 @@ import java.util.Set;
  * @author Anderson Souza
  * @since 2015
  */
-public interface IFeriadoDao {
+public interface IHolidayDao {
     
     /**
      * Metodo abstrato que adiciona um feriado
-     * @param feriado Feriado
-     * @throws SQLException IFeriadoDao
+     * @param holiday Holiday
+     * @throws SQLException Erro de conexão com o banco de dados
      */
-    public void add(Feriado feriado) throws SQLException;
+    public void add(Holiday holiday) throws SQLException;
     
     /**
      * Metodo abstrato que exclui um feriado pelo seu identificador
@@ -33,24 +33,24 @@ public interface IFeriadoDao {
     
     /**
      * Metodo abstrato que edita um feriado
-     * @param feriado Feriado
+     * @param holiday Feriado
      * @throws SQLException IFeriadoDao
      */
-    public void edit(Feriado feriado) throws SQLException;
+    public void edit(Holiday holiday) throws SQLException;
     
     /**
      * Metodo abstrato que retorna um Set de feriados
      * @return list Set de feriado
      * @throws SQLException IFeriadoDao
      */
-    public Set<Feriado> list() throws SQLException;
+    public Set<Holiday> list() throws SQLException;
 
     /**
      * Metodo abstrato que busca um feriado pelo seu identificador
-     * @param idFeriado Id de feriado
+     * @param idHoliday Id de feriado
      * @return Feriado feriado
      * @throws SQLException IFeriadoDao
      */
-    public Feriado find(int idFeriado) throws SQLException ;
+    public Holiday find(int idHoliday) throws SQLException ;
 
 }

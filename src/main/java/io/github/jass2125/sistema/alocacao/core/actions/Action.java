@@ -18,8 +18,8 @@ public interface Action {
     
     /**
      * Método que define a action 
-     * @param request Requisição
-     * @param response Resposta
+     * @param request Parametro que corresponde a requisição do usuário
+     * @param response Parametro que corresponde a resposta a ser retornada
      * @return String Retorna a pagina para qual a aplicação será encaminhada
      */
     public String execute(HttpServletRequest request, HttpServletResponse response);

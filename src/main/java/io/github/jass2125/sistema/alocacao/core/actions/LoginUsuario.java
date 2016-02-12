@@ -6,17 +6,17 @@
 
 package io.github.jass2125.sistema.alocacao.core.actions;
 
-
-import io.github.jass2125.sistema.alocacao.core.business.Usuario;
-import io.github.jass2125.sistema.alocacao.core.dao.IUsuarioDao;
+import io.github.jass2125.sistema.alocacao.core.business.User;
+import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
- * Action que efetua o login do usuario
+ * Classe que atua como Action, recebe a solicitação para efetuar o login do ususário
  * @author Anderson Souza
  * @since 2015
  */
@@ -26,9 +26,9 @@ public class LoginUsuario implements Action {
     
     /**
      * Método por executar a ação de carregar feriado pra edição
-     * @param request Requisição
-     * @param response Resposta
-     * @return String
+     * @param request Parametro que corresponde a requisição do usuário
+     * @param response Parametro que corresponde a resposta a ser retornada
+     * @return String Nome da pagina ao qual a aplicação será encaminhada
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -37,15 +37,15 @@ public class LoginUsuario implements Action {
             String password = request.getParameter("password");
             
             Factory factory = new FactoryImpl();
-            IUsuarioDao dao = factory.createUsuarioDao();
+            IUserDao dao = factory.createUserDao();
             
-            Usuario usuario = dao.find(username, password);
+            User usuario = dao.findByUsernameAndPassword(username, password);
             HttpSession session = request.getSession();
             
             if (usuario != null) {
                 session.setAttribute("usuario", usuario);
                 session.setMaxInactiveInterval(60 * 60);
-                return usuario.getPapel() + "/home.jsp"; // Redirect to home page.
+                return usuario.getRole() + "/home.jsp"; // Redirect to home page.
             } else {
                 session.setAttribute("error", "Usuario e senha desconhecidos. Por favor, tente novamente."); 
                 return "index.jsp"; 

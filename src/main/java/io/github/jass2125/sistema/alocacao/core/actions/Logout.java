@@ -11,17 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Classe que efetua o logout do usuario
+ * Classe que atua como Action, recebe a solicitação para realizar o logout do usuario
  * @author Anderson Souza
  * @since 2015
  */
-public class Logout implements Action{
+public class Logout implements Action {
 
     /**
-     * Action que efetua o logout do usuario na aplicação
-     * @param request Requisição
-     * @param response Resposta
-     * @return String
+     * Método por executar a ação de logout na aplicação
+     * @param request Parametro que corresponde a requisição do usuário
+     * @param response Parametro que corresponde a resposta a ser retornada
+     * @return String Nome da pagina ao qual a aplicação será encaminhada
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

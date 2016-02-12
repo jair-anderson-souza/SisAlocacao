@@ -8,6 +8,7 @@ package io.github.jass2125.sistema.alocacao.core.util;
 
 
 import io.github.jass2125.sistema.alocacao.core.actions.Action;
+import io.github.jass2125.sistema.alocacao.core.actions.CadastroUsuario;
 import io.github.jass2125.sistema.alocacao.core.actions.LoginUsuario;
 import io.github.jass2125.sistema.alocacao.core.actions.Logout;
 import java.util.HashMap;
@@ -34,11 +35,14 @@ public class ActionFactory {
         actions = new HashMap<>();
         
         //Usuarios         
-        actions.put("GET/login", new LoginUsuario());
-        actions.put("POST/login", new LoginUsuario());
+        actions.put("login", new LoginUsuario());
+//        actions.put("login", new LoginUsuario());
         
-        actions.put("GET/logout", new Logout());
-        actions.put("POST/logout", new Logout());
+        actions.put("logout", new Logout());
+//        actions.put("POST/logout", new Logout());
+        
+        actions.put("cadastrarusuario", new CadastroUsuario());
+//        actions.put("POST/cadastrarusuario", new CadastroUsuario());
         
 //        actions.put("GET/listar", new ListarUsuarios());
 //        actions.put("POST/listar", new ListarUsuarios());
@@ -88,7 +92,7 @@ public class ActionFactory {
 //        actions.put("GET/leitorcsv", new LeitorCSV());
 //        actions.put("POST/leitorcsv", new LeitorCSV());
         
-        return actions.get(request.getMethod() + "/" + request.getParameter("action"));
+        return actions.get(request.getParameter("action"));
     }
 
 }

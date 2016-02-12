@@ -29,10 +29,10 @@ public class FrontController extends HttpServlet {
     
     /**
      * Método que é responsável por receber e responder a todas as solicitações da aplicação
-     * @param request Requisição
-     * @param response Resposta
-     * @throws ServletException FrontController
-     * @throws IOException FrontController
+     * @param request Parametro que corresponde a requisição do usuário
+     * @param response Parametro que corresponde a resposta do usuário
+     * @throws ServletException Exceção na execução do servlet
+     * @throws IOException Exceção de Input/Output
      */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
