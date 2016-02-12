@@ -9,6 +9,7 @@ package io.github.jass2125.sistema.alocacao.core.util;
 
 import io.github.jass2125.sistema.alocacao.core.actions.Action;
 import io.github.jass2125.sistema.alocacao.core.actions.LoginUsuario;
+import io.github.jass2125.sistema.alocacao.core.actions.Logout;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class ActionFactory {
         //Usuarios         
         actions.put("GET/login", new LoginUsuario());
         actions.put("POST/login", new LoginUsuario());
+        
+        actions.put("GET/logout", new Logout());
+        actions.put("POST/logout", new Logout());
         
 //        actions.put("GET/listar", new ListarUsuarios());
 //        actions.put("POST/listar", new ListarUsuarios());
