@@ -29,7 +29,7 @@ public class UserDao implements IUserDao {
     public UserDao() {
         info.setProperty("user", "root");
         info.setProperty("password", "12345");
-        url = "jdbc:mysql://localhost:3306/pp";
+        url = "jdbc:mysql://localhost:3306/sisloc";
     }
 
     /**
@@ -87,7 +87,6 @@ public class UserDao implements IUserDao {
         ps.setBoolean(7, user.isStatus());
         ps.execute();
         ps.close();
-        ps.clearParameters();
         con.close();
     }
 

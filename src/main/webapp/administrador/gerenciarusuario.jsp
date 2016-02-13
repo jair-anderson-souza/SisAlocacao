@@ -104,26 +104,26 @@
                         <h4 class="modal-title">Cadastro de Usuario</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="../front?action=registerUser" method="post">
+                        <form role="form" action="../front?command=registerUser" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
-                                <input type="text" name="username" class="form-control" id="usern" title="Three letter country code">
+                                <input type="text" name="username" class="form-control" id="username" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\])|(([a-zA-Z\\\\-0-9]+\\\\.)+[a-zA-Z]{2,}))$" title="Insira seu username">
                             </div>
                             <div class="form-group">
                                 <label for="nome">Nome</label>
-                                <input type="text" name="name" class="form-control" id="nome" title="Three letter country code">
+                                <input type="text" name="name" class="form-control" id="nome">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password</label>
-                                <input type="password" name="password" class="form-control" id="pwd" title="Three letter country code">
+                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa pelo menos uma letra maiuscula e um caracterer especial.">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" class="form-control" id="email" title="Three letter country code">
+                                <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
                             </div>
                             <div class="form-group">
                                 <label for="matricula">Matrícula</label>
-                                <input type="text" name="registry" class="form-control" id="matricula">
+                                <input type="text" name="registry" class="form-control" id="matricula" pattern="[0-9]+.{5,30}" title="A matricula deve conter numero digitos numericos.">
                             </div>
                             <div class="form-group">
                                 <label for="sel1">Papel</label>
@@ -134,15 +134,27 @@
                                     <option value=professor">Professor</option>
                                 </select>
                             </div>
-
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
-                    </div>
+                    <!--                    <div class="modal-footer">
+                                            
+                                        </div>-->
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row text-left">
+                <c:if test="${sessionScope.insertion} != null">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            ${sessionScope.insertion}
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
+
 
         <!-- Page Content -->
         <div class="container">
@@ -184,8 +196,8 @@
                         <th>Email</th>
                         <th>Papel</th>
                         <th>Status</th>
-<!--                        <th>Editar</th>
-                        <th>Deletar</th>-->
+                        <!--                        <th>Editar</th>
+                                                <th>Deletar</th>-->
                     </tr>
                     <tbody>
                         <c:forEach items="${sessionScope.listUsers}" var="user">
@@ -200,32 +212,32 @@
                                                                     <button type="submit" class="btn btn-info"></button>
                                                                 </form>
                                                             </td>-->
-<!--                                <td>
-                                    <button type="submit" class="glyphicon glyphicon-trash btn btn-default"  data-toggle="modal" data-target="#exclusaousuario"></button>
-
-                                    <div id="exclusaousuario" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                             Modal content
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Confirmar Exclusao</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form role="form" action="front?action=excluir&iduser=${user.idUser}" method="post">
-                                                        <p>Tem certeza que deseja excluir usuario?</p>
-                                                        <button type="submit" class="btn btn-danger">Excluir</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </td>-->
+                                <!--                                <td>
+                                                                    <button type="submit" class="glyphicon glyphicon-trash btn btn-default"  data-toggle="modal" data-target="#exclusaousuario"></button>
+                                
+                                                                    <div id="exclusaousuario" class="modal fade" role="dialog">
+                                                                        <div class="modal-dialog">
+                                
+                                                                             Modal content
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    <h4 class="modal-title">Confirmar Exclusao</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form role="form" action="front?action=excluir&iduser=${user.idUser}" method="post">
+                                                                                        <p>Tem certeza que deseja excluir usuario?</p>
+                                                                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                
+                                                                                </div>
+                                                                            </div>
+                                
+                                                                        </div>
+                                                                    </div>
+                                                                </td>-->
                             </tr>
 
                         </c:forEach>

@@ -9,6 +9,10 @@ import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
+import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
+import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Classe que atua como Action, recebe a solicitação para cadastrar um novo ususário
+ * Classe que atua como Action, recebe a solicitação para cadastrar um novo
+ * ususário
  *
  * @author Anderson Souza
  * @since 2015
@@ -24,8 +29,11 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterUserCommand implements Command {
 //    private ValidacaoUsuarioTemplate validacao;
 
+    private CryptographyPasswordStrategy cryptographer;
+
     public RegisterUserCommand() {
 //        validacao = new ValidacaoUsuario();
+        cryptographer = new CryptographerPasswordSHA();
     }
 
     /**
@@ -39,28 +47,27 @@ public class RegisterUserCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             String email = request.getParameter("email");
+            String username = request.getParameter("username");
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
-            String username = request.getParameter("username");
             User user = dao.findByUsernameOrEmail(username, email);
 
-            String nome = request.getParameter("nome");
-            String senha = request.getParameter("password");
-
-            String matricula = request.getParameter("matricula");
-            String papel = request.getParameter("papel");
-
-            User usuario = new User(username, nome, senha, email, matricula, papel, true);
-//                this.validacao.validaDadosDoUsuario(usuario);
-
-            dao.add(usuario);
-            request.setAttribute("insercao", "Usuario cadastrado com sucesso");
-            return "/administrador/home.jsp";
+            if (user == null) {
+                String name = request.getParameter("name");
+                String password = request.getParameter("password");
+                password = cryptographer.cryptographerSHA(password);
+                String registry = request.getParameter("registry");
+                String role = request.getParameter("role");
+                user = new User(name, username, password, email, registry, role, true);
+                dao.add(user);
+            }
+            request.getSession().setAttribute("insertion", "Usuario cadastrado com sucesso");
+            return "administrador/gerenciarusuario.jsp";
 
         } catch (SQLException e) {
-            return "/pages/home";
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterUserCommand.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+        } catch (UnsupportedEncodingException ex) {
         }
         return null;
     }

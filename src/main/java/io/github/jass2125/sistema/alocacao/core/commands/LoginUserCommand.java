@@ -10,6 +10,11 @@ import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
+import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
+import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +28,11 @@ import javax.servlet.http.HttpSession;
 
 
 public class LoginUserCommand implements Command {
-    
+    private CryptographyPasswordStrategy cryptographer;
+
+    public LoginUserCommand() {
+        cryptographer = new CryptographerPasswordSHA();
+    }
     /**
      * Método por executar a ação de carregar feriado pra edição
      * @param request Parametro que corresponde a requisição do usuário
@@ -38,7 +47,7 @@ public class LoginUserCommand implements Command {
             
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
-            
+            password = cryptographer.cryptographerSHA(password);
             User user = dao.findByLoginAndPassword(login, password);
             HttpSession session = request.getSession();
             
@@ -50,7 +59,7 @@ public class LoginUserCommand implements Command {
                 session.setAttribute("error", "Usuario e senha desconhecidos. Por favor, tente novamente."); 
                 return "index.jsp"; 
             }
-        }catch(Exception e){
+        }catch(NoSuchAlgorithmException | UnsupportedEncodingException | SQLException | ClassNotFoundException e){
             e.printStackTrace();
         }
         return null;
