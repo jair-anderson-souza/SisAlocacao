@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 
 
-public class LoginUsuario implements Command {
+public class LoginUserCommand implements Command {
     
     /**
      * Método por executar a ação de carregar feriado pra edição
@@ -33,19 +33,19 @@ public class LoginUsuario implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try{
-            String username = request.getParameter("username");
+            String login = request.getParameter("login");
             String password = request.getParameter("password");
             
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
             
-            User usuario = dao.findByUsernameAndPassword(username, password);
+            User user = dao.findByLoginAndPassword(login, password);
             HttpSession session = request.getSession();
             
-            if (usuario != null) {
-                session.setAttribute("usuario", usuario);
+            if (user != null) {
+                session.setAttribute("user", user);
                 session.setMaxInactiveInterval(60 * 60);
-                return usuario.getRole() + "/home.jsp"; // Redirect to home page.
+                return user.getRole() + "/home.jsp"; // Redirect to home page.
             } else {
                 session.setAttribute("error", "Usuario e senha desconhecidos. Por favor, tente novamente."); 
                 return "index.jsp"; 

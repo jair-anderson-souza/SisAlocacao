@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anderson Souza
  * @since 2015
  */
-public class CadastroUsuario implements Command {
+public class RegisterUserCommand implements Command {
 //    private ValidacaoUsuarioTemplate validacao;
 
-    public CadastroUsuario() {
+    public RegisterUserCommand() {
 //        validacao = new ValidacaoUsuario();
     }
 
@@ -60,7 +60,7 @@ public class CadastroUsuario implements Command {
         } catch (SQLException e) {
             return "/pages/home";
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CadastroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterUserCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

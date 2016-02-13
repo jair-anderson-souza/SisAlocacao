@@ -9,6 +9,7 @@ package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,14 +33,14 @@ public interface IUserDao {
 //    public void edit(User user) throws SQLException;
 //        
     /**
-     * Metodo abstrato que busca um feriado pelo seu username e password
+     * Metodo abstrato que busca um usuario pelo seu login e password
      * @param username Username do usuario
      * @param password Password do usuario
      * @return user User
      * @throws SQLException Erro de conexão com o banco de dados
      * @throws ClassNotFoundException Ocorre quando a classe do Driver JDBC do MYSQL não é encontrada
      */
-    public User findByUsernameAndPassword(String username, String password) throws SQLException, ClassNotFoundException;
+    public User findByLoginAndPassword(String username, String password) throws SQLException, ClassNotFoundException;
 //    
 //    /**
 //     * Metodo abstrato que retorna um Set de usuarios
@@ -47,7 +48,7 @@ public interface IUserDao {
 //     * @return list Set
 //     * @throws SQLException IUsuarioDao
 //     */
-//    public Set<User> list(int idUser) throws SQLException;
+    public List<User> list(int idUser) throws SQLException;
 //    
 //    /**
 //     * Metodo abstrato que exclui um usuario pelo seu identificador
@@ -72,7 +73,7 @@ public interface IUserDao {
      * @throws SQLException Erro de conexão com o banco de dados
      * @throws ClassNotFoundException Ocorre quando a classe do Drive do banco de dados não pode ser encontrada
      */
-    public User findByUsernameOrEmail(String username, String email) throws SQLException, ClassNotFoundException ;
+    public User findByUsernameOrEmail(String username, String email) throws SQLException, ClassNotFoundException;
 //    
 //    
 

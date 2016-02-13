@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class Logout implements Command {
+public class LogoutUserCommand implements Command {
 
     /**
      * Método por executar a ação de logout na aplicação

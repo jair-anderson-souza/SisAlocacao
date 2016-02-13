@@ -38,14 +38,14 @@ public class User implements Serializable {
         this.status = status;
     }
     
-    public User(){
+    public User() {
     }
     /**
      * Metodo que retorna o Id do usuario
-     * @return int Int
+     * @return int Id do usuário
      */
     public int getIdUser() {
-        return idUser;
+        return this.idUser;
     }
     
     /**
@@ -77,6 +77,14 @@ public class User implements Serializable {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+    
+    /**
+     * Método que altera o nome do usuário
+     * @param name String
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
     /**
@@ -112,7 +120,7 @@ public class User implements Serializable {
 
     /**
      * Metodo que retorna o papel do usuario
-     * @return papel String
+     * @return role String
      */
     public String getRole() {
         return this.role;

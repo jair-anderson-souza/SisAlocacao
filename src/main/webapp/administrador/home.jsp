@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
+        <link rel="icon" type="image/png" href="../logo.ico" />
         <title>Home - Administrador</title>
 
         <!-- Bootstrap Core CSS -->
@@ -46,13 +46,13 @@
                     <!--<img src="../img/logo.png" style="width:20px;">-->
                     <br>
                     <h4 class="navbar-form">Sistema Sisloc</a><br><br>
-                        <h4 class="navbar-form">Logado como ${sessionScope.usuario.papel}</h4>
+                        <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <ul class="nav navbar-nav" style="margin-top: -40px;margin-left: 600px;">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="#">${sessionScope.usuario.nome}
+                        <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="#">${sessionScope.user.name}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
@@ -66,39 +66,6 @@
         <br>
         <br>
         <hr>
-        <!--    <div class="container">
-                <div class="row text-left">
-                    <div class="col-md-12">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-        <c:choose>
-            
-            <c:when test="${requestScope.insercao != null}">
-                <div class="alert alert-success">
-                ${requestScope.insercao}
-            </div>
-            </c:when>
-            <c:when test="${requestScope.error != null}">
-                <div class="alert alert-danger">
-                ${requestScope.error}
-            </div>
-            </c:when>
-            <c:when test="${requestScope.exclusao != null}">
-                <div class="alert alert-success">
-                ${requestScope.exclusao}
-            </div>
-            </c:when>
-            <c:when test="${requestScope.edicao != null}">
-                <div class="alert alert-success">
-                ${requestScope.edicao}
-            </div>
-            </c:when>
-        </c:choose>
-    </div>
-</div>
-</div>-->
         <br>
         <br>
         <br>
@@ -125,7 +92,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Usuarios</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualização</p>
-                            <a href="../front?action=cadastrarusuario" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listUsers" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

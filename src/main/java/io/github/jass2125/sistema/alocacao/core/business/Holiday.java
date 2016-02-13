@@ -7,6 +7,9 @@
 package io.github.jass2125.sistema.alocacao.core.business;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Classe que representa o Feriado
@@ -16,17 +19,18 @@ import java.io.Serializable;
 public class Holiday implements Serializable {
     private int idHoliday;
     private String description;
-    private String date;
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     public Holiday() {
     }
 
-    public Holiday(int idHoliday, String description, String date) {
+    public Holiday(int idHoliday, String description, Date date) {
         this(date, description);
         this.idHoliday = idHoliday;
     }
 
-    public Holiday(String date, String description) {
+    public Holiday(Date date, String description) {
         this.date = date;
         this.description = description;
     }
@@ -48,7 +52,7 @@ public class Holiday implements Serializable {
      * Metodo que retorna a data de feriado
      * @return date String
      */
-    public String getDate() {
+    public Date getDate() {
         return this.date;
     }
     
@@ -56,7 +60,7 @@ public class Holiday implements Serializable {
      * Metodo que altera a descrição do feriado
      * @param date String 
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
     
