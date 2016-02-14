@@ -8,7 +8,7 @@ package io.github.jass2125.sistema.alocacao.core.util;
 
 
 import io.github.jass2125.sistema.alocacao.core.commands.Command;
-import io.github.jass2125.sistema.alocacao.core.commands.DeleteUser;
+import io.github.jass2125.sistema.alocacao.core.commands.DeleteUserCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.EditUserCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.ListUsersCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.LoadUserEditionCommand;
@@ -41,7 +41,7 @@ public class CommandFactory {
         commands.put("registerUser", new RegisterUserCommand());
         commands.put("loadUser", new LoadUserEditionCommand());
         commands.put("editUser", new EditUserCommand());
-        commands.put("deleteUser", new DeleteUser());
+        commands.put("deleteUser", new DeleteUserCommand());
         
         return commands.get(request.getParameter("command"));
     }
