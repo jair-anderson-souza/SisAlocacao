@@ -51,7 +51,6 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <ul class="nav navbar-nav dropdown" style="margin-top: -40px;margin-left: 600px;">
-                    <li><a href="../front?command=logout">Sair</a></li>
                     <li>
                         <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="">${sessionScope.user.name}
                             <span class="caret"></span></a>

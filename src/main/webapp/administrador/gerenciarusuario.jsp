@@ -164,7 +164,7 @@
                     <!--<small>AdministraÃ§Ã£o</small>-->
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="gerenciarusuario.jsp">Gerenciamento de Usuario</li>
+                        <li><a href="../front?command=listUsers">Gerenciamento de Usuario</li>
                     </ol>
                 </div>
             </div>
