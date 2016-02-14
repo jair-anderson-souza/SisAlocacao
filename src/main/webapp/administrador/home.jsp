@@ -27,7 +27,7 @@
 
         <!-- Custom Fonts -->
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+        
     </head>
 
     <body>
@@ -50,9 +50,10 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
-                <ul class="nav navbar-nav" style="margin-top: -40px;margin-left: 600px;">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="#">${sessionScope.user.name}
+                <ul class="nav navbar-nav dropdown" style="margin-top: -40px;margin-left: 600px;">
+                    <li><a href="../front?command=logout">Sair</a></li>
+                    <li>
+                        <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="">${sessionScope.user.name}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
@@ -104,7 +105,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Feriados</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualização</p>
-                            <a href="front?action=listarferiados" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listarferiados" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -113,7 +114,7 @@
 
 
         <hr>
-     
+
 
         <div class="container">
             <div class="row">
@@ -126,9 +127,8 @@
 
         <script src="../js/jquery.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jqBootstrapValidation.js"></script>
-        <script src="../js/contact_me.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </body>
+</body>
 
 </html>

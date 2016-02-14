@@ -34,14 +34,25 @@ public class UserLogon implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        chain.doFilter(request, response);
         HttpSession session = ((HttpSession)((HttpServletRequest) request).getSession());
         HttpServletResponse resp = ((HttpServletResponse) response);
-        if(session != null && !session.isNew()){
-            chain.doFilter(request, response);
-        }else{
-            resp.sendRedirect("/index.jsp");
+        
+        HttpServletRequest req = ((HttpServletRequest) request);
+        String path = req.getContextPath();
+        
+        
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            resp.sendRedirect(path + "/index.jsp");
         }
-        chain.doFilter(request, response);
+        
+//        if(session != null && !session.isNew()){
+//            chain.doFilter(request, response);
+//        }else{
+//            resp.sendRedirect("/index.jsp");
+//        }
+//        chain.doFilter(request, response);
         
 //        User user = (User) session.getAttribute("user");
 //        if(user == null){

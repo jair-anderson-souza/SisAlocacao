@@ -17,14 +17,14 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Anderson Souza <jair_anderson_bs@hotmail.com> <jair_anderson_bs@hotmail.com>
+ * @author Anderson Souza
  * @since 03:08:03, 14-Feb-2016 
  * Package io.github.jass2125.sistema.alocacao.core.filters
  * Project Name Sistema-Alocacao
  * Encoding UTF-8
  * File Name NewClass.java
  */
-//@WebFilter(urlPatterns = {"/*"})
+@WebFilter(urlPatterns = {"/*"})
 public class ClearCacheFilter implements Filter {
 
     @Override
@@ -34,7 +34,7 @@ public class ClearCacheFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        httpResponse.setHeader("Expires", "Sat, 1 Jan 1990 12:00:00 GMT");
+        httpResponse.setHeader("Expires", "0");
         httpResponse.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         httpResponse.addHeader("Cache-Control", "post-check=0, pre-check=0");
         httpResponse.setHeader("Pragma", "no-cache");
