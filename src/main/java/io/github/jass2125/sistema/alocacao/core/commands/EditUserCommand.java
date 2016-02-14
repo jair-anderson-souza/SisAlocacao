@@ -16,8 +16,6 @@ import io.github.jass2125.sistema.alocacao.core.util.ValidationUserTemplate;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,12 +26,12 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class EditUser implements Command {
+public class EditUserCommand implements Command {
 
     private CryptographyPasswordStrategy cryptographer;
     private ValidationUserTemplate validator;
 
-    public EditUser() {
+    public EditUserCommand() {
         validator = new ValidationUser();
         cryptographer = new CryptographerPasswordSHA();
     }
