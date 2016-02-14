@@ -35,9 +35,11 @@ public class UserDao implements IUserDao {
     /**
      * Método responsável por buscar um usuario pelo seu identificador
      *
-     * @param username Username do usuario
+     * @param login Username do usuario
      * @param password Senha do usuario
-     * @return usuario Usuario
+     * @return user User
+     * @throws ClassNotFoundException Ocorre quando o Driver MySQL não é
+     * encontrado
      * @throws SQLException Erro de conexão com o banco de dados
      */
     @Override
@@ -93,10 +95,11 @@ public class UserDao implements IUserDao {
     /**
      * Método responsável por buscar todos os usuarios
      *
-     * @param idUsuario Id do usuario
+     * @param idUser Id do usuario
      * @return list Set
      * @throws SQLException UsuarioDao
      */
+    @Override
     public List<User> list(int idUser) throws SQLException {
         String sql = "select * from usuario where id_usuario <> ? and status = true;";
         Connection con = DriverManager.getConnection(url, info);
@@ -129,35 +132,46 @@ public class UserDao implements IUserDao {
      *
      * @param usuario Usuario
      * @throws SQLException UsuarioDao
+     * @throws ClassNotFoundException A classe do Driver não pôde ser carregada
      */
-//    public void edit(Usuario usuario) throws SQLException {
-//        String sql = "update usuario set nome = ?, username = ?, senha = ?, email = ?, matricula = ?, papel = ?, status = ? where id_usuario = ?;";
-//        Connection con = DriverManager.getConnection(url, info);
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        ps.setString(1, usuario.getNome());
-//        ps.setString(2, usuario.getUsername());
-//        ps.setString(3, usuario.getSenha());
-//        ps.setString(4, usuario.getEmail());
-//        ps.setString(5, usuario.getMatricula());
-//        ps.setString(6, usuario.getPapel());
-//        ps.setBoolean(7, usuario.isStatus());
-//        ps.setInt(8, usuario.getId());
-//        ps.execute();
-//        ps.close();
-//    }
+    @Override
+    public void edit(User usuario) throws SQLException, ClassNotFoundException {
+        String sql = "update usuario "
+                + "set nome = ?, "
+                + "username = ?, "
+                + "senha = ?, "
+                + "email = ?, "
+                + "matricula = ?, "
+                + "papel = ?, "
+                + "status = ? "
+                + "where id_usuario = ?;";
+        Connection con = DriverManager.getConnection(url, info);
+        Class.forName("com.mysql.jdbc.Driver");
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, usuario.getName());
+        ps.setString(2, usuario.getUsername());
+        ps.setString(3, usuario.getPassword());
+        ps.setString(4, usuario.getEmail());
+        ps.setString(5, usuario.getRegistry());
+        ps.setString(6, usuario.getRole());
+        ps.setBoolean(7, usuario.isStatus());
+        ps.setInt(8, usuario.getIdUser());
+        ps.execute();
+        ps.close();
+    }
     /**
      * Método responsável por excluir um usuario pelo seu identificador
      *
      * @param idUsuario Id do usuario
      * @throws SQLException UsuarioDao
      */
-//    public void delete(int idUsuario) throws SQLException {
-//        String sql = "delete from usuario where id_usuario = ?;";
-//        Connection con = DriverManager.getConnection(url, info);
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        ps.setInt(1, idUsuario);
-//        ps.execute();
-//    }
+    public void delete(int idUsuario) throws SQLException {
+        String sql = "delete from usuario where id_usuario = ?;";
+        Connection con = DriverManager.getConnection(url, info);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idUsuario);
+        ps.execute();
+    }
     /**
      * Método responsável por buscar um usuario pelo seu identificador
      *
@@ -165,29 +179,31 @@ public class UserDao implements IUserDao {
      * @return usuario Usuario
      * @throws SQLException UsuarioDao
      */
-//    public Usuario findById(int idUsuario) throws SQLException {
-//        String sql = "select * from usuario where id_usuario = ?";
-//        Connection con = DriverManager.getConnection(url, info);
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        ps.setInt(1, idUsuario);
-//        ResultSet rs = ps.executeQuery();
-//        while (rs.next()) {
-//            String nome = rs.getString("nome");
-//            String email = rs.getString("email");
-//            String username = rs.getString("username");
-//            String senha = rs.getString("senha");
-//            String matricula = rs.getString("matricula");
-//            String papel = rs.getString("papel");
-//            boolean status = rs.getBoolean("status");
-//            return new Usuario(idUsuario, nome, username, senha, email, matricula, papel, status);
-//        }
-//        rs.close();
-//        ps.clearParameters();
-//        ps.close();
-//        con.close();
-//        return null;
-//
-//    }
+    @Override
+    public User findById(int idUser) throws SQLException {
+        String sql = "select * from usuario where id_usuario = ?";
+        Connection con = DriverManager.getConnection(url, info);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idUser);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String nome = rs.getString("nome");
+            String email = rs.getString("email");
+            String username = rs.getString("username");
+            String senha = rs.getString("senha");
+            String matricula = rs.getString("matricula");
+            String papel = rs.getString("papel");
+            boolean status = rs.getBoolean("status");
+            return new User(idUser, nome, username, senha, email, matricula, papel, status);
+        }
+        rs.close();
+        ps.clearParameters();
+        ps.close();
+        con.close();
+        return null;
+
+    }
+
     /**
      *
      * @param username String

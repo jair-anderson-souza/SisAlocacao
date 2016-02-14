@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author Anderson Souza <jair_anderson_bs@hotmail.com> <jair_anderson_bs@hotmail.com>
+ * @author Anderson Souza 
  * @since 01:34:42, 13-Feb-2016 
  * Package io.github.jass2125.sistema.alocacao.core.commands
  * Project Name Sistema-Alocacao

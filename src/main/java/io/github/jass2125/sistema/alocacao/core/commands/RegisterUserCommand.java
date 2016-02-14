@@ -11,13 +11,15 @@ import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
+import io.github.jass2125.sistema.alocacao.core.util.ValidationUser;
+import io.github.jass2125.sistema.alocacao.core.util.ValidationUserTemplate;
+import io.github.jass2125.sistema.alocacao.exceptions.RegexException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Classe que atua como Action, recebe a solicitação para cadastrar um novo
@@ -27,12 +29,12 @@ import javax.servlet.http.HttpServletResponse;
  * @since 2015
  */
 public class RegisterUserCommand implements Command {
-//    private ValidacaoUsuarioTemplate validacao;
 
+    private ValidationUserTemplate validator;
     private CryptographyPasswordStrategy cryptographer;
 
     public RegisterUserCommand() {
-//        validacao = new ValidacaoUsuario();
+        validator = new ValidationUser();
         cryptographer = new CryptographerPasswordSHA();
     }
 
@@ -55,19 +57,26 @@ public class RegisterUserCommand implements Command {
             if (user == null) {
                 String name = request.getParameter("name");
                 String password = request.getParameter("password");
-                password = cryptographer.cryptographerSHA(password);
+                //Adicionar Expressão Regular pra validar essa merda
                 String registry = request.getParameter("registry");
+                
                 String role = request.getParameter("role");
                 user = new User(name, username, password, email, registry, role, true);
+                validator.validatorDataUser(user);
+                user.setPassword(cryptographer.cryptographerSHA(password));
                 dao.add(user);
+                HttpSession session = request.getSession();
+                session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
+                session.setAttribute("crud", "Usuario cadastrado com sucesso");
+                return "administrador/gerenciarusuario.jsp";
+            } else {
+                request.getSession().setAttribute("crud", "Email e/ou Username existentes");
+                return "administrador/gerenciarusuario.jsp";
             }
-            request.getSession().setAttribute("insertion", "Usuario cadastrado com sucesso");
-            return "administrador/gerenciarusuario.jsp";
-
-        } catch (SQLException e) {
-        } catch (ClassNotFoundException ex) {
-        } catch (NoSuchAlgorithmException ex) {
-        } catch (UnsupportedEncodingException ex) {
+        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.getMessage();
+        } catch (RegexException e) {
+            e.getMessage();
         }
         return null;
     }

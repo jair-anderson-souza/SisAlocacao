@@ -24,14 +24,14 @@ public interface IUserDao {
      * @throws SQLException Erro de conexão com o banco de dados
      */
     public void add(User user) throws SQLException;
-//    
-//    /**
-//     * Metodo abstrato que edita um usuario
-//     * @param user User
-//     * @throws SQLException Erro de conexão com o banco de dados
-//     */
-//    public void edit(User user) throws SQLException;
-//        
+    
+    /**
+     * Metodo abstrato que edita um usuario
+     * @param user User
+     * @throws SQLException Erro de conexão com o banco de dados
+     */
+    public void edit(User user) throws SQLException, ClassNotFoundException;
+        
     /**
      * Metodo abstrato que busca um usuario pelo seu login e password
      * @param username Username do usuario
@@ -41,30 +41,30 @@ public interface IUserDao {
      * @throws ClassNotFoundException Ocorre quando a classe do Driver JDBC do MYSQL não é encontrada
      */
     public User findByLoginAndPassword(String username, String password) throws SQLException, ClassNotFoundException;
-//    
-//    /**
-//     * Metodo abstrato que retorna um Set de usuarios
-//     * @param idUser Id de usuario
-//     * @return list Set
-//     * @throws SQLException IUsuarioDao
-//     */
+    
+    /**
+     * Metodo abstrato que retorna um Set de usuarios
+     * @param idUser Id de usuario
+     * @return list Set
+     * @throws SQLException IUsuarioDao
+     */
     public List<User> list(int idUser) throws SQLException;
-//    
-//    /**
-//     * Metodo abstrato que exclui um usuario pelo seu identificador
-//     * @param idUser Id de usuario
-//     * @throws SQLException IUsuarioDao
-//     */
-//    public void delete(int idUser) throws SQLException;
-//    
-//    /**
-//     * Metodo abstrato que busca um usuario pelo seu identificador
-//     * @param idUser Id de Usuario
-//     * @return User user
-//     * @throws SQLException Erro de conexão com o banco de dados
-//     */
-//    public User findById(int idUser) throws SQLException;
-//    
+    
+    /**
+     * Metodo abstrato que exclui um usuario pelo seu identificador
+     * @param idUser Id de usuario
+     * @throws SQLException IUsuarioDao
+     */
+    public void delete(int idUser) throws SQLException;
+    
+    /**
+     * Metodo abstrato que busca um usuario pelo seu identificador
+     * @param idUser Id de Usuario
+     * @return User user
+     * @throws SQLException Erro de conexão com o banco de dados
+     */
+    public User findById(int idUser) throws SQLException;
+    
     /**
      * Método abstrato que busca um usuario pelo seu username e pelo seu email
      * @param username String
@@ -74,7 +74,7 @@ public interface IUserDao {
      * @throws ClassNotFoundException Ocorre quando a classe do Drive do banco de dados não pode ser encontrada
      */
     public User findByUsernameOrEmail(String username, String email) throws SQLException, ClassNotFoundException;
-//    
-//    
+    
+    
 
 }
