@@ -25,10 +25,8 @@ public class LogoutUserCommand implements Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        
         HttpSession session = request.getSession();
-        session.invalidate();
-        
+        session.invalidate();        
         return "index.jsp";
         
     }

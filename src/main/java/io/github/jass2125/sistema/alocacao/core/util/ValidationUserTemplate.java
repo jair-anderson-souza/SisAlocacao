@@ -7,7 +7,7 @@
 package io.github.jass2125.sistema.alocacao.core.util;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.exceptions.RegexException;
+import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 
 
 /**Classe abstrata responsavel por definir o tipo de validação do usuario

@@ -13,7 +13,7 @@ import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
 import io.github.jass2125.sistema.alocacao.core.util.ValidationUser;
 import io.github.jass2125.sistema.alocacao.core.util.ValidationUserTemplate;
-import io.github.jass2125.sistema.alocacao.exceptions.RegexException;
+import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;

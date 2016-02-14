@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.util;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.exceptions.RegexException;
+import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

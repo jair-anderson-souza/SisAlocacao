@@ -79,7 +79,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
-                            <li><a href="../front?action=logout">Sair</a></li>
+                            <li><a href="../front?command=logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

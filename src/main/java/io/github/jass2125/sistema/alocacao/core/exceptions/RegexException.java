@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.sistema.alocacao.exceptions;
+package io.github.jass2125.sistema.alocacao.core.exceptions;
 
 /**
  * Exceção de regular expression  
