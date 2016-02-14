@@ -55,7 +55,7 @@ public interface IUserDao {
      * @param idUser Id de usuario
      * @throws SQLException IUsuarioDao
      */
-    public void delete(int idUser) throws SQLException;
+    public void delete(int idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que busca um usuario pelo seu identificador

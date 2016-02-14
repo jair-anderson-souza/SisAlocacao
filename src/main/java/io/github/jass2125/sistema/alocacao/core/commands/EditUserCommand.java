@@ -62,7 +62,7 @@ public class EditUserCommand implements Command {
             IUserDao dao = factory.createUserDao();
             //validator.validatorDataUser(user);
             dao.edit(user);
-            session.setAttribute("crud", "Usuario cadastrado com sucesso");
+            session.setAttribute("crud", "Usuario editado com sucesso");
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
             return "administrador/gerenciarusuario.jsp";
         }

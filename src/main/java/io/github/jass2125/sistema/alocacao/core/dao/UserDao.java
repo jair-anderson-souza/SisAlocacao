@@ -164,10 +164,13 @@ public class UserDao implements IUserDao {
      *
      * @param idUsuario Id do usuario
      * @throws SQLException UsuarioDao
+     * @throws java.lang.ClassNotFoundException
      */
-    public void delete(int idUsuario) throws SQLException {
+    @Override
+    public void delete(int idUsuario) throws SQLException, ClassNotFoundException {
         String sql = "delete from usuario where id_usuario = ?;";
         Connection con = DriverManager.getConnection(url, info);
+        Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idUsuario);
         ps.execute();
@@ -175,7 +178,7 @@ public class UserDao implements IUserDao {
     /**
      * Método responsável por buscar um usuario pelo seu identificador
      *
-     * @param idUsuario Id do usuario
+     * @param idUser Id do usuario
      * @return usuario Usuario
      * @throws SQLException UsuarioDao
      */

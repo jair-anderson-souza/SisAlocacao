@@ -11,8 +11,6 @@ import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

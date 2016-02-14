@@ -145,10 +145,10 @@
         </div>
         <div class="container">
             <div class="row text-left">
-                <c:if test="${sessionScope.insertion} != null">
+                <c:if test="${sessionScope.crud} != null">
                     <div class="col-md-12">
                         <div class="alert alert-success">
-                            ${sessionScope.insertion}
+                            ${sessionScope.crud}
                         </div>
                     </div>
                 </c:if>
@@ -194,50 +194,30 @@
                         <th>Email</th>
                         <th>Papel</th>
                         <th>Status</th>
+                        <th>IdUser</th>
                         <th>Editar</th>
                         <th>Deletar</th>
                     </tr>
                     <tbody>
-                        <c:forEach items="${sessionScope.listUsers}" var="user">
+                        <c:forEach items="${sessionScope.listUsers}" var="userList">
                             <tr>
-                                <td>${user.name}</td>
-                                <td>${user.email}</td>
-                                <td>${user.role}</td>
-                                <td>${user.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
+                                <td>${userList.name}</td>
+                                <td>${userList.email}</td>
+                                <td>${userList.role}</td>
+                                <td>${userList.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
+                                <td>${userList.idUser}</td>
                                 <td>
-                                    <form action="../front?command=loadUser&idUser=${user.idUser}" method="post">
+                                    <form action="../front?command=loadUser&idUser=${userList.idUser}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
-                                        <button type="submit" class="btn btn-info"></button>
+                                        <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>
                                 </td>
                                 <td>
-                                    <button type="submit" class="glyphicon glyphicon-trash btn btn-default"  data-toggle="modal" data-target="#exclusaousuario"></button>
-
-                                    <div id="exclusaousuario" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                            Modal content
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Confirmar Exclusao</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form role="form" action="front?action=excluir&iduser=${user.idUser}" method="post">
-                                                        <p>Tem certeza que deseja excluir usuario?</p>
-                                                        <button type="submit" class="btn btn-danger">Excluir</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    <form action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
+                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                    </form>
                                 </td>
                             </tr>
-
                         </c:forEach>
                     </tbody>
                 </table>
