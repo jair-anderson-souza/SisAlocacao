@@ -91,7 +91,7 @@
                         </div>
                         <div class="panel-body">
                             <h3><b>Gerenciar Usuarios</b></h3>
-                            <p>Adicionar, Editar, Excluir e Visualização</p>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
                             <a href="../front?command=listUsers" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
@@ -103,8 +103,8 @@
                         </div>
                         <div class="panel-body">
                             <h3><b>Gerenciar Feriados</b></h3>
-                            <p>Adicionar, Editar, Excluir e Visualização</p>
-                            <a href="../front?command=listarferiados" class="btn btn-primary">Abrir</a>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="gerenciarferiado.jsp" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

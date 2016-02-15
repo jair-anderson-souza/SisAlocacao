@@ -22,7 +22,7 @@ public interface IHolidayDao {
      * @param holiday Holiday
      * @throws SQLException Erro de conexão com o banco de dados
      */
-    public void add(Holiday holiday) throws SQLException;
+    public void add(Holiday holiday) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que exclui um feriado pelo seu identificador
