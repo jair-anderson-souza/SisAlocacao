@@ -14,7 +14,6 @@ import io.github.jass2125.sistema.alocacao.core.commands.ListUsersCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.LoadUserEditionCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.LoginUserCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.LogoutUserCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.ReaderCsvFileCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.RegisterUserCommand;
 import java.util.HashMap;
 import java.util.Map;

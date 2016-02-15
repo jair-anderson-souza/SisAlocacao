@@ -59,7 +59,6 @@ public class RegisterUserCommand implements Command {
                 String password = request.getParameter("password");
                 //Adicionar Expressão Regular pra validar essa merda
                 String registry = request.getParameter("registry");
-                
                 String role = request.getParameter("role");
                 user = new User(name, username, password, email, registry, role, true);
                 validator.validatorDataUser(user);
@@ -73,11 +72,10 @@ public class RegisterUserCommand implements Command {
                 request.getSession().setAttribute("crud", "Email e/ou Username existentes");
                 return "administrador/gerenciarusuario.jsp";
             }
-        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
             e.getMessage();
-        } catch (RegexException e) {
-            e.getMessage();
+            return "/error.jsp";
         }
-        return null;
+        
     }
 }

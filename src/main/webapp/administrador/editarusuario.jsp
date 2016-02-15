@@ -143,6 +143,13 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Sisloc 2016</p>
+                </div>
+            </div>
+        </div>
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </body>

@@ -39,7 +39,6 @@ public class FrontController extends HttpServlet {
         try{
             Command command = CommandFactory.getCommand(request);
             String view = command.execute(request, response);
-//            request.getRequestDispatcher("").forward(request, response);
             response.sendRedirect(view);
         }catch(Exception e){
             e.printStackTrace();

@@ -42,7 +42,7 @@ public class DeleteUserCommand implements Command {
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException | NumberFormatException | ClassNotFoundException e) {
             e.getMessage();
-            return "administrador/home.jsp";
+            return "/error.jsp";
         }
     }
 }

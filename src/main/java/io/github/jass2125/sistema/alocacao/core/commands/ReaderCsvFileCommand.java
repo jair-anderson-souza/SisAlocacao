@@ -19,8 +19,6 @@ import java.util.Scanner;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +34,7 @@ import javax.servlet.http.HttpServletResponse;
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 @WebServlet(urlPatterns = {"/csv"})
 public class ReaderCsvFileCommand extends HttpServlet {
-
     private String path;
-//    private Part filePart;
     private String fileName;
 
     public ReaderCsvFileCommand() {
@@ -79,22 +75,10 @@ public class ReaderCsvFileCommand extends HttpServlet {
                 //if(descricao.matches("^\\w+$")){
             }
             scanner.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-//            return "../error.jsp";
-        } catch (IOException e) {
-            e.printStackTrace();
-//            return "../error.jsp";
-        } catch (ServletException e) {
-            e.printStackTrace();
-//            return "../error.jsp";
-        } catch (SQLException e) {
-            e.printStackTrace();
-//            return "../error.jsp";
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-//        return null;
+            response.sendRedirect("/error.jsp");
+        } 
     }
 
     private String getFileName(final Part part) {

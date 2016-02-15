@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Classe que efetua a busca por os usuarios
@@ -36,11 +37,12 @@ public class ListUsersCommand implements Command {
             IUserDao dao = factory.createUserDao();
             User user = (User) request.getSession().getAttribute("user");
             List<User> listUsers = dao.list(user.getIdUser());
-            request.getSession().setAttribute("listUsers", listUsers);
+            HttpSession session = request.getSession();
+            session.setAttribute("listUsers", listUsers);
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return "/error.jsp";
         }
     }
 }

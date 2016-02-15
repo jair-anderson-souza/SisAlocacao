@@ -27,7 +27,7 @@
 
         <!-- Custom Fonts -->
         <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        
+
     </head>
 
     <body>
@@ -118,12 +118,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Sisloc 2016</p>
                 </div>
             </div>
         </div>
-
-
         <script src="../js/jquery.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

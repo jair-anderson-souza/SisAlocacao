@@ -65,12 +65,10 @@ public class EditUserCommand implements Command {
             session.setAttribute("crud", "Usuario editado com sucesso");
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
             return "administrador/gerenciarusuario.jsp";
-        }
-        catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            ex.getMessage();
+            request.getSession().setAttribute("error", "");
+            return "/error.jsp";
         }
-        return null;
     }
 }

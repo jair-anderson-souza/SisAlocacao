@@ -31,25 +31,24 @@ public class LoadUserEditionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try{
+            HttpSession session = request.getSession();
             String id = request.getParameter("idUser");
             int idUser = Integer.parseInt(id);
-            
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
             User user = dao.findById(idUser);
             
-            if(user != null){
-                HttpSession session = request.getSession();
+            if(user != null) {
                 session.setAttribute("userEditing", user);
                 return "administrador/editarusuario.jsp";
-            }else{
-                request.setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
-                return "/pages/home";
+            } else {
+                session.setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
+                return "/error.jsp";
             }
-        }catch(NumberFormatException | SQLException e){
-            request.setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
-            e.printStackTrace();
-            return "/pages/home";
+        } catch(NumberFormatException | SQLException e) {
+            e.getMessage();
+            request.getSession().setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
+            return "/error.jsp";
         }
     }
 
