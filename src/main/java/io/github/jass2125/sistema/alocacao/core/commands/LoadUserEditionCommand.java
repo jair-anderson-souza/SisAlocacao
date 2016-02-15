@@ -43,12 +43,12 @@ public class LoadUserEditionCommand implements Command {
                 return "administrador/editarusuario.jsp";
             } else {
                 session.setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
-                return "/error.jsp";
+                return "error.jsp";
             }
         } catch(NumberFormatException | SQLException e) {
             e.getMessage();
             request.getSession().setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
-            return "/error.jsp";
+            return "error.jsp";
         }
     }
 

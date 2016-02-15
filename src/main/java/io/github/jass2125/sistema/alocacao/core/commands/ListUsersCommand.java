@@ -42,7 +42,7 @@ public class ListUsersCommand implements Command {
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
-            return "/error.jsp";
+            return "error.jsp";
         }
     }
 }

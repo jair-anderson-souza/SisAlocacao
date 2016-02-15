@@ -96,7 +96,7 @@
                     </div>
                     <form action="../csv" enctype="multipart/form-data" method="post">
                         <div class="modal-body">
-                            <input id="input-1" type="file" name="file" class="file">
+                            <input id="input-1" type="file" accept=".csv" value="Formato do arquivo requerido: .csv" name="file" class="file" required>
                         </div>
                         <div class="modal-body">
                             <button type="submit" class="btn btn-default">Importar</button>

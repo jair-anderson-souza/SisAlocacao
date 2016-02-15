@@ -74,7 +74,7 @@ public class RegisterUserCommand implements Command {
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
             e.getMessage();
-            return "/error.jsp";
+            return "error.jsp";
         }
         
     }

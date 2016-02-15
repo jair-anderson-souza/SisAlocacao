@@ -62,7 +62,7 @@ public class LoginUserCommand implements Command {
             }
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "/error.jsp";
+            return "error.jsp";
 
         }
 

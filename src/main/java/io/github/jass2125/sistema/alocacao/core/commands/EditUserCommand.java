@@ -68,7 +68,7 @@ public class EditUserCommand implements Command {
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
             request.getSession().setAttribute("error", "");
-            return "/error.jsp";
+            return "error.jsp";
         }
     }
 }
