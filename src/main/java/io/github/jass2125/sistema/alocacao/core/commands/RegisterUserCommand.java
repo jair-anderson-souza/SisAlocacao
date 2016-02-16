@@ -29,7 +29,6 @@ import javax.servlet.http.HttpSession;
  * @since 2015
  */
 public class RegisterUserCommand implements Command {
-
     private ValidationUserTemplate validator;
     private CryptographyPasswordStrategy cryptographer;
 
@@ -66,14 +65,12 @@ public class RegisterUserCommand implements Command {
                 dao.add(user);
                 HttpSession session = request.getSession();
                 session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
-                session.setAttribute("crud", "Usuario cadastrado com sucesso");
                 return "administrador/gerenciarusuario.jsp";
             } else {
                 request.getSession().setAttribute("crud", "Email e/ou Username existentes");
                 return "administrador/gerenciarusuario.jsp";
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
-            e.getMessage();
             return "error.jsp";
         }
         

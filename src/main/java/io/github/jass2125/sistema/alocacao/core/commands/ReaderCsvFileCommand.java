@@ -45,7 +45,6 @@ public class ReaderCsvFileCommand extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            //Ainda ver formato de arquivo 
             //Ver se tem quebra de linha
             // Create path components to save the file
             final Part filePart = request.getPart("file");
@@ -63,18 +62,16 @@ public class ReaderCsvFileCommand extends HttpServlet {
 
                 Scanner scanner = new Scanner(new File(path + "/" + fileName));
                 scanner.useDelimiter(",|\\n");
-
+                Factory factory = new FactoryDao();
+                IHolidayDao dao = factory.createHolidayDao();
+                //Corrigir espaço e acento da string de descrição
                 while (scanner.hasNext()) {
                     String date = scanner.next();
                     String description = scanner.next();
-                    Holiday holiday = new Holiday(description, date);
-                    Factory factory = new FactoryDao();
-                    IHolidayDao dao = factory.createHolidayDao();
-                    dao.add(holiday);
-                    //eXPRESSÃO REGULAR DE DATA PT-BR
-                    //if(data.matches("^([0-9]{2}\\/[0-9]{2}\\/[0-9]{4})$")){
-                    //pADRÃO DE TEXTO
-                    //if(descricao.matches("^\\w+$")){
+                    if (date.matches("^([0-9]{2}\\/[0-9]{2}\\/[0-9]{4})$") && description.matches("^[a-zA-Z]+$")) {
+                        Holiday holiday = new Holiday(description, date);
+                        dao.add(holiday);
+                    }
                 }
                 scanner.close();
             }
@@ -82,9 +79,9 @@ public class ReaderCsvFileCommand extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect("error.jsp");
         }
-        response.sendRedirect("error.jsp");
+        response.sendRedirect("administrador/gerenciarferiado.jsp");
     }
-    
+
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
 

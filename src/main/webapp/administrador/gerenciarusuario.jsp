@@ -107,7 +107,7 @@
                         <form role="form" action="../front?command=registerUser" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
-                                <input type="text" name="username" class="form-control" id="username" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\])|(([a-zA-Z\\\\-0-9]+\\\\.)+[a-zA-Z]{2,}))$" title="Insira seu username">
+                                <input type="text" name="username" class="form-control" id="username">
                             </div>
                             <div class="form-group">
                                 <label for="nome">Nome</label>
@@ -115,15 +115,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password</label>
-                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa pelo menos uma letra maiuscula e um caracterer especial.">
+                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
                             </div>
                             <div class="form-group">
-                                <label for="matricula">Matrícula</label>
-                                <input type="text" name="registry" class="form-control" id="matricula" pattern="[0-9]+.{5,30}" title="A matricula deve conter numero digitos numericos.">
+                                <label for="registry">Matrícula</label>
+                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
                             </div>
                             <div class="form-group">
                                 <label for="sel1">Papel</label>
@@ -230,6 +230,17 @@
                 <div class="col-lg-12">
                     <p>Copyright &copy; Sisloc 2016</p>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-left">
+                <c:if test="${sessionScope.error != null}">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            ${sessionScope.error}
+                        </div>
+                    </div>
+                </c:if>
             </div>
         </div>
     </body>

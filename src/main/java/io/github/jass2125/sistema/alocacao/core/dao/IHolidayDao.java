@@ -36,7 +36,7 @@ public interface IHolidayDao {
      * @param holiday Feriado
      * @throws SQLException IFeriadoDao
      */
-    public void edit(Holiday holiday) throws SQLException;
+    public void edit(Holiday holiday) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que retorna um Set de feriados
@@ -51,6 +51,10 @@ public interface IHolidayDao {
      * @return Feriado feriado
      * @throws SQLException IFeriadoDao
      */
-    public Holiday find(int idHoliday) throws SQLException ;
-
+    public Holiday findById(int idHoliday) throws SQLException;
+    
+    /**
+     * 
+     */
+    public Holiday findByDate(String date) throws SQLException, ClassNotFoundException;
 }

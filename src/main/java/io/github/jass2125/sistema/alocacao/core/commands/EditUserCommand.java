@@ -7,6 +7,7 @@ package io.github.jass2125.sistema.alocacao.core.commands;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
+import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Classe que edita o feriado
+ * Classe que edita o usuário
  *
  * @author Anderson Souza
  * @since 2015
@@ -53,21 +54,19 @@ public class EditUserCommand implements Command {
             String username = request.getParameter("username");
             String name = request.getParameter("name");
             String password = request.getParameter("password");
-            password = cryptographer.cryptographerSHA(password);
-            //Adicionar Expressão Regular pra validar essa MERDA
+
             String registry = request.getParameter("registry");
             String role = request.getParameter("role");
             User user = new User(idUser, name, username, password, email, registry, role, true);
+            validator.validatorDataUser(user);
+            password = cryptographer.cryptographerSHA(password);
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
-            //validator.validatorDataUser(user);
             dao.edit(user);
-            session.setAttribute("crud", "Usuario editado com sucesso");
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
             return "administrador/gerenciarusuario.jsp";
-        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
             e.printStackTrace();
-            request.getSession().setAttribute("error", "");
             return "error.jsp";
         }
     }

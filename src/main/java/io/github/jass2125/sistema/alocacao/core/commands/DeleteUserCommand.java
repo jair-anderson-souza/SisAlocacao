@@ -38,7 +38,6 @@ public class DeleteUserCommand implements Command {
             dao.delete(idUser);
             HttpSession session = request.getSession();
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
-            session.setAttribute("crud", "O usuario foi excluído com sucesso.");
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException | NumberFormatException | ClassNotFoundException e) {
             e.getMessage();

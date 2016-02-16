@@ -87,9 +87,10 @@ public class HolidayDao implements IHolidayDao {
      * @throws SQLException FeriadoDao
      */
     @Override
-    public void edit(Holiday holiday) throws SQLException {
+    public void edit(Holiday holiday) throws SQLException, ClassNotFoundException {
         String sql = "update feriado set descricao = ?, dataFeriado = ? where id_feriado = ?;";
         Connection con = DriverManager.getConnection(url, info);
+        Class.forName("com.mysql.jdbc.Drive");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, holiday.getDescription());
         ps.setString(2, holiday.getDate());
@@ -107,11 +108,11 @@ public class HolidayDao implements IHolidayDao {
      * @throws SQLException FeriadoDao
      */
     @Override
-    public void delete(int idFeriado) throws SQLException {
+    public void delete(int idHoliday) throws SQLException {
         String sql = "delete from feriado where id_feriado = ?;";
         Connection con = DriverManager.getConnection(url, info);
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idFeriado);
+        ps.setInt(1, idHoliday);
         ps.execute();
     }
 
@@ -123,22 +124,25 @@ public class HolidayDao implements IHolidayDao {
      * @throws SQLException FeriadoDao
      */
     @Override
-    public Holiday find(int idHoliday) throws SQLException {
+    public Holiday findById(int idHoliday) throws SQLException {
         String sql = "select * from feriado where id_feriado = ?;";
         Connection con = DriverManager.getConnection(url, info);
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idHoliday);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            String data_feriado = rs.getString("dataFeriado");
-            String descricao = rs.getString("descricao");
-            int id_usuario = rs.getInt("id_usuario");
-            return new Holiday(idHoliday, descricao, data_feriado);
+            String date = rs.getString("dataFeriado");
+            String description = rs.getString("descricao");
+            return new Holiday(idHoliday, description, date);
         }
         rs.close();
-        ps.clearParameters();
         ps.close();
         con.close();
+        return null;
+    }
+
+    @Override
+    public Holiday findByDate(String date) throws SQLException, ClassNotFoundException {
         return null;
     }
 }

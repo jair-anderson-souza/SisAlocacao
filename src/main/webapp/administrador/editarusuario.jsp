@@ -94,14 +94,14 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="username">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="username" value="${sessionScope.userEditing.username}" id="username">
+                                <input type="text" class="form-control" name="username" value="${sessionScope.userEditing.username}" id="username" pattern="[a-zA-Z\\.]+" title="O username não deve conter caracteres especiais">
                                 <input type="hidden" name="id_usuario" value="${sessionScope.userEditing.idUser}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="password">Senha</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" value="${sessionScope.userEditing.password}" id="password" >
+                                <input type="password" class="form-control" name="password" id="password" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
                             </div>
                         </div>
                         <div class="form-group">
@@ -113,13 +113,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="email" value="${sessionScope.userEditing.email}" id="email">
+                                <input type="text" class="form-control" name="email" value="${sessionScope.userEditing.email}" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="matricula">Matricula</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="registry" value="${sessionScope.userEditing.registry}" id="matricula">
+                                <input type="text" class="form-control" name="registry" value="${sessionScope.userEditing.registry}" id="matricula" pattern="[0-9]+.{5,30}" title="A matricula deve conter numero digitos numericos.">
                             </div>
                         </div>
                         <div class="form-group">

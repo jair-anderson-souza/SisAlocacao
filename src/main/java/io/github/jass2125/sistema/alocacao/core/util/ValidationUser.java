@@ -26,9 +26,11 @@ public class ValidationUser extends ValidationUserTemplate {
         this.usernamePattern = "[a-zA-Z\\.]+";
         this.passwordPattern = "((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})";
 //        this.emailPattern = "^\\S+@\\S+\\.\\S+$";
-        //Victor Hugo
+//        Victor Hugo
         this.emailPattern = "[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+";
-        this.matriculaPattern = "[0-9]+.{5,30}";
+        
+//            this.emailPattern = "^.+\\@.+\\..+$";
+        this.matriculaPattern = "^\\d{6}$";
     }
 
      /**Método que valida o username do usuario
