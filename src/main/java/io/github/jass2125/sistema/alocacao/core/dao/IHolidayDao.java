@@ -8,7 +8,7 @@ package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
 import java.sql.SQLException;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Interface do DAO de feriado
@@ -43,7 +43,7 @@ public interface IHolidayDao {
      * @return list Set de feriado
      * @throws SQLException IFeriadoDao
      */
-    public Set<Holiday> list() throws SQLException;
+    public List<Holiday> list() throws SQLException;
 
     /**
      * Metodo abstrato que busca um feriado pelo seu identificador

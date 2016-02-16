@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.sistema.alocacao.core.commands;
+package io.github.jass2125.sistema.alocacao.core.commands.user;
 
+import io.github.jass2125.sistema.alocacao.core.util.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

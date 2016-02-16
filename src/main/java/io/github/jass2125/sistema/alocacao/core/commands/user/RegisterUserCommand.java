@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.sistema.alocacao.core.commands;
+package io.github.jass2125.sistema.alocacao.core.commands.user;
 
+import io.github.jass2125.sistema.alocacao.core.util.Command;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;

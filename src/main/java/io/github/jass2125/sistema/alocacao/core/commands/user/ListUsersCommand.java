@@ -3,52 +3,47 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package io.github.jass2125.sistema.alocacao.core.commands.user;
 
-package io.github.jass2125.sistema.alocacao.core.commands;
-
+import io.github.jass2125.sistema.alocacao.core.util.Command;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Classe que efetua o carregamento de um usuario 
+ * Classe que efetua a busca por os usuarios
+ *
  * @author Anderson Souza
  * @since 2015
  */
-public class LoadUserEditionCommand implements Command {
+public class ListUsersCommand implements Command {
 
     /**
-     * Método que efetua o carregameto de um usuario da base de dados
+     * Método que efetua a busca por todos os usuarios
+     *
      * @param request Requisição
      * @param response Resposta
      * @return String Retorna a pagina para qual a aplicação será encaminhada
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        try{
-            HttpSession session = request.getSession();
-            String id = request.getParameter("idUser");
-            int idUser = Integer.parseInt(id);
+        try {
             Factory factory = new FactoryDao();
             IUserDao dao = factory.createUserDao();
-            User user = dao.findById(idUser);
-            
-            if(user != null) {
-                session.setAttribute("userEditing", user);
-                return "administrador/editarusuario.jsp";
-            } else {
-                return "error.jsp";
-            }
-        } catch(NumberFormatException | SQLException e) {
-            e.getMessage();
-            request.getSession().setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
+            User user = (User) request.getSession().getAttribute("user");
+            List<User> listUsers = dao.list(user.getIdUser());
+            HttpSession session = request.getSession();
+            session.setAttribute("listUsers", listUsers);
+            return "administrador/gerenciarusuario.jsp";
+        } catch (SQLException e) {
+            e.printStackTrace();
             return "error.jsp";
         }
     }
-
 }

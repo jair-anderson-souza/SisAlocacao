@@ -6,7 +6,7 @@
 
 package io.github.jass2125.sistema.alocacao.controller;
 
-import io.github.jass2125.sistema.alocacao.core.commands.Command;
+import io.github.jass2125.sistema.alocacao.core.util.Command;
 import io.github.jass2125.sistema.alocacao.core.util.CommandFactory;
 import java.io.IOException;
 import javax.servlet.ServletException;

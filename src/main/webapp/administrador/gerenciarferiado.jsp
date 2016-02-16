@@ -178,48 +178,29 @@
         <div class="container">
             <div class="table-responsive">
                 <table class="table table-responsive" id="table">
-                    <tr>
-                        <th>Descrição</th>
-                        <th>Data</th>
-                        <th>Editar</th>
-                        <th>Apagar</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Editar</th>
+                            <th>Apagar</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.listaDeFeriados}" var="feriado">
+                        <c:forEach items="${sessionScope.listHolidays}" var="holiday">
                             <tr>
-                                <td>${feriado.descricao}</td>
-                                <td>${feriado.dataDeFeriado}</td>
+                                <td>${holiday.description}</td>
+                                <td>${holiday.date}</td>
                                 <td>
-                                    <form action="front?action=editarferiado&idferiado=${feriado.idFeriado}" method="post">
+                                    <form action="front?action=editarferiado&idferiado=${holiday.idHoliday}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-plus btn btn-default"></button>
                                         <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>
                                 </td>
                                 <td>
-                                    <button type="submit" class="glyphicon glyphicon-trash btn btn-default"  data-toggle="modal" data-target="#exclusaousuario"></button>
-
-                                    <div id="exclusaousuario" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Confirmar Exclusao</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form role="form" action="front?action=excluirferiado&idferiado=${feriado.idFeriado}" method="post">
-                                                        <p>Tem certeza que deseja excluir feriado?</p>
-                                                        <button type="submit" class="btn btn-danger">Excluir</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    <form action="../front?command=deleteHoliday&idHoliday=${holiday.idHoliday}" method="post">
+                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                    </form>
                                 </td>
                             </tr>
 

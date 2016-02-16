@@ -7,14 +7,15 @@
 package io.github.jass2125.sistema.alocacao.core.util;
 
 
-import io.github.jass2125.sistema.alocacao.core.commands.Command;
-import io.github.jass2125.sistema.alocacao.core.commands.DeleteUserCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.EditUserCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.ListUsersCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.LoadUserEditionCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.LoginUserCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.LogoutUserCommand;
-import io.github.jass2125.sistema.alocacao.core.commands.RegisterUserCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.holiday.DeleteHolidayCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.DeleteUserCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.EditUserCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.holiday.ListHolidaysCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.ListUsersCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.LoadUserEditionCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.LoginUserCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.LogoutUserCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.user.RegisterUserCommand;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,8 @@ public class CommandFactory {
         commands.put("editUser", new EditUserCommand());
         commands.put("deleteUser", new DeleteUserCommand());
 //        commands.put("readerCsvFile", new ReaderCsvFileCommand());
-//        commands.put("listHolidays", new ListHolidaysCommand());
+        commands.put("listHolidays", new ListHolidaysCommand());
+        commands.put("deleteHoliday", new DeleteHolidayCommand());
         
         return commands.get(request.getParameter("command"));
     }

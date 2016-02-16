@@ -104,7 +104,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Feriados</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="gerenciarferiado.jsp" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listHolidays" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

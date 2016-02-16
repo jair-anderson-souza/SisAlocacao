@@ -11,7 +11,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -22,7 +24,6 @@ import java.util.Set;
  * @since 2015
  */
 public class HolidayDao implements IHolidayDao {
-
     private Properties info = new Properties();
     private String url;
 
@@ -39,18 +40,17 @@ public class HolidayDao implements IHolidayDao {
      * @throws SQLException FeriadoDao
      */
     @Override
-    public Set<Holiday> list() throws SQLException {
-        String sql = "select * from feriado;";
+    public List<Holiday> list() throws SQLException {
+        String sql = "select * from feriado order by dataFeriado asc;";
         Connection con = DriverManager.getConnection(url, info);
         PreparedStatement ps = con.prepareStatement(sql);
-        Set<Holiday> list = new HashSet<>();
+        List<Holiday> list = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             int idHoliday = rs.getInt("id_feriado");
             String data_feriado = rs.getString("dataFeriado");
             String descricao = rs.getString("descricao");
-            int id_usuario = rs.getInt("id_usuario");
             Holiday feriado = new Holiday(idHoliday, descricao, data_feriado);
             list.add(feriado);
         }

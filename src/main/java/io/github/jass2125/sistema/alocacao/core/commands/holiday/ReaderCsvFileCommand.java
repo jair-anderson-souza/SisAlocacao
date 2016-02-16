@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.sistema.alocacao.core.commands;
+package io.github.jass2125.sistema.alocacao.core.commands.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
 import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;

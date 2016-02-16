@@ -188,17 +188,19 @@
         <br>
         <div class="container">
             <div class="table-responsive">
-                <table class="table table-responsive" id="table">
-                    <tr style="">
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Papel</th>
-                        <th>Status</th>
-                        <th>IdUser</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
-                    </tr>
-                    <tbody>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Papel</th>
+                            <th>Status</th>
+                            <th>IdUser</th>
+                            <th>Editar</th>
+                            <th>Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
                         <c:forEach items="${sessionScope.listUsers}" var="userList">
                             <tr>
                                 <td>${userList.name}</td>

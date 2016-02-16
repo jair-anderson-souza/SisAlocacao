@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.sistema.alocacao.core.commands;
+package io.github.jass2125.sistema.alocacao.core.commands.holiday;
 
-import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
+import io.github.jass2125.sistema.alocacao.core.util.Command;
+import io.github.jass2125.sistema.alocacao.core.business.Holiday;
+import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import java.sql.SQLException;
@@ -16,17 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Classe que efetua a busca por os usuarios
+ * Classe que efetua a busca por os feriados
  *
  * @author Anderson Souza
  * @since 2015
  */
-public class ListUsersCommand implements Command {
+public class ListHolidaysCommand implements Command {   
 
     /**
-     * Método que efetua a busca por todos os usuarios
+     * Método que efetua a busca por todos os feriados
      *
-     * @param request Requisição
+     * @param request RequisiçãoI
      * @param response Resposta
      * @return String Retorna a pagina para qual a aplicação será encaminhada
      */
@@ -34,15 +35,14 @@ public class ListUsersCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             Factory factory = new FactoryDao();
-            IUserDao dao = factory.createUserDao();
-            User user = (User) request.getSession().getAttribute("user");
-            List<User> listUsers = dao.list(user.getIdUser());
+            IHolidayDao dao = factory.createHolidayDao();
+            List<Holiday> list = dao.list();
             HttpSession session = request.getSession();
-            session.setAttribute("listUsers", listUsers);
-            return "administrador/gerenciarusuario.jsp";
+            session.setAttribute("listHolidays", list);
+            return "administrador/gerenciarferiado.jsp";
         } catch (SQLException e) {
-            e.printStackTrace();
             return "error.jsp";
         }
     }
+
 }
