@@ -192,14 +192,13 @@
                                 <td>${holiday.description}</td>
                                 <td>${holiday.date}</td>
                                 <td>
-                                    <form action="front?action=editarferiado&idferiado=${holiday.idHoliday}" method="post">
-                                        <button type="submit" class="glyphicon glyphicon-plus btn btn-default"></button>
-                                        <!--<button type="submit" class="btn btn-info"></button>-->
+                                    <form action="../front?command=loadHoliday&idHoliday=${holiday.idHoliday}" method="post">
+                                        <button type="submit" class="glyphicon glyphicon-plus btn btn-pencil"></button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="../front?command=deleteHoliday&idHoliday=${holiday.idHoliday}" method="post">
-                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-trash"></button>
                                     </form>
                                 </td>
                             </tr>

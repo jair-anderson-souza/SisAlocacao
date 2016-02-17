@@ -8,9 +8,11 @@ package io.github.jass2125.sistema.alocacao.core.util;
 
 
 import io.github.jass2125.sistema.alocacao.core.commands.holiday.DeleteHolidayCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.holiday.EditHolidayCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.user.DeleteUserCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.user.EditUserCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.holiday.ListHolidaysCommand;
+import io.github.jass2125.sistema.alocacao.core.commands.holiday.LoadHolidayEditCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.user.ListUsersCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.user.LoadUserEditionCommand;
 import io.github.jass2125.sistema.alocacao.core.commands.user.LoginUserCommand;
@@ -46,6 +48,8 @@ public class CommandFactory {
 //        commands.put("readerCsvFile", new ReaderCsvFileCommand());
         commands.put("listHolidays", new ListHolidaysCommand());
         commands.put("deleteHoliday", new DeleteHolidayCommand());
+        commands.put("loadHoliday", new LoadHolidayEditCommand());
+        commands.put("editHoliday", new EditHolidayCommand());
         
         return commands.get(request.getParameter("command"));
     }

@@ -90,7 +90,7 @@ public class HolidayDao implements IHolidayDao {
     public void edit(Holiday holiday) throws SQLException, ClassNotFoundException {
         String sql = "update feriado set descricao = ?, dataFeriado = ? where id_feriado = ?;";
         Connection con = DriverManager.getConnection(url, info);
-        Class.forName("com.mysql.jdbc.Drive");
+        Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, holiday.getDescription());
         ps.setString(2, holiday.getDate());
