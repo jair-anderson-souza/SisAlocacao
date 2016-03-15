@@ -10,6 +10,8 @@ import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,6 +41,9 @@ public class DeleteHolidayAction implements Action {
             request.getSession().setAttribute("listHolidays", dao.list());
             return "administrador/gerenciarferiado.jsp";
         } catch (SQLException | NumberFormatException e) {
+            return "error.jsp";
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeleteHolidayAction.class.getName()).log(Level.SEVERE, null, ex);
             return "error.jsp";
         }
     }

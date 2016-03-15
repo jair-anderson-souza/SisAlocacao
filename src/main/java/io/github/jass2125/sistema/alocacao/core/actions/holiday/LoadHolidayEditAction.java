@@ -11,6 +11,8 @@ import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,6 +48,9 @@ public class LoadHolidayEditAction implements Action {
             }
         } catch (SQLException e) {
             request.setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
+            return "error.jsp";
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoadHolidayEditAction.class.getName()).log(Level.SEVERE, null, ex);
             return "error.jsp";
         }
     }

@@ -5,13 +5,14 @@
  */
 package io.github.jass2125.sistema.alocacao.core.business;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Anderson Souza
  */
-public class Material {
+public class Material implements Serializable{
 
-    private Long idMaterial;
     private String description;
     private int quantity;
     private int tombamento;
@@ -21,10 +22,10 @@ public class Material {
     public Material() {
     }
 
-    public Material(String description, int quantity, int tombamento, String status, String materialRoom) {
+    public Material(int tombamento, String description, int quantity, String status, String materialRoom) {
+        this.tombamento = tombamento;
         this.description = description;
         this.quantity = quantity;
-        this.tombamento = tombamento;
         this.status = status;
         this.materialRoom = materialRoom;
     }
@@ -35,10 +36,6 @@ public class Material {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Long getIdMaterial() {
-        return idMaterial;
     }
 
     public String getDescription() {

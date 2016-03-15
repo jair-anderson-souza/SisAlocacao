@@ -23,7 +23,7 @@ public interface IUserDao {
      * @param user User
      * @throws SQLException Erro de conexão com o banco de dados
      */
-    public void add(User user) throws SQLException;
+    public void add(User user) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que edita um usuario
@@ -48,7 +48,7 @@ public interface IUserDao {
      * @return list Set
      * @throws SQLException IUsuarioDao
      */
-    public List<User> list(int idUser) throws SQLException;
+    public List<User> list(int idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que exclui um usuario pelo seu identificador
@@ -63,7 +63,7 @@ public interface IUserDao {
      * @return User user
      * @throws SQLException Erro de conexão com o banco de dados
      */
-    public User findById(int idUser) throws SQLException;
+    public User findById(int idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Método abstrato que busca um usuario pelo seu username e pelo seu email

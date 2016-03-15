@@ -37,9 +37,9 @@ public class RegisterMaterial implements Action {
 
         String materialRoom = request.getParameter("materialRoom");
 
-        Material material = new Material(description, quantity, tombamento, status, materialRoom);
-
-        dao.add(material);
+//        Material material = new Material(description, quantity, tombamento, status, materialRoom);
+//
+//        dao.add(material);
         
         return null;
 

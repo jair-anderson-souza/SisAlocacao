@@ -12,6 +12,8 @@ import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,6 +45,9 @@ public class ListUsersAction implements Action {
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
+            return "error.jsp";
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListUsersAction.class.getName()).log(Level.SEVERE, null, ex);
             return "error.jsp";
         }
     }

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,8 +46,8 @@
                     </button>
                     <!--<img src="../img/logo.png" style="width:20px;">-->
                     <br>
-                    <h4 class="navbar-form">Sistema Sisloc</a><br><br>
-                        <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
+                    <h4 class="navbar-form">Sistema Sisloc</h4><br><br>
+                    <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -78,38 +79,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cadastro de Usuario</h4>
+                        <h4 class="modal-title">Cadastro de Material</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="../front?command=registerUser" method="post">
+                        <form role="form" action="../front?action=registerMaterial" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
                                 <input type="text" name="username" class="form-control" id="username">
                             </div>
                             <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="name" class="form-control" id="nome">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
-                            </div>
-                            <div class="form-group">
-                                <label for="registry">Matrícula</label>
-                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
-                            </div>
-                            <div class="form-group">
-                                <label for="sel1">Papel</label>
-                                <select class="form-control" name="role" id="sel1">
-                                    <option value="aluno">Aluno</option>
-                                    <option value="monitor">Monitor</option>
-                                    <option value="assistente">Assistente de Sala</option>
-                                    <option value=professor">Professor</option>
-                                </select>
+                                <label for="registry">Quantidade</label>
+                                <input type="number" name="quantity" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
@@ -122,7 +102,7 @@
         </div>
         <div class="container">
             <div class="row text-left">
-                <c:if test="${crud != null} ">
+                <c:if test="${crud != null}">
                     <div class="col-md-12">
                         <div class="alert alert-success">
                             ${crud}
@@ -137,7 +117,7 @@
         <div class="container">
             <!-- Page Heading/Breadcrumbs -->
             <div class="row">
-                <div class="col-lg-12"><h1 class="page-header">Lista de Usuarios</h1>
+                <div class="col-lg-12"><h1 class="page-header">Lista de Materiais</h1>
                     <div class="container">
                         <div class="row text-left">
                             <c:if test="${crud != null} ">
@@ -160,7 +140,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <a href="" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a href="#" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
                     </div>
                 </div>
             </div>
@@ -178,21 +158,21 @@
                 <table class="table table-responsive">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Papel</th>
+                            <th>Material</th>
+                            <th>Tombamento</th>
                             <th>Status</th>
+                            <th>Local</th>
                             <th>Editar</th>
                             <th>Deletar</th>
                         </tr>
                     </thead>
                     <tbody id="table">
-                        <c:forEach items="${sessionScope.listUsers}" var="userList">
+                        <c:forEach items="${sessionScope.listMaterial}" var="materialList">
                             <tr>
-                                <td>${userList.name}</td>
-                                <td>${userList.email}</td>
-                                <td>${userList.role}</td>
-                                <td>${userList.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
+                                <td>${materialList.description}</td>
+                                <td>${materialList.tombamento}</td>
+                                <td>${materialList.status}</td>
+                                <td>${materialList.materialRoom}</td>
                                 <td>
                                     <form action="../front?command=loadUser&idUser=${userList.idUser}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>

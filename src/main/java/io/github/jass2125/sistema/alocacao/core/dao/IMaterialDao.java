@@ -7,6 +7,7 @@
 package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.Material;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface IMaterialDao {
     
-    public List<Material> listMaterial();
-    public void add(Material material);
+    public List<Material> listMaterial() throws SQLException, ClassNotFoundException;
+    public void add(Material material) throws SQLException, ClassNotFoundException;
 
 }

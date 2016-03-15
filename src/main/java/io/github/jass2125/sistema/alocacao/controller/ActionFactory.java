@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package io.github.jass2125.sistema.alocacao.controller;
 
 import io.github.jass2125.sistema.alocacao.core.action.material.ListMaterialAction;
@@ -25,35 +24,41 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Classe que atua como fabrica de commands
+ *
  * @author Anderson Souza
  * @since 2015
  */
 public class ActionFactory {
-    private static Map<String, Action> commands;
-    
-    public ActionFactory() {}
-     /**
+
+    private static Map<String, Action> actions;
+
+    public ActionFactory() {
+    }
+
+    /**
      * Método estatico retornar o command específica
+     *
      * @param request Requisição do usuario
      * @return commands Comando a ser executado
      */
-    public static Action getAction(HttpServletRequest request){
-        commands = new HashMap<>();
-        commands.put("login", new LoginUserAction());
-        commands.put("logout", new LogoutUserAction());
-        commands.put("listUsers", new ListUsersAction());
-        commands.put("registerUser", new RegisterUserAction());
-        commands.put("loadUser", new LoadUserEditionAction());
-        commands.put("editUser", new EditUserAction());
-        commands.put("deleteUser", new DeleteUserAction());
+    public static Action getAction(HttpServletRequest request) {
+        actions = new HashMap<>();
+        actions.put("login", new LoginUserAction());
+        actions.put("logout", new LogoutUserAction());
+        actions.put("listUsers", new ListUsersAction());
+        actions.put("registerUser", new RegisterUserAction());
+        actions.put("loadUser", new LoadUserEditionAction());
+        actions.put("editUser", new EditUserAction());
+        actions.put("deleteUser", new DeleteUserAction());
 //        commands.put("readerCsvFile", new ReaderCsvFileCommand());
-        commands.put("listHolidays", new ListHolidaysAction());
-        commands.put("deleteHoliday", new DeleteHolidayAction());
-        commands.put("loadHoliday", new LoadHolidayEditAction());
-        commands.put("editHoliday", new EditHolidayAction());
-        commands.put("listMaterial", new ListMaterialAction());
-        
-        return commands.get(request.getParameter("action"));
+        actions.put("listHolidays", new ListHolidaysAction());
+        actions.put("deleteHoliday", new DeleteHolidayAction());
+        actions.put("loadHoliday", new LoadHolidayEditAction());
+        actions.put("editHoliday", new EditHolidayAction());
+        actions.put("listMaterial", new ListMaterialAction());
+        actions.put("registerMaterial", new ListMaterialAction());
+
+        return actions.get(request.getParameter("action"));
     }
 
 }

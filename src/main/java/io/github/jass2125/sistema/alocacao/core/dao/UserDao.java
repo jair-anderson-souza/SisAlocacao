@@ -6,17 +6,13 @@
 package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
+import io.github.jass2125.sistema.alocacao.core.factory.ConnectionFactory;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Classe que implementa os DAO's de usuario
@@ -26,13 +22,10 @@ import java.util.Properties;
  */
 public class UserDao implements IUserDao {
 
-    private Properties info = new Properties();
-    private String url;
+    private ConnectionFactory connectionFactory;
 
     public UserDao() {
-        info.setProperty("user", "root");
-        info.setProperty("password", "12345");
-        url = "jdbc:mysql://localhost:3306/sisloc";
+        connectionFactory = new ConnectionFactory();
     }
 
     /**
@@ -48,8 +41,7 @@ public class UserDao implements IUserDao {
     @Override
     public User findByLoginAndPassword(String login, String password) throws ClassNotFoundException, SQLException {
         String sql = "select * from usuario where binary username = ? and binary senha = ? or binary email = ? and binary senha = ?;";
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection(url, "root", "12345");
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ps.setString(1, login);
         ps.setString(2, password);
@@ -71,15 +63,7 @@ public class UserDao implements IUserDao {
         ps.close();
         return null;
     }
-    public static void main(String[] args) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
-        User user = new User("Anderson Souza", "root", "xs123chg", "jair_anderson_bs@hotmail.com", "000000", "administrador", true);
-        UserDao dao = new UserDao();
-        CryptographerPasswordSHA c = new CryptographerPasswordSHA();
-        String pass = c.cryptographerSHA(user.getPassword());
-        user.setPassword(pass);
-        
-        dao.add(user);
-    }
+
     /**
      * Método responsável por adicionar um usuario
      *
@@ -87,9 +71,9 @@ public class UserDao implements IUserDao {
      * @throws SQLException Erro de conexão com o banco de dados
      */
     @Override
-    public void add(User user) throws SQLException {
+    public void add(User user) throws SQLException, ClassNotFoundException {
         String sql = "insert into usuario(name, username, senha, email, matricula, papel, status) values(?, ?, ?, ?, ?, ?, ?);";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getName());
         ps.setString(2, user.getUsername());
@@ -111,9 +95,9 @@ public class UserDao implements IUserDao {
      * @throws SQLException UsuarioDao
      */
     @Override
-    public List<User> list(int idUser) throws SQLException {
+    public List<User> list(int idUser) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where id_usuario <> ? and status = true;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idUser);
         List<User> list = new ArrayList<>();
@@ -156,7 +140,7 @@ public class UserDao implements IUserDao {
                 + "papel = ?, "
                 + "status = ? "
                 + "where id_usuario = ?;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, usuario.getName());
@@ -170,6 +154,7 @@ public class UserDao implements IUserDao {
         ps.execute();
         ps.close();
     }
+
     /**
      * Método responsável por excluir um usuario pelo seu identificador
      *
@@ -180,12 +165,13 @@ public class UserDao implements IUserDao {
     @Override
     public void delete(int idUsuario) throws SQLException, ClassNotFoundException {
         String sql = "delete from usuario where id_usuario = ?;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idUsuario);
         ps.execute();
     }
+
     /**
      * Método responsável por buscar um usuario pelo seu identificador
      *
@@ -194,14 +180,14 @@ public class UserDao implements IUserDao {
      * @throws SQLException UsuarioDao
      */
     @Override
-    public User findById(int idUser) throws SQLException {
+    public User findById(int idUser) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where id_usuario = ?";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idUser);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            String nome = rs.getString("nome");
+            String nome = rs.getString("name");
             String email = rs.getString("email");
             String username = rs.getString("username");
             String senha = rs.getString("senha");
@@ -227,12 +213,10 @@ public class UserDao implements IUserDao {
      * @throws ClassNotFoundException A classe do Driver do banco de dados não
      * pode ser carregada
      */
-
     @Override
     public User findByUsernameOrEmail(String username, String email) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where binary username = ? or binary email = ?;";
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection(url, "root", "12345");
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ps.setString(1, username);
         ps.setString(2, email);

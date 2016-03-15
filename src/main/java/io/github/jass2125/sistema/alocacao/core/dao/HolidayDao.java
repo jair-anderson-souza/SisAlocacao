@@ -6,14 +6,13 @@
 package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
+import io.github.jass2125.sistema.alocacao.core.factory.ConnectionFactory;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Classe que implementa os DAO's de feriado
@@ -22,13 +21,10 @@ import java.util.Properties;
  * @since 2015
  */
 public class HolidayDao implements IHolidayDao {
-    private Properties info = new Properties();
-    private String url;
-
+    private ConnectionFactory connectionFactory;
+    
     public HolidayDao() {
-        info.setProperty("user", "root");
-        info.setProperty("password", "12345");
-        url = "jdbc:mysql://localhost:3306/sisloc";
+        connectionFactory = new ConnectionFactory();
     }
 
     /**
@@ -36,11 +32,12 @@ public class HolidayDao implements IHolidayDao {
      *
      * @return list Set de feriado
      * @throws SQLException FeriadoDao
+     * @throws ClassNotFoundException
      */
     @Override
-    public List<Holiday> list() throws SQLException {
+    public List<Holiday> list() throws SQLException, ClassNotFoundException {
         String sql = "select * from feriado order by dataFeriado asc;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List<Holiday> list = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
@@ -68,7 +65,7 @@ public class HolidayDao implements IHolidayDao {
     @Override
     public void add(Holiday holiday) throws SQLException, ClassNotFoundException {
         String sql = "insert into feriado(dataFeriado, descricao) values(?, ?);";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, holiday.getDate());
@@ -87,7 +84,7 @@ public class HolidayDao implements IHolidayDao {
     @Override
     public void edit(Holiday holiday) throws SQLException, ClassNotFoundException {
         String sql = "update feriado set descricao = ?, dataFeriado = ? where id_feriado = ?;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, holiday.getDescription());
@@ -106,9 +103,9 @@ public class HolidayDao implements IHolidayDao {
      * @throws SQLException FeriadoDao
      */
     @Override
-    public void delete(int idHoliday) throws SQLException {
+    public void delete(int idHoliday) throws SQLException, ClassNotFoundException {
         String sql = "delete from feriado where id_feriado = ?;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idHoliday);
         ps.execute();
@@ -120,11 +117,12 @@ public class HolidayDao implements IHolidayDao {
      * @param idFeriado int
      * @return Feriado Feriado
      * @throws SQLException FeriadoDao
+     * @throws ClassNotFoundException
      */
     @Override
-    public Holiday findById(int idHoliday) throws SQLException {
+    public Holiday findById(int idHoliday) throws SQLException, ClassNotFoundException {
         String sql = "select * from feriado where id_feriado = ?;";
-        Connection con = DriverManager.getConnection(url, info);
+        Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idHoliday);
         ResultSet rs = ps.executeQuery();

@@ -12,6 +12,8 @@ import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,8 +48,12 @@ public class LoadUserEditionAction implements Action {
                 return "error.jsp";
             }
         } catch(NumberFormatException | SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
             request.getSession().setAttribute("error", "Ocorreu um problema. Verifique os campos e tente novamente.");
+            return "error.jsp";
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoadUserEditionAction.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             return "error.jsp";
         }
     }

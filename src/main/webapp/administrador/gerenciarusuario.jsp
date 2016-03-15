@@ -5,13 +5,11 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" %>
 <!DOCTYPE html>
 <html lang="pt-br">
-
     <head>
-
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -106,7 +104,7 @@
                     <div class="modal-body">
                         <form role="form" action="../front?action=registerUser" method="post">
                             <div class="form-group">
-                                <label for="username">Nome de usu√°rio</label>
+                                <label for="username">Nome de usu·rio</label>
                                 <input type="text" name="username" class="form-control" id="username">
                             </div>
                             <div class="form-group">
@@ -122,8 +120,8 @@
                                 <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
                             </div>
                             <div class="form-group">
-                                <label for="registry">Matr√≠cula</label>
-                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos n√∫mericos.">
+                                <label for="registry">MatrÌcula</label>
+                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos n˙mericos.">
                             </div>
                             <div class="form-group">
                                 <label for="sel1">Papel</label>
