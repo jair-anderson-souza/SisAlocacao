@@ -70,7 +70,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
-                            <li><a href="../front?command=logout">Sair</a></li>
+                            <li><a href="../front?action=logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <form role="form" action="../front?command=editHoliday&idHoliday=${sessionScope.holidayEdit.idHoliday}" method="post">
+                    <form role="form" action="../front?action=editHoliday&idHoliday=${sessionScope.holidayEdit.idHoliday}" method="post">
                         <div class="form-group">
                             <label for="description">Descriçao</label>
                             <input type="text" name="description" value="${sessionScope.holidayEdit.description}" class="form-control" id="description">
@@ -120,11 +120,11 @@
                 <div class="col-md-2"></div>
             </div>
         </div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br><hr>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br><hr>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

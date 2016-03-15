@@ -6,6 +6,9 @@
 package io.github.jass2125.sistema.alocacao.core.dao;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
+import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -55,7 +58,7 @@ public class UserDao implements IUserDao {
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             int idUser = rs.getInt("id_usuario");
-            String name = rs.getString("nome");
+            String name = rs.getString("name");
             String username2 = rs.getString("username");
             String email = rs.getString("email");
             String registry = rs.getString("matricula");
@@ -68,7 +71,15 @@ public class UserDao implements IUserDao {
         ps.close();
         return null;
     }
-
+    public static void main(String[] args) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
+        User user = new User("Anderson Souza", "root", "xs123chg", "jair_anderson_bs@hotmail.com", "000000", "administrador", true);
+        UserDao dao = new UserDao();
+        CryptographerPasswordSHA c = new CryptographerPasswordSHA();
+        String pass = c.cryptographerSHA(user.getPassword());
+        user.setPassword(pass);
+        
+        dao.add(user);
+    }
     /**
      * Método responsável por adicionar um usuario
      *
@@ -77,7 +88,7 @@ public class UserDao implements IUserDao {
      */
     @Override
     public void add(User user) throws SQLException {
-        String sql = "insert into usuario(nome, username, senha, email, matricula, papel, status) values(?, ?, ?, ?, ?, ?, ?);";
+        String sql = "insert into usuario(name, username, senha, email, matricula, papel, status) values(?, ?, ?, ?, ?, ?, ?);";
         Connection con = DriverManager.getConnection(url, info);
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, user.getName());
@@ -110,7 +121,7 @@ public class UserDao implements IUserDao {
 
         while (rs.next()) {
             int id = rs.getInt("id_usuario");
-            String name = rs.getString("nome");
+            String name = rs.getString("name");
             String email = rs.getString("email");
             String username = rs.getString("username");
             String password = rs.getString("senha");
@@ -137,7 +148,7 @@ public class UserDao implements IUserDao {
     @Override
     public void edit(User usuario) throws SQLException, ClassNotFoundException {
         String sql = "update usuario "
-                + "set nome = ?, "
+                + "set name = ?, "
                 + "username = ?, "
                 + "senha = ?, "
                 + "email = ?, "
@@ -228,7 +239,7 @@ public class UserDao implements IUserDao {
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             int idUsuario = rs.getInt("id_usuario");
-            String name = rs.getString("nome");
+            String name = rs.getString("name");
             String password = rs.getString("senha");
             String username2 = rs.getString("username");
             String email2 = rs.getString("email");

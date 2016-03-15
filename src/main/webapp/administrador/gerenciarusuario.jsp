@@ -79,7 +79,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
-                            <li><a href="../front?command=logout">Sair</a></li>
+                            <li><a href="../front?action=logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -104,7 +104,7 @@
                         <h4 class="modal-title">Cadastro de Usuario</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="../front?command=registerUser" method="post">
+                        <form role="form" action="../front?action=registerUser" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
                                 <input type="text" name="username" class="form-control" id="username">
@@ -145,10 +145,10 @@
         </div>
         <div class="container">
             <div class="row text-left">
-                <c:if test="${sessionScope.crud} != null">
+                <c:if test="${crud != null} ">
                     <div class="col-md-12">
                         <div class="alert alert-success">
-                            ${sessionScope.crud}
+                            ${crud}
                         </div>
                     </div>
                 </c:if>
@@ -161,10 +161,20 @@
             <!-- Page Heading/Breadcrumbs -->
             <div class="row">
                 <div class="col-lg-12"><h1 class="page-header">Lista de Usuarios</h1>
-                    <!--<small>AdministraÃ§Ã£o</small>-->
+                    <div class="container">
+                        <div class="row text-left">
+                            <c:if test="${crud != null} ">
+                                <div class="col-md-12">
+                                    <div class="alert alert-success">
+                                        ${crud}
+                                    </div>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="../front?command=listUsers">Gerenciamento de Usuario</li>
+                        <li><a href="../front?action=listUsers">Gerenciamento de Usuario</li>
                     </ol>
                 </div>
             </div>
@@ -195,7 +205,6 @@
                             <th>Email</th>
                             <th>Papel</th>
                             <th>Status</th>
-                            <th>IdUser</th>
                             <th>Editar</th>
                             <th>Deletar</th>
                         </tr>
@@ -207,15 +216,14 @@
                                 <td>${userList.email}</td>
                                 <td>${userList.role}</td>
                                 <td>${userList.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
-                                <td>${userList.idUser}</td>
                                 <td>
-                                    <form action="../front?command=loadUser&idUser=${userList.idUser}" method="post">
+                                    <form action="../front?action=loadUser&idUser=${userList.idUser}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                         <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
+                                    <form action="../front?action=deleteUser&idUser=${userList.idUser}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                     </form>
                                 </td>

@@ -46,7 +46,7 @@
                     <!--<img src="../img/logo.png" style="width:20px;">-->
                     <br>
                     <h4 class="navbar-form">Sistema Sisloc</a><br><br>
-                        <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
+                    <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -92,7 +92,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Usuarios</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?command=listUsers" class="btn btn-primary">Abrir</a>
+                            <a href="../front?action=listUsers" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,19 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Feriados</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?command=listHolidays" class="btn btn-primary">Abrir</a>
+                            <a href="../front?action=listHolidays" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="../img/escolar.jpg" style="width: 140px;">
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Material</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?action=listMaterial" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

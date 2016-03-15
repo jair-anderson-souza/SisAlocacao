@@ -1,0 +1,9 @@
+br.edu.ifpb.sisloc.controller
+br.edu.ifpb.sisloc.core.actions
+br.edu.ifpb.sisloc.core.business
+br.edu.ifpb.sisloc.core.dao
+br.edu.ifpb.sisloc.core.exceptions
+br.edu.ifpb.sisloc.core.factory
+br.edu.ifpb.sisloc.core.filters
+br.edu.ifpb.sisloc.core.listeners
+br.edu.ifpb.sisloc.core.util

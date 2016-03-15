@@ -41,7 +41,7 @@
                         <h4 class="modal-title">Cadastro de Usuario</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="front?command=cadastrarusuario" method="post">
+                        <form role="form" action="front?action=cadastrarusuario" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
                                 <input type="text" name="username" class="form-control" id="usern" title="Three letter country code">
