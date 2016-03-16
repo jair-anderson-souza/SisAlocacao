@@ -37,16 +37,15 @@ create table material(
 	tombamento int(7),
 	descricao varchar(50),
 	quantidade int not null,
-	status varchar(20) not null,
+	status varchar(20),
 	local bigint,
 	foreign key(local) references sala(id_sala) on update cascade on delete restrict, 
 	constraint ref_pkey_feriado
 	primary key(tombamento)
 );
-
-
-
-	
-	
-	
-	
+insert into bloco values(1, 'Bloco 4');
+insert into sala values(1, 'Sala 2', 1, 40, 'COMUM');
+insert into material values(1111111, 'RetroProjetor', 20, 'Disponivel', 1);
+insert into bloco values(2, 'Bloco 5');
+insert into sala values(2, 'Sala 4', 2, 23, 'COMUM');
+insert into material values(2211111, 'RetroProjetor', 20, 'Disponivel', 2);

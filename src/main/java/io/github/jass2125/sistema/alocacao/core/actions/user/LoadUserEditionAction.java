@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.sistema.alocacao.core.action.user;
+package io.github.jass2125.sistema.alocacao.core.actions.user;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;

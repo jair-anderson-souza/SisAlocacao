@@ -28,7 +28,7 @@ public class MaterialDao implements IMaterialDao {
 
     @Override
     public List<Material> listMaterial() throws SQLException, ClassNotFoundException {
-         Connection con = connectionFactory.getConnection();
+        Connection con = connectionFactory.getConnection();
         String sql = "select material.descricao, material.tombamento, material.quantidade, material.status, sala.nome_da_sala from material inner join sala where material.local = sala.id_sala;";
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -49,6 +49,35 @@ public class MaterialDao implements IMaterialDao {
     @Override
     public void add(Material material) {
 
+    }
+
+    @Override
+    public Material findById(int tombamento) throws SQLException, ClassNotFoundException {
+        String sql = "select * from material inner join sala where material.local = sala.id_sala and material.tombamento = ?;";
+        Connection con = connectionFactory.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, tombamento);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String description = rs.getString("descricao");
+            int quantity = rs.getInt("quantidade");
+            String status = rs.getString("status");
+            String materialRoom = rs.getString("nome_da_sala");
+            return new Material(tombamento, description, quantity, status, materialRoom);
+        }
+        return null;
+
+    }
+
+    @Override
+    public void update(Material material) throws SQLException, ClassNotFoundException {
+      String sql = "update material set descricao = ?, quantidade = ? where tombamento = ?;";
+        Connection con = connectionFactory.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, material.getDescription());
+        ps.setInt(2, material.getQuantity());
+        ps.setInt(2, material.getTombamento());
+        ps.execute();
     }
 
 }

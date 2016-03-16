@@ -5,18 +5,21 @@
  */
 package io.github.jass2125.sistema.alocacao.controller;
 
-import io.github.jass2125.sistema.alocacao.core.action.material.ListMaterialAction;
+import io.github.jass2125.sistema.alocacao.core.actions.material.ListMaterialAction;
+import io.github.jass2125.sistema.alocacao.core.actions.material.RegisterMaterial;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.EditHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.ListHolidaysAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.LoadHolidayEditAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.DeleteUserAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.EditUserAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.ListUsersAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.LoadUserEditionAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.LoginUserAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.LogoutUserAction;
-import io.github.jass2125.sistema.alocacao.core.action.user.RegisterUserAction;
+import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterial;
+import io.github.jass2125.sistema.alocacao.core.actions.material.LoadMaterialToEditAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.DeleteUserAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.EditUserAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.ListUsersAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.LoadUserEditionAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.LoginUserAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.LogoutUserAction;
+import io.github.jass2125.sistema.alocacao.core.actions.user.RegisterUserAction;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,8 +58,11 @@ public class ActionFactory {
         actions.put("deleteHoliday", new DeleteHolidayAction());
         actions.put("loadHoliday", new LoadHolidayEditAction());
         actions.put("editHoliday", new EditHolidayAction());
+        
         actions.put("listMaterial", new ListMaterialAction());
-        actions.put("registerMaterial", new ListMaterialAction());
+        actions.put("registerMaterial", new RegisterMaterial());
+        actions.put("loadMaterialToEdit", new LoadMaterialToEditAction());
+        actions.put("updateMaterial", new EditMaterialAction());
 
         return actions.get(request.getParameter("action"));
     }

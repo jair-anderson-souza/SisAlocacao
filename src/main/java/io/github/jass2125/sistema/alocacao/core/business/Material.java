@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Anderson Souza
  */
-public class Material implements Serializable{
+public class Material implements Serializable {
 
     private String description;
     private int quantity;
@@ -20,6 +20,12 @@ public class Material implements Serializable{
     private String materialRoom;
 
     public Material() {
+    }
+
+    public Material(String description, int quantity) {
+        this.description = description;
+        this.quantity = quantity;
+        this.status = "DISPONIVEL";
     }
 
     public Material(int tombamento, String description, int quantity, String status, String materialRoom) {

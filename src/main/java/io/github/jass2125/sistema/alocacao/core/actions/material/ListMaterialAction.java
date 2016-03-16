@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.sistema.alocacao.core.action.material;
+package io.github.jass2125.sistema.alocacao.core.actions.material;
 
 import io.github.jass2125.sistema.alocacao.core.business.Material;
 import io.github.jass2125.sistema.alocacao.core.dao.IMaterialDao;

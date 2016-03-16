@@ -174,7 +174,7 @@
                                 <td>${materialList.status}</td>
                                 <td>${materialList.materialRoom}</td>
                                 <td>
-                                    <form action="../front?command=loadUser&idUser=${userList.idUser}" method="post">
+                                    <form action="../front?action=loadMaterialToEdit&tombamento=${materialList.tombamento}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                         <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>
