@@ -11,7 +11,7 @@ import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAct
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.EditHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.ListHolidaysAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.LoadHolidayEditAction;
-import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterial;
+import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.LoadMaterialToEditAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.DeleteUserAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.EditUserAction;

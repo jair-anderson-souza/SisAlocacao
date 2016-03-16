@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project name="web" basedir=".">
+	<property file="build.properties"/>
+		<target name="stop.tomcat">
+			<exec executable="${ant.dir.bin}/shutdown.sh"/>
+		</target>
+		<target name="start.tomcat">
+			<exec executable="${ant.dir.bin}/startup.sh"/>
+		</target>
+</project>
