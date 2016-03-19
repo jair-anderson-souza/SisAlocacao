@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
@@ -35,7 +35,7 @@ public class LoadHolidayEditAction implements Action {
             String id = request.getParameter("idHoliday");
             int idHoliday = Integer.parseInt(id);
             Factory factory = new FactoryDao();
-            IHolidayDao dao = factory.createHolidayDao();
+            HolidayDao dao = factory.createHolidayDao();
             Holiday holiday = dao.findById(idHoliday);
             
             if (holiday != null) {

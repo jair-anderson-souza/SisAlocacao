@@ -6,7 +6,6 @@
 package io.github.jass2125.sistema.alocacao.core.actions.user;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
@@ -14,6 +13,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
 
 /**
  * Classe que efetua a exclusão de um usuarios
@@ -35,7 +35,7 @@ public class DeleteUserAction implements Action {
         try {
             int idUser = Integer.parseInt(request.getParameter("idUser"));
             Factory factory = new FactoryDao();
-            IUserDao dao = factory.createUserDao();
+            UserDao dao = factory.createUserDao();
             dao.delete(idUser);
             HttpSession session = request.getSession();
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));

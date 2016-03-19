@@ -7,7 +7,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
@@ -47,7 +47,7 @@ public class EditHolidayAction implements Action {
 //            this.validacao.validacaoFeriado(holiday);
             
             Factory factory = new FactoryDao();
-            IHolidayDao dao = factory.createHolidayDao();
+            HolidayDao dao = factory.createHolidayDao();
             dao.edit(holiday);
             request.getSession().setAttribute("listHolidays", dao.list());
             request.setAttribute("edicao", "Feriado cadastrado com sucesso");

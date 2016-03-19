@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
@@ -37,7 +37,7 @@ public class ListHolidaysAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             Factory factory = new FactoryDao();
-            IHolidayDao dao = factory.createHolidayDao();
+            HolidayDao dao = factory.createHolidayDao();
             List<Holiday> list = dao.list();
             HttpSession session = request.getSession();
             session.setAttribute("listHolidays", list);

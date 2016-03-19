@@ -8,7 +8,7 @@ package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class RegisterHolidayAction implements Action {
             Holiday holiday  = new Holiday(description, date);
 //            validacao.validacaoFeriado(feriado);
             
-            IHolidayDao dao = new HolidayDao();
+            HolidayDao dao = new HolidayDaoImpl();
             dao.add(holiday);
             //dados validados segundo padrão requerido
             request.getSession().setAttribute("listHolidays", dao.list());

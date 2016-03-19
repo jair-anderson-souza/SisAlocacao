@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.user;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
+import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
@@ -52,7 +52,7 @@ public class RegisterUserAction implements Action {
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             Factory factory = new FactoryDao();
-            IUserDao dao = factory.createUserDao();
+            UserDao dao = factory.createUserDao();
             User user = dao.findByUsernameOrEmail(username, email);
 
             if (user == null) {

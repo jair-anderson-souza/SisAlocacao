@@ -6,11 +6,10 @@
 package io.github.jass2125.sistema.alocacao.core.actions.material;
 
 import io.github.jass2125.sistema.alocacao.core.business.Material;
-import io.github.jass2125.sistema.alocacao.core.dao.IMaterialDao;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
+import io.github.jass2125.sistema.alocacao.core.dao.MaterialDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoadMaterialToEditAction implements Action {
 
-    private IMaterialDao dao;
+    private MaterialDao dao;
 
     public LoadMaterialToEditAction() {
-        dao = new MaterialDao();
+        dao = new MaterialDaoImpl();
     }
 
     @Override

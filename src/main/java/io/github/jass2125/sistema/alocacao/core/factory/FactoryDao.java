@@ -7,9 +7,9 @@
 package io.github.jass2125.sistema.alocacao.core.factory;
 
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.UserDaoImpl;
 
 
 
@@ -26,15 +26,15 @@ public class FactoryDao extends Factory {
      * @return IUsuarioDao Dao de usuario
      */
     @Override
-    public IUserDao createUserDao() {
-        return new UserDao();
+    public UserDao createUserDao() {
+        return new UserDaoImpl();
     }
     /**
      * Método que que instancia DAO de feriado
      * @return IFeriadoDao Dao de feriado
      */
-    public IHolidayDao createHolidayDao() {
-        return new HolidayDao();
+    public HolidayDao createHolidayDao() {
+        return new HolidayDaoImpl();
     }
     
     

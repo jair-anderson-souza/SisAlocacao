@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import java.io.File;
@@ -63,7 +63,7 @@ public class ReaderCsvFileCommand extends HttpServlet {
                 Scanner scanner = new Scanner(new File(path + "/" + fileName));
                 scanner.useDelimiter(",|\\n");
                 Factory factory = new FactoryDao();
-                IHolidayDao dao = factory.createHolidayDao();
+                HolidayDao dao = factory.createHolidayDao();
                 //Corrigir espaço e acento da string de descrição
                 while (scanner.hasNext()) {
                     String date = scanner.next();

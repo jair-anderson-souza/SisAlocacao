@@ -6,8 +6,9 @@
 
 package io.github.jass2125.sistema.alocacao.core.factory;
 
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
-import io.github.jass2125.sistema.alocacao.core.dao.IHolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
+
 
 /**
  * Fabrica abstrata de DAO's
@@ -19,10 +20,10 @@ public abstract class Factory {
      * Metodo abstrato que retorna uma instancia do DAO de usuario
      * @return IUsuarioDao
      */
-    public abstract IUserDao createUserDao();
+    public abstract UserDao createUserDao();
     /**
      * Metodo abstrato que retorna uma instancia do DAO de feriado
      * @return IFeriadoDao
      */
-    public abstract IHolidayDao createHolidayDao();
+    public abstract HolidayDao createHolidayDao();
 }

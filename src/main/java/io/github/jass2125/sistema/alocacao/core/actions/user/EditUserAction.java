@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.user;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
-import io.github.jass2125.sistema.alocacao.core.dao.IUserDao;
+import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
 import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
 
 
 
@@ -64,7 +66,7 @@ public class EditUserAction implements Action {
             validator.validatorDataUser(user);
             password = cryptographer.cryptographerSHA(password);
             Factory factory = new FactoryDao();
-            IUserDao dao = factory.createUserDao();
+            UserDao dao = factory.createUserDao();
             dao.edit(user);
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
             return "administrador/gerenciarusuario.jsp";
