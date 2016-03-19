@@ -7,7 +7,8 @@ package io.github.jass2125.sistema.alocacao.core.actions.floor;
 
 import io.github.jass2125.sistema.alocacao.core.business.Floor;
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
-import io.github.jass2125.sistema.alocacao.core.dao.FloorDaoImpl;
+import io.github.jass2125.sistema.alocacao.core.factory.Factory;
+import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,11 +20,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anderson Souza
  */
 public class ListFloorAction implements Action {
-
+    private Factory factory;
     private FloorDao dao;
 
     public ListFloorAction() {
-        dao = new FloorDaoImpl();
+        factory = new FactoryDao();
+        dao = factory.createFloorDao();
     }
 
     @Override

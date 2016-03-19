@@ -7,7 +7,8 @@ package io.github.jass2125.sistema.alocacao.core.actions.material;
 
 import io.github.jass2125.sistema.alocacao.core.business.Material;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
-import io.github.jass2125.sistema.alocacao.core.dao.MaterialDaoImpl;
+import io.github.jass2125.sistema.alocacao.core.factory.Factory;
+import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +19,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anderson Souza
  */
 public class RegisterMaterial implements Action{
-
+    private Factory factory;
     private MaterialDao dao;
 
     public RegisterMaterial() {
-        dao = new MaterialDaoImpl();
+        factory = new FactoryDao();
+        dao = factory.createMaterialDao();
     }
 
     @Override

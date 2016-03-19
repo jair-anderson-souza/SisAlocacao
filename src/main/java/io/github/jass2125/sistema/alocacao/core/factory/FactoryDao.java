@@ -6,8 +6,12 @@
 
 package io.github.jass2125.sistema.alocacao.core.factory;
 
+import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
+import io.github.jass2125.sistema.alocacao.core.dao.FloorDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDaoImpl;
+import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
+import io.github.jass2125.sistema.alocacao.core.dao.MaterialDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDaoImpl;
 
@@ -33,9 +37,21 @@ public class FactoryDao extends Factory {
      * Método que que instancia DAO de feriado
      * @return IFeriadoDao Dao de feriado
      */
+    @Override
     public HolidayDao createHolidayDao() {
         return new HolidayDaoImpl();
     }
+    
+    @Override
+    public FloorDao createFloorDao(){
+        return new FloorDaoImpl();
+    }
+
+    @Override
+    public MaterialDao createMaterialDao() {
+        return new MaterialDaoImpl();
+    }
+    
     
     
 

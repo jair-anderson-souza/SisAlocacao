@@ -34,17 +34,24 @@ public class FloorDaoImpl implements FloorDao {
         ResultSet rs = ps.executeQuery();
         List<Floor> listFloors = new ArrayList<>();
 //        Floor floor = null;
-        while(rs.next()){
+        while (rs.next()) {
             Long idFloor = rs.getLong("id_bloco");
             String description = rs.getString("nomeDoBloco");
             Floor floor = new Floor(idFloor, description);
             listFloors.add(floor);
             floor = null;
         }
-        
-        
-        
         return listFloors;
+    }
+
+    @Override
+    public void add(Floor floor) throws SQLException, ClassNotFoundException {
+        String sql = "insert into floor values(?, ?);";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, floor.getIdFloor());
+        ps.setString(2, floor.getDescription());
+        ps.execute();
     }
 
 }
