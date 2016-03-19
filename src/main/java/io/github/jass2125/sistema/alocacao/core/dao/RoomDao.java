@@ -21,4 +21,6 @@ public interface RoomDao {
 
     public Room findById(Long idRoom) throws SQLException, ClassNotFoundException;
 
+    public void update(Room room) throws SQLException, ClassNotFoundException;
+
 }

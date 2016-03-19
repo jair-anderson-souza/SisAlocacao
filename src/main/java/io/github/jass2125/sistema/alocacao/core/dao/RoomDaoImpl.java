@@ -31,4 +31,9 @@ public class RoomDaoImpl implements RoomDao {
         return new Room();
     }
 
+    @Override
+    public void update(Room room) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
