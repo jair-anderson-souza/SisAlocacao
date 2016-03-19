@@ -23,7 +23,12 @@ public class RoomDaoImpl implements RoomDao {
 
     @Override
     public void add(Room room) throws SQLException, ClassNotFoundException {
-        
+
     }
-    
+
+    @Override
+    public Room findById(Long idRoom) throws SQLException, ClassNotFoundException {
+        return new Room();
+    }
+
 }

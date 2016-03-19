@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author Anderson Souza
  */
 public class Material implements Serializable {
-
     private String description;
     private int quantity;
     private int tombamento;
