@@ -71,7 +71,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
-                    <h1><b>Ediçao de Feriado</b></h1>
+                    <h1><b>Ediçao de Material</b></h1>
                 </div>
             </div>
         </div>
@@ -82,15 +82,15 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <form role="form" action="../front?action=editHoliday&tombamento=${sessionScope.material.tombamento}" method="post">
+                    <form role="form" action="../front?action=updateMaterial&tombamento=${sessionScope.material.tombamento}" method="post">
                         <div class="form-group">
                             <label for="description">Descriçao</label>
                             <input type="text" name="description" value="${sessionScope.material.description}" class="form-control" id="description">
                             <input type="hidden" name="tombamento" value="${sessionScope.material.tombamento}" class="form-control" id="username">
                         </div>
                         <div class="form-group">
-                            <label for="date">Data</label>
-                            <input type="date" name="date" value="${sessionScope.material.quantity}" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" title="dd/MM/AAAA" class="form-control" id="date">
+                            <label for="date">Quantidade</label>
+                            <input type="number" name="quantity" value="${sessionScope.material.quantity}" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" title="dd/MM/AAAA" class="form-control" id="date">
                         </div>
                         <br>
                         <br>
