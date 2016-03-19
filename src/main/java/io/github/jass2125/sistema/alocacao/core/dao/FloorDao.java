@@ -14,8 +14,13 @@ import java.util.List;
  * @author Anderson Souza
  */
 public interface FloorDao {
-    public List<Floor> getListFloor()throws SQLException, ClassNotFoundException;
+
+    public List<Floor> getListFloor() throws SQLException, ClassNotFoundException;
+
     public void add(Floor floor) throws SQLException, ClassNotFoundException;
-    
-    
+
+    public Floor findById(Long idFloor) throws SQLException, ClassNotFoundException;
+
+    public void update(Floor floor) throws SQLException, ClassNotFoundException;
+
 }

@@ -54,4 +54,14 @@ public class FloorDaoImpl implements FloorDao {
         ps.execute();
     }
 
+    @Override
+    public Floor findById(Long idFloor) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Floor floor) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
