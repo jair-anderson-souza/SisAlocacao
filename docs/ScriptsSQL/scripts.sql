@@ -20,12 +20,12 @@ create table feriado(
 	primary key(id_feriado)
 );
 create table bloco(
-	id_bloco bigint auto_increment,
+	id_bloco bigint AUTO_INCREMENT,
 	nomeDoBloco varchar(50) not null,
 	primary key(id_bloco)
 );
 create table sala(
-	id_sala bigint auto_increment,
+	id_sala bigint AUTO_INCREMENT,
 	nome_da_sala varchar(50) not null,
 	bloco bigint,
 	capacidade_fisica int not null,
@@ -34,18 +34,18 @@ create table sala(
 	primary key(id_sala)
 );
 create table material(
-	tombamento int(7),
+	tombamento bigint AUTO_INCREMENT,
 	descricao varchar(50),
 	quantidade int not null,
 	status varchar(20),
 	local bigint,
 	foreign key(local) references sala(id_sala) on update cascade on delete restrict, 
-	constraint ref_pkey_feriado
+	constraint ref_pkey_sala
 	primary key(tombamento)
-);
+)AUTO_INCREMENT = 1000000;
 insert into bloco values(1, 'Bloco 4');
 insert into sala values(1, 'Sala 2', 1, 40, 'COMUM');
 insert into material values(1111111, 'RetroProjetor', 20, 'Disponivel', 1);
 insert into bloco values(2, 'Bloco 5');
 insert into sala values(2, 'Sala 4', 2, 23, 'COMUM');
-insert into material values(2211111, 'RetroProjetor', 20, 'Disponivel', 2);
+insert into material values(1111112, 'RetroProjetor', 20, 'Disponivel', 2);

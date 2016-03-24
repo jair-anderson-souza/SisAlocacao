@@ -23,4 +23,6 @@ public interface RoomDao {
 
     public void update(Room room) throws SQLException, ClassNotFoundException;
 
+    public void delete(Long idRoom) throws SQLException, ClassNotFoundException;
+
 }

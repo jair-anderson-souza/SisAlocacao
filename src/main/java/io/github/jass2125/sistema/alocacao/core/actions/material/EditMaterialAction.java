@@ -7,7 +7,6 @@ package io.github.jass2125.sistema.alocacao.core.actions.material;
 
 import io.github.jass2125.sistema.alocacao.core.business.Material;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
-import io.github.jass2125.sistema.alocacao.core.dao.MaterialDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
@@ -32,7 +31,7 @@ public class EditMaterialAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             String description = request.getParameter("description");
-            Integer quantity = Integer.parseInt(request.getParameter("description"));
+            Integer quantity = Integer.parseInt(request.getParameter("quantity"));
             Integer tombamento = Integer.parseInt(request.getParameter("tombamento"));
             Material material = dao.findById(tombamento);
             material.setDescription(description);

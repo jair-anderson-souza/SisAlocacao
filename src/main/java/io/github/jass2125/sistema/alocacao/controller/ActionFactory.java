@@ -6,7 +6,7 @@
 package io.github.jass2125.sistema.alocacao.controller;
 
 import io.github.jass2125.sistema.alocacao.core.actions.material.ListMaterialAction;
-import io.github.jass2125.sistema.alocacao.core.actions.material.RegisterMaterial;
+import io.github.jass2125.sistema.alocacao.core.actions.material.RegisterMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.EditHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.ListHolidaysAction;
@@ -45,6 +45,8 @@ public class ActionFactory {
      * @return commands Comando a ser executado
      */
     public static Action getAction(HttpServletRequest request) {
+        
+        //Fazer um lazy loading aqui
         actions = new HashMap<>();
         actions.put("login", new LoginUserAction());
         actions.put("logout", new LogoutUserAction());
@@ -60,9 +62,11 @@ public class ActionFactory {
         actions.put("editHoliday", new EditHolidayAction());
         
         actions.put("listMaterial", new ListMaterialAction());
-        actions.put("registerMaterial", new RegisterMaterial());
+        actions.put("registerMaterial", new RegisterMaterialAction());
         actions.put("loadMaterialToEdit", new LoadMaterialToEditAction());
         actions.put("updateMaterial", new EditMaterialAction());
+        
+        actions.put("listMaterials", new ListMaterialAction());
 
         return actions.get(request.getParameter("action"));
     }

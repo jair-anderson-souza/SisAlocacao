@@ -7,6 +7,7 @@ package io.github.jass2125.sistema.alocacao.core.factory;
 
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
+import io.github.jass2125.sistema.alocacao.core.dao.LocationDao;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
 import io.github.jass2125.sistema.alocacao.core.dao.RoomDao;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
@@ -38,5 +39,6 @@ public abstract class Factory {
     public abstract MaterialDao createMaterialDao();
 
     public abstract RoomDao createRoomDao();
+    public abstract LocationDao createLocationDao();
 
 }

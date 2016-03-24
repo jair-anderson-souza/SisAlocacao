@@ -116,7 +116,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Material</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listMaterial" class="btn btn-primary">Abrir</a>
+                            <a href="../front?action=listMaterials" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

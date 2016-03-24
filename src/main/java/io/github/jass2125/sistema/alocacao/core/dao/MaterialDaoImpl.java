@@ -29,7 +29,7 @@ public class MaterialDaoImpl implements MaterialDao {
     @Override
     public List<Material> listMaterial() throws SQLException, ClassNotFoundException {
         Connection con = connectionFactory.getConnection();
-        String sql = "select material.descricao, material.tombamento, material.quantidade, material.status, sala.nome_da_sala from material inner join sala where material.local = sala.id_sala;";
+        String sql = "select * from material as m inner join sala as s where m.local = s.id_sala or m.status is null;";
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         List<Material> listMaterial = new ArrayList<>();
@@ -47,8 +47,13 @@ public class MaterialDaoImpl implements MaterialDao {
     }
 
     @Override
-    public void add(Material material) {
-
+    public void add(Material material) throws SQLException, ClassNotFoundException {
+        Connection con = connectionFactory.getConnection();
+        String sql = "insert into material(descricao, quantidade) values(?, ?);";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, material.getDescription());
+        ps.setInt(2, material.getQuantity());
+        ps.execute();
     }
 
     @Override
@@ -71,7 +76,7 @@ public class MaterialDaoImpl implements MaterialDao {
 
     @Override
     public void update(Material material) throws SQLException, ClassNotFoundException {
-      String sql = "update material set descricao = ?, quantidade = ? where tombamento = ?;";
+        String sql = "update material set descricao = ?, quantidade = ? where tombamento = ?;";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, material.getDescription());

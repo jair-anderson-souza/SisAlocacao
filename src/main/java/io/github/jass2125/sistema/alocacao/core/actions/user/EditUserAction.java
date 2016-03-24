@@ -7,6 +7,7 @@ package io.github.jass2125.sistema.alocacao.core.actions.user;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
+import io.github.jass2125.sistema.alocacao.core.exceptions.FieldEmptyException;
 import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
@@ -71,6 +72,9 @@ public class EditUserAction implements Action {
             session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
             return "administrador/gerenciarusuario.jsp";
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
+            e.printStackTrace();
+            return "error.jsp";
+        }catch(FieldEmptyException e){
             e.printStackTrace();
             return "error.jsp";
         }

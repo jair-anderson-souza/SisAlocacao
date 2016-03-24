@@ -10,6 +10,8 @@ import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDaoImpl;
+import io.github.jass2125.sistema.alocacao.core.dao.LocationDao;
+import io.github.jass2125.sistema.alocacao.core.dao.LocationDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDao;
 import io.github.jass2125.sistema.alocacao.core.dao.MaterialDaoImpl;
 import io.github.jass2125.sistema.alocacao.core.dao.RoomDao;
@@ -57,6 +59,11 @@ public class FactoryDao extends Factory {
     @Override
     public RoomDao createRoomDao() {
         return new RoomDaoImpl();
+    }
+
+    @Override
+    public LocationDao createLocationDao() {
+        return new LocationDaoImpl();
     }
     
     

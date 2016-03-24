@@ -7,6 +7,7 @@
 package io.github.jass2125.sistema.alocacao.core.util;
 
 import io.github.jass2125.sistema.alocacao.core.business.User;
+import io.github.jass2125.sistema.alocacao.core.exceptions.FieldEmptyException;
 import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 
 
@@ -21,8 +22,9 @@ public abstract class ValidationUserTemplate {
      * Método responsavel por validar o username do usuario 
      * @param username Username do usuario
      * @throws RegexException Padrao de entrada invalido
+     * @throws io.github.jass2125.sistema.alocacao.core.exceptions.FieldEmptyException
      */
-    public abstract void validatorUsername(String username) throws RegexException;
+    public abstract void validatorUsername(String username) throws RegexException, FieldEmptyException;
     
     /**Método responsavel por validar a senha do usuario 
      * @param password Senha do usuario
@@ -47,7 +49,7 @@ public abstract class ValidationUserTemplate {
      * @param user User
      * @throws RegexException Padrao de entrada invalido
      */
-    public void validatorDataUser(User user) throws RegexException {
+    public void validatorDataUser(User user) throws RegexException, FieldEmptyException {
         this.validatorEmail(user.getEmail());
         this.validatorUsername(user.getUsername());
         this.validatorPassword(user.getPassword());

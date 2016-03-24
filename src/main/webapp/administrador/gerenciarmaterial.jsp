@@ -84,13 +84,25 @@
                     <div class="modal-body">
                         <form role="form" action="../front?action=registerMaterial" method="post">
                             <div class="form-group">
-                                <label for="username">Nome de usuário</label>
-                                <input type="text" name="username" class="form-control" id="username">
+                                <label for="description">Nome do material</label>
+                                <input type="text" name="description" class="form-control" id="description" required/>
                             </div>
                             <div class="form-group">
-                                <label for="registry">Quantidade</label>
-                                <input type="number" name="quantity" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
+                                <label for="quantity">Quantidade</label>
+                                <input type="number" min="1" name="quantity" class="form-control" id="quantity" required/>
                             </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status" disabled>
+                                    <option value="Disponivel">Disponível</option>
+                                    <option value="Indisponivel">Indisponível</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="local">Local do Material</label>
+                                <input type="text" name="local" name="local" class="form-control" id="local" disabled/>
+                            </div>
+                            <br>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
                     </div>
@@ -131,7 +143,7 @@
                     </div>
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="../front?command=listUsers">Gerenciamento de Usuario</li>
+                        <li><a href="../front?action=listMaterials">Gerenciamento de Material</a></li>
                     </ol>
                 </div>
             </div>

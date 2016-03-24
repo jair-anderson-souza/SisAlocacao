@@ -93,6 +93,7 @@ public class UserDaoImpl implements UserDao {
      * @param idUser Id do usuario
      * @return list Set
      * @throws SQLException UsuarioDao
+     * @throws java.lang.ClassNotFoundException
      */
     @Override
     public List<User> list(int idUser) throws SQLException, ClassNotFoundException {

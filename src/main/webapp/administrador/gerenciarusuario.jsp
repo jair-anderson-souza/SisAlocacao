@@ -92,7 +92,7 @@
         <br>
         <br>
         <!-- Modal -->
-        <div id="cadastro" class="modal fade" role="dialog">
+        <div id="register" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content - Modal do Cadastro -->
@@ -141,17 +141,18 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row text-left">
-                <c:if test="${crud != null} ">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            ${crud}
-                        </div>
-                    </div>
-                </c:if>
-            </div>
+
+        <!--        <div class="container">
+                    <div class="row text-left">
+        <c:if test="${crud != null} ">
+            <div class="col-md-12">
+                <div class="alert alert-success">
+            ${crud}
         </div>
+    </div>
+        </c:if>
+    </div>
+</div>-->
 
 
         <!-- Page Content -->
@@ -177,11 +178,14 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <a href="" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a data-toggle="dropdown" href=""data-toggle="modal" data-target="#cadastro">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
                     </div>
                 </div>
             </div>
