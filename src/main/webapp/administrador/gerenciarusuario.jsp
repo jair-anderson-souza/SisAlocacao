@@ -178,15 +178,14 @@
                 </div>
             </div>
         </div>
-
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <a href="" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-plus"></span></a>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-plus"></span></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">
@@ -195,6 +194,7 @@
                 </div>
             </div>
         </div>
+
         <br>
         <div class="container">
             <div class="table-responsive">

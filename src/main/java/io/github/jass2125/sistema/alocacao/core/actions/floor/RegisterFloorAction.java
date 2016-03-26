@@ -6,13 +6,16 @@
 package io.github.jass2125.sistema.alocacao.core.actions.floor;
 
 import io.github.jass2125.sistema.alocacao.core.business.Floor;
+import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,16 +33,19 @@ public class RegisterFloorAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         try {
-            String description = request.getParameter("description");
-            Floor floor = new Floor();
-            floor.setDescription(description);
+            String nameFloor = request.getParameter("floorName");
+            Floor floor = new Floor(nameFloor);
             dao.add(floor);
-            return "gerenciarbloco.jsp";
+            List<Floor> listFloors = dao.getListFloor();
+            session.setAttribute("listFloors", listFloors);
+            return user.getRole() + "/gerenciarbloco.jsp";
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "gerenciarbloco.jsp";
+            return user.getRole() + "/gerenciarbloco.jsp";
         }
     }
 

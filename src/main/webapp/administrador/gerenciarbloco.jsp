@@ -99,38 +99,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cadastro de Usuario</h4>
+                        <h4 class="modal-title">Cadastro de Bloco</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="../front?action=registerUser" method="post">
+                        <form role="form" action="../front?action=registerFloor" method="post">
                             <div class="form-group">
-                                <label for="username">Nome de usuário</label>
-                                <input type="text" name="username" class="form-control" id="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="name" class="form-control" id="nome">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
-                            </div>
-                            <div class="form-group">
-                                <label for="registry">Matrícula</label>
-                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
-                            </div>
-                            <div class="form-group">
-                                <label for="sel1">Papel</label>
-                                <select class="form-control" name="role" id="sel1">
-                                    <option value="aluno">Aluno</option>
-                                    <option value="monitor">Monitor</option>
-                                    <option value="assistente">Assistente de Sala</option>
-                                    <option value="professor">Professor</option>
-                                </select>
+                                <label for="floorName">Nome de bloco</label>
+                                <input type="text" name="floorName" class="form-control" id="floorName">
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
@@ -158,7 +133,7 @@
                     </div>
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="../front?action=listUsers">Gerenciamento de Bloco</li>
+                        <li><a href="../front?action=listFloors">Gerenciamento de Bloco</a></li>
                     </ol>
                 </div>
             </div>
@@ -166,12 +141,12 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <a href="" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-plus"></span></a>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-plus"></span></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">
