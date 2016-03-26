@@ -19,20 +19,15 @@ import java.util.regex.Pattern;
  */
 public class ValidationUser extends ValidationUserTemplate {
 
-    private String usernamePattern;
-    private String passwordPattern;
-    private String emailPattern;
-    private String matriculaPattern;
+    private final String usernamePattern;
+    private final String passwordPattern;
+    private final String emailPattern;
+    private final String matriculaPattern;
 
     public ValidationUser() {
-        //this.usernamePattern = "[a-zA-Z\\.]+";
-        this.usernamePattern = "^[a-zA-Z0-9.]$";
-        this.passwordPattern = "((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})";
-//        this.emailPattern = "^\\S+@\\S+\\.\\S+$";
-//        Victor Hugo
+        this.usernamePattern = "^[a-zA-Z0-9.]*$";
+        this.passwordPattern = "((?=.*[A-Z])(?=.*[@#$!%!])).{8,30}";
         this.emailPattern = "[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+";
-
-//            this.emailPattern = "^.+\\@.+\\..+$";
         this.matriculaPattern = "^\\d{6}$";
     }
 
@@ -47,11 +42,10 @@ public class ValidationUser extends ValidationUserTemplate {
     public void validatorUsername(String username) throws RegexException, FieldEmptyException {
         Pattern regex = Pattern.compile(usernamePattern);
         Matcher matcher = regex.matcher(username);
-        
+
         if (username.trim().isEmpty()) {
             throw new FieldEmptyException("O username deve ser preenchido!!");
-        } 
-        else if (!matcher.find()) {
+        } else if (!matcher.find()) {
             throw new RegexException("Não pode conter caracteres especiais (%-$_#@, números ou espaços, com exceção de ponto final.");
         }
     }

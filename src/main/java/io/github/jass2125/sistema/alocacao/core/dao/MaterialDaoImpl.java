@@ -85,4 +85,13 @@ public class MaterialDaoImpl implements MaterialDao {
         ps.execute();
     }
 
+    @Override
+    public void delete(int idMaterial) throws SQLException, ClassNotFoundException {
+        String sql = "delete from material where tombamento = ?;";
+        Connection con = connectionFactory.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idMaterial);
+        ps.execute();
+    }
+
 }

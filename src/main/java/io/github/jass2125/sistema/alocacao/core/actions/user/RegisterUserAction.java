@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
  * @since 2015
  */
 public class RegisterUserAction implements Action {
+
     private ValidationUserTemplate validator;
     private CryptographyPasswordStrategy cryptographer;
 
@@ -75,12 +76,15 @@ public class RegisterUserAction implements Action {
                 return "administrador/gerenciarusuario.jsp";
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
+            e.printStackTrace();
             return "error.jsp";
-        }catch(FieldEmptyException e){
+        } catch (FieldEmptyException e) {
             e.printStackTrace();
             request.getSession().setAttribute("error", e.getMessage());
             return "error.jsp";
         }
-        
+
     }
+    
+   
 }

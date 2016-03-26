@@ -181,14 +181,12 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <a data-toggle="dropdown" href=""data-toggle="modal" data-target="#cadastro">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </a>
-                    </div>
+                <div class="col-lg-12">
+                    <a href="" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-plus"></span></a>
                 </div>
             </div>
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">

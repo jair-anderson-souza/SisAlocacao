@@ -11,6 +11,7 @@ import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAct
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.EditHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.ListHolidaysAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.LoadHolidayEditAction;
+import io.github.jass2125.sistema.alocacao.core.actions.material.DeleteMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.LoadMaterialToEditAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.DeleteUserAction;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Anderson Souza
  * @since 2015
  */
-public class ActionFactory {
+public final class ActionFactory {
 
     private static Map<String, Action> actions;
 
@@ -65,6 +66,7 @@ public class ActionFactory {
         actions.put("registerMaterial", new RegisterMaterialAction());
         actions.put("loadMaterialToEdit", new LoadMaterialToEditAction());
         actions.put("updateMaterial", new EditMaterialAction());
+        actions.put("deleteMaterial", new DeleteMaterialAction());
         
         actions.put("listMaterials", new ListMaterialAction());
 

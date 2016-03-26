@@ -192,7 +192,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
+                                    <form action="../front?action=deleteMaterial&tombamento=${materialList.tombamento}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                     </form>
                                 </td>

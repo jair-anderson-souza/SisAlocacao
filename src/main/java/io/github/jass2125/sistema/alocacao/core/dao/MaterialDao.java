@@ -23,4 +23,6 @@ public interface MaterialDao {
 
     public void update(Material material) throws SQLException, ClassNotFoundException;
 
+    public void delete(int idMaterial) throws SQLException, ClassNotFoundException;
+
 }

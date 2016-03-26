@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="password">Senha</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" id="password" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
+                                <input type="password" class="form-control" name="password" value="${sessionScope.userEditing.password}" id="password" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
                             </div>
                         </div>
                         <div class="form-group">
