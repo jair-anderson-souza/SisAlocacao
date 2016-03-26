@@ -120,6 +120,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;">
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Blocos</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?action=listFloors" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

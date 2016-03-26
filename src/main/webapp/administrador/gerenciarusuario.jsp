@@ -129,7 +129,7 @@
                                     <option value="aluno">Aluno</option>
                                     <option value="monitor">Monitor</option>
                                     <option value="assistente">Assistente de Sala</option>
-                                    <option value=professor">Professor</option>
+                                    <option value="professor">Professor</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
