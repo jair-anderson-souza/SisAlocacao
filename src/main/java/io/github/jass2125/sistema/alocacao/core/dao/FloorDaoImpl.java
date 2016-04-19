@@ -46,10 +46,11 @@ public class FloorDaoImpl implements FloorDao {
 
     @Override
     public void add(Floor floor) throws SQLException, ClassNotFoundException {
-        String sql = "insert into bloco(nomeDoBloco) values(?);";
+        String sql = "insert into floor values(?, ?);";
         Connection con = conFactory.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, floor.getDescription());
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, floor.getIdFloor());
+        ps.setString(2, floor.getDescription());
         ps.execute();
     }
 
