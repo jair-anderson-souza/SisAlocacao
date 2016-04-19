@@ -8,11 +8,8 @@ package io.github.jass2125.sistema.alocacao.controller;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.DeleteFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.EditFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.ListFloorAction;
-<<<<<<< HEAD
 import io.github.jass2125.sistema.alocacao.core.actions.floor.LoadFloorToEditAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.RegisterFloorAction;
-=======
->>>>>>> parent of 480ff26... Visao de Cadastro de bloco
 import io.github.jass2125.sistema.alocacao.core.actions.material.ListMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.RegisterMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAction;
@@ -70,6 +67,7 @@ public final class ActionFactory {
         actions.put("loadHoliday", new LoadHolidayEditAction());
         actions.put("editHoliday", new EditHolidayAction());
         
+        /* Material Actions */
         actions.put("listMaterial", new ListMaterialAction());
         actions.put("registerMaterial", new RegisterMaterialAction());
         actions.put("loadMaterialToEdit", new LoadMaterialToEditAction());
@@ -80,14 +78,10 @@ public final class ActionFactory {
         
         /*Blocos*/
         actions.put("listFloors", new ListFloorAction());
-<<<<<<< HEAD
         actions.put("registerFloor", new RegisterFloorAction());
         actions.put("loadFloorToEdit", new LoadFloorToEditAction());
         actions.put("editFloor", new EditFloorAction());
         actions.put("deleteFloor", new DeleteFloorAction());
-=======
->>>>>>> parent of 480ff26... Visao de Cadastro de bloco
-        
         return actions.get(request.getParameter("action"));
     }
 

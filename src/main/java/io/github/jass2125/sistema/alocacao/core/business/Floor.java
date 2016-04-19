@@ -19,6 +19,10 @@ public class Floor implements Serializable {
     public Floor() {
     }
 
+    public Floor(String description) {
+        this.description = description;
+    }
+
     public Floor(Long idFloor, String description) {
         this.idFloor = idFloor;
         this.description = description;

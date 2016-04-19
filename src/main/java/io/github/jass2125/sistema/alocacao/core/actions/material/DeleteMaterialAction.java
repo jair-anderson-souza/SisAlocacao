@@ -28,6 +28,7 @@ public class DeleteMaterialAction implements Action {
             int tombamento = Integer.parseInt(request.getParameter("tombamento"));
             MaterialDao dao = new MaterialDaoImpl();
             dao.delete(tombamento);
+            session.setAttribute("listMaterial", dao.listMaterial());
             return user.getRole() + "/gerenciarmaterial.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

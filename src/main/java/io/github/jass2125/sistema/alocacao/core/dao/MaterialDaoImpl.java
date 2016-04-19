@@ -58,7 +58,7 @@ public class MaterialDaoImpl implements MaterialDao {
 
     @Override
     public Material findById(int tombamento) throws SQLException, ClassNotFoundException {
-        String sql = "select * from material inner join sala where material.local = sala.id_sala and material.tombamento = ?;";
+        String sql = "select * from material join sala where tombamento = ?;";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, tombamento);

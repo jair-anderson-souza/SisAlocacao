@@ -1,7 +1,7 @@
 <%-- 
     Document   : gerenciarbloco
     Created on : Mar 19, 2016, 3:44:17 PM
-    Author     : jairanderson
+    Author     : Anderson Souza
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -104,10 +104,9 @@
                     <div class="modal-body">
                         <form role="form" action="../front?action=registerUser" method="post">
                             <div class="form-group">
-<<<<<<< HEAD
                                 <label for="floorName">Nome de bloco</label>
                                 <input type="text" name="floorName" class="form-control" id="floorName" required="true">
-=======
+
                                 <label for="username">Nome de usuário</label>
                                 <input type="text" name="username" class="form-control" id="username">
                             </div>
@@ -135,7 +134,6 @@
                                     <option value="assistente">Assistente de Sala</option>
                                     <option value="professor">Professor</option>
                                 </select>
->>>>>>> parent of 480ff26... Visao de Cadastro de bloco
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
@@ -237,6 +235,6 @@
                 </div>
             </div>
         </div>
-        
+
     </body>
 </html>
