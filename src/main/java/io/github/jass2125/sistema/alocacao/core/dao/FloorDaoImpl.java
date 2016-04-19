@@ -55,12 +55,36 @@ public class FloorDaoImpl implements FloorDao {
 
     @Override
     public Floor findById(Long idFloor) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from bloco where id_bloco = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, idFloor);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Long id = rs.getLong("id_bloco");
+            String description = rs.getString("nomeDoBloco");
+            return new Floor(id, description);
+        }
+        return null;
     }
 
     @Override
     public void update(Floor floor) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "update bloco set nomeDoBloco = ? where id_bloco = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setString(1, floor.getDescription());
+        ps.setLong(2, floor.getIdFloor());
+        ps.execute();
+    }
+
+    @Override
+    public void delete(Long idFloor) throws SQLException, ClassNotFoundException{
+        String sql = "delete from bloco where id_bloco = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, idFloor);
+        ps.execute();
     }
 
 }

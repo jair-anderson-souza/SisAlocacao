@@ -6,13 +6,13 @@
 package io.github.jass2125.sistema.alocacao.core.business;
 
 import io.github.jass2125.sistema.alocacao.core.util.RoomTypeEnum;
+import java.io.Serializable;
 
 /**
  *
  * @author Anderson Souza
  */
-public class Room {
-
+public class Room implements Serializable {
     private Long idRoom;
     private String nameRoom;
     private Long idFloor;

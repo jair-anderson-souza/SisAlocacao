@@ -105,7 +105,7 @@
                         <form role="form" action="../front?action=registerFloor" method="post">
                             <div class="form-group">
                                 <label for="floorName">Nome de bloco</label>
-                                <input type="text" name="floorName" class="form-control" id="floorName">
+                                <input type="text" name="floorName" class="form-control" id="floorName" required="true">
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
@@ -136,6 +136,17 @@
                         <li><a href="../front?action=listFloors">Gerenciamento de Bloco</a></li>
                     </ol>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-left">
+                <c:if test="${sessionScope.error != null}">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger">
+                            ${sessionScope.error}
+                        </div>
+                    </div>
+                </c:if>
             </div>
         </div>
 
@@ -171,13 +182,13 @@
                             <tr>
                                 <td>${floor.description}</td>
                                 <td>
-                                    <form action="../front?action=loadFloor&idFloor=${userList.idUser}" method="post">
+                                    <form action="../front?action=loadFloorToEdit&idFloor=${floor.idFloor}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                         <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?action=deleteUser&idUser=${userList.idUser}" method="post">
+                                    <form action="../front?action=deleteFloor&idFloor=${floor.idFloor}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                     </form>
                                 </td>
@@ -196,16 +207,6 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row text-left">
-                <c:if test="${sessionScope.error != null}">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            ${sessionScope.error}
-                        </div>
-                    </div>
-                </c:if>
-            </div>
-        </div>
+        
     </body>
 </html>

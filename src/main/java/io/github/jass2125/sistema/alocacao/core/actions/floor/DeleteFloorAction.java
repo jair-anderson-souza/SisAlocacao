@@ -5,14 +5,15 @@
  */
 package io.github.jass2125.sistema.alocacao.core.actions.floor;
 
-import io.github.jass2125.sistema.alocacao.core.business.Floor;
+import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayAction;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,12 +22,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Anderson Souza
  */
-public class EditFloorAction implements Action {
+public class DeleteFloorAction implements Action {
 
     private Factory factory;
     private FloorDao dao;
 
-    public EditFloorAction() {
+    public DeleteFloorAction() {
         factory = new FactoryDao();
         dao = factory.createFloorDao();
     }
@@ -36,18 +37,17 @@ public class EditFloorAction implements Action {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         try {
-            Long idFloor = Long.parseLong(request.getParameter("idFloor"));
-            String description = request.getParameter("description");
-            Floor floor = new Floor(idFloor, description);
-            dao.update(floor);
-            List<Floor> listFloors = dao.getListFloor();
-            session.setAttribute("listFloors", listFloors);
-            return user.getRole() + "/gerenciarbloco.jsp";
-        } catch (SQLException | ClassNotFoundException e) {
+            String id = request.getParameter("idFloor");
+            Long idHoliday = Long.parseLong(id);
+            /* Drop cascade */
+            dao.delete(idHoliday);
+            request.getSession().setAttribute("listHolidays", dao.getListFloor());
+            return user.getRole() + "/gerenciarferiado.jsp";
+        } catch (SQLException | NumberFormatException | ClassNotFoundException e) {
+            session.setAttribute("error", "Ocorreu um erro ao exlcuir o registro.");
             e.printStackTrace();
-            session.setAttribute("error", "Erro ao editar o bloco.");
             return user.getRole() + "/gerenciarbloco.jsp";
+            
         }
     }
-
 }

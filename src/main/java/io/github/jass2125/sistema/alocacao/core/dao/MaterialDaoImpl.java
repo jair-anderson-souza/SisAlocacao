@@ -81,7 +81,7 @@ public class MaterialDaoImpl implements MaterialDao {
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, material.getDescription());
         ps.setInt(2, material.getQuantity());
-        ps.setInt(2, material.getTombamento());
+        ps.setInt(3, material.getTombamento());
         ps.execute();
     }
 

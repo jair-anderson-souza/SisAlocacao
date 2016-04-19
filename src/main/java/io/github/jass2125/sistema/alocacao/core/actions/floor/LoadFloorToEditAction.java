@@ -6,6 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.floor;
 
 import io.github.jass2125.sistema.alocacao.core.business.Floor;
+import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.FloorDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
@@ -13,6 +14,7 @@ import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,15 +32,18 @@ public class LoadFloorToEditAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         try {
             Long idFloor = Long.parseLong(request.getParameter("idFloor"));
             Floor floor = dao.findById(idFloor);
             request.getSession().setAttribute("floorToEdit", floor);
-            return "editarbloco.jsp";
+            return user.getRole() + "/editarbloco.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             //mandar mensagem de erros
-            return "gerenciarbloco.jsp";
+            request.getSession().setAttribute("error", "O bloco não pode ser carregado.");
+            return user.getRole() + "/gerenciarbloco.jsp";
 
         }
     }

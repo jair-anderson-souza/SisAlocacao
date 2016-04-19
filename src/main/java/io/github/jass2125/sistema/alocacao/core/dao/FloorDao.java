@@ -23,4 +23,6 @@ public interface FloorDao {
 
     public void update(Floor floor) throws SQLException, ClassNotFoundException;
 
+    public void delete(Long idHoliday) throws SQLException, ClassNotFoundException;
+
 }

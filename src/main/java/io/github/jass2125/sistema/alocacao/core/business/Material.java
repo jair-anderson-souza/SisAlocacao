@@ -25,6 +25,7 @@ public class Material implements Serializable {
         this.description = description;
         this.quantity = quantity;
         this.status = "DISPONIVEL";
+        this.materialRoom = "";
     }
 
     public Material(int tombamento, String description, int quantity, String status, String materialRoom) {

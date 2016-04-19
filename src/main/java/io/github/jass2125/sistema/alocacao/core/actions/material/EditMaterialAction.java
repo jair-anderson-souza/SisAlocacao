@@ -39,6 +39,7 @@ public class EditMaterialAction implements Action {
             dao.update(material);
             return "administrador/gerenciarmaterial.jsp";
         } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
             return "error.jsp";
         }
     }

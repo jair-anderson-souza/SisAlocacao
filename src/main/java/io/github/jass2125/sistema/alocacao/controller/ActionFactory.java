@@ -5,7 +5,10 @@
  */
 package io.github.jass2125.sistema.alocacao.controller;
 
+import io.github.jass2125.sistema.alocacao.core.actions.floor.DeleteFloorAction;
+import io.github.jass2125.sistema.alocacao.core.actions.floor.EditFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.ListFloorAction;
+import io.github.jass2125.sistema.alocacao.core.actions.floor.LoadFloorToEditAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.RegisterFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.ListMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.RegisterMaterialAction;
@@ -75,6 +78,9 @@ public final class ActionFactory {
         /*Blocos*/
         actions.put("listFloors", new ListFloorAction());
         actions.put("registerFloor", new RegisterFloorAction());
+        actions.put("loadFloorToEdit", new LoadFloorToEditAction());
+        actions.put("editFloor", new EditFloorAction());
+        actions.put("deleteFloor", new DeleteFloorAction());
         
         return actions.get(request.getParameter("action"));
     }
