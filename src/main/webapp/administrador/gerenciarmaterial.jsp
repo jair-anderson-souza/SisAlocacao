@@ -184,7 +184,7 @@
                                 <td>${materialList.description}</td>
                                 <td>${materialList.tombamento}</td>
                                 <td>${materialList.status}</td>
-                                <td>${materialList.materialRoom}</td>
+                                <td>${materialList.materialRoom eq null ? "N/A" : materialList.materialRoom}</td>
                                 <td>
                                     <form action="../front?action=loadMaterialToEdit&tombamento=${materialList.tombamento}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>

@@ -29,7 +29,7 @@ public class MaterialDaoImpl implements MaterialDao {
     @Override
     public List<Material> listMaterial() throws SQLException, ClassNotFoundException {
         Connection con = connectionFactory.getConnection();
-        String sql = "select * from material as m inner join sala as s where m.local = s.id_sala or m.status is null;";
+        String sql = "select * from material left join sala on material.local = sala.id_sala;";
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         List<Material> listMaterial = new ArrayList<>();
