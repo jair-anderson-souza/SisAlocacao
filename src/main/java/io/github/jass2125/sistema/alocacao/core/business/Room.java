@@ -12,11 +12,17 @@ import java.io.Serializable;
  * @author Anderson Souza
  */
 public class Room implements Serializable {
+
     private Long idRoom;
     private String nameRoom;
     private Long floor;
     private Integer capacity;
     private String typeRoom;
+
+    public Room(Long id, String nameRoom, Long floor, int capacicity, String typeRoom) {
+        this(nameRoom, floor, capacicity, typeRoom);
+        this.idRoom = id;
+    }
 
     public Room(String nameRoom, Long floor, int capacicity, String typeRoom) {
         this.nameRoom = nameRoom;
@@ -30,10 +36,6 @@ public class Room implements Serializable {
 
     public Long getIdRoom() {
         return idRoom;
-    }
-
-    public void setIdRoom(Long idRoom) {
-        this.idRoom = idRoom;
     }
 
     public String getNameRoom() {

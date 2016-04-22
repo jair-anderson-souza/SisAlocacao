@@ -35,11 +35,12 @@ public class RoomDaoImpl implements RoomDao {
         List<Room> listRooms = new ArrayList<>();
         Room room = null;
         while (rs.next()) {
+            Long id = rs.getLong("id_sala");
             String nameRoom = rs.getString("nome_da_sala");
             Long floor = rs.getLong("id_bloco");
             Integer capacity = rs.getInt("capacidade_fisica");
             String typeRoom = rs.getString("capacidade_fisica");
-            room = new Room(nameRoom, floor, capacity, typeRoom);
+            room = new Room(id, nameRoom, floor, capacity, typeRoom);
             listRooms.add(room);
             floor = null;
         }
@@ -60,7 +61,21 @@ public class RoomDaoImpl implements RoomDao {
 
     @Override
     public Room findById(Long idRoom) throws SQLException, ClassNotFoundException {
-        return new Room();
+        String sql = "select * from sala where id_sala = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, idRoom);
+        ResultSet rs = ps.executeQuery();
+        Room room = null;
+        while (rs.next()) {
+            Long id = rs.getLong("id_sala");
+            String nameRoom = rs.getString("nome_da_sala");
+            Long floor = rs.getLong("id_bloco");
+            Integer capacity = rs.getInt("capacidade_fisica");
+            String typeRoom = rs.getString("capacidade_fisica");
+            return new Room(id, nameRoom, floor, capacity, typeRoom);
+        }
+        return null;
     }
 
     @Override

@@ -20,6 +20,7 @@ import io.github.jass2125.sistema.alocacao.core.actions.material.DeleteMaterialA
 import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.LoadMaterialToEditAction;
 import io.github.jass2125.sistema.alocacao.core.actions.room.ListRoomsAction;
+import io.github.jass2125.sistema.alocacao.core.actions.room.LoadRoomToEdit;
 import io.github.jass2125.sistema.alocacao.core.actions.room.RegisterRoomAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.DeleteUserAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.EditUserAction;
@@ -89,6 +90,7 @@ public final class ActionFactory {
         /* Salas */
         actions.put("listRooms", new ListRoomsAction());
         actions.put("registerRoom", new RegisterRoomAction());
+        actions.put("loadRoom", new LoadRoomToEdit());
         
         return actions.get(request.getParameter("action"));
     }

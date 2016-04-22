@@ -208,7 +208,7 @@
                                 <td>${room.capacity}</td>
                                 <td>${room.capacity}</td>
                                 <td>
-                                    <form action="../front?action=loadFloorToEdit&idFloor=${floor.idFloor}" method="post">
+                                    <form action="../front?action=loadRoom&id=${room.idRoom}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                         <!--<button type="submit" class="btn btn-info"></button>-->
                                     </form>

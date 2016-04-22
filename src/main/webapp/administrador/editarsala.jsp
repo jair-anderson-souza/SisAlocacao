@@ -1,7 +1,7 @@
 <%-- 
     Document   : editarsala
     Created on : Mar 19, 2016, 5:53:00 PM
-    Author     : jairanderson
+    Author     : Anderson Souza
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,8 @@
         <title>Editar Sala</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${room.nameRoom}</h1>
+        <h1>${room.floor}</h1>
+        <h1>${room.capacity}</h1>
     </body>
 </html>
