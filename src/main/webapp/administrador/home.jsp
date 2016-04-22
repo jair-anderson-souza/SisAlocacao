@@ -147,6 +147,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;">
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Eventos</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?action=listRooms" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="container">
