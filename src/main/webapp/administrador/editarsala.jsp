@@ -77,16 +77,33 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <form role="form" action="../front?action=updateMaterial&tombamento=${sessionScope.material.tombamento}" method="post">
+                    <form role="form" action="../front?action=editRoom&idRoom=${sessionScope.room.idRoom}" method="post">
                         <div class="form-group">
-                            <label for="description">Descriçao</label>
-                            <input type="text" name="description" value="${sessionScope.room.description}" class="form-control" id="description">
-                            <input type="hidden" name="tombamento" value="${sessionScope.material.tombamento}" class="form-control" id="username">
+                            <label for="description">Nome da Sala</label>
+                            <input type="text" name="nameRoom" value="${sessionScope.room.nameRoom}" class="form-control" id="description">
+                            <input type="hidden" name="idRoom" value="${sessionScope.room.idRoom}" class="form-control" id="username">
                         </div>
                         <div class="form-group">
-                            <label for="date">Quantidade</label>
-                            <input type="number" name="quantity" value="${sessionScope.material.quantity}" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}" title="dd/MM/AAAA" class="form-control" id="date">
+                            <label for="f">Bloco</label>
+                            <select class="form-control" name="floor" id="f">
+                                <c:forEach items="${sessionScope.floors}" var="floor">
+                                    <option value="${floor.idFloor}">${floor.description}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                        <div class="form-group">
+                            <label for="capacity">Capacidade Física</label>
+                            <input type="number" name="capacity" value="${sessionScope.room.capacity}" min="1" class="form-control" id="capacity">
+                        </div>
+                        <div class="form-group">
+                            <label for="sel1">Tipo de Sala</label>
+                            <select class="form-control" name="typeRoom" value="${sessionScope.room.typeRoom}" id="sel1">
+                                <option value="LABORATORIO">Laboratório</option>
+                                <option value="COMUM">Comum</option>
+                                <option value="OFICINA">Oficina</option>
+                                <option value="INTELIGENTE">Inteligente</option>
+                            </select>
+                        </div> 
                         <br>
                         <br>
                         <button type="submit" class="btn btn-success">Editar</button>

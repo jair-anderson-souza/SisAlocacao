@@ -80,7 +80,15 @@ public class RoomDaoImpl implements RoomDao {
 
     @Override
     public void update(Room room) throws SQLException, ClassNotFoundException {
-
+        String sql = "update sala set nome_da_sala = ?, bloco = ?, capacidade_fisica = ?, tipo_de_sala = ? where id_sala = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setString(1, room.getNameRoom());
+        ps.setLong(2, room.getIdFloor());
+        ps.setInt(3, room.getCapacity());
+        ps.setString(4, room.getTypeRoom());
+        ps.setLong(5, room.getIdRoom());
+        ps.execute();
     }
 
     @Override

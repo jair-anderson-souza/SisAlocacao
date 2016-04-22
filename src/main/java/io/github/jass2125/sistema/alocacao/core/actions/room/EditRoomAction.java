@@ -6,6 +6,7 @@
 package io.github.jass2125.sistema.alocacao.core.actions.room;
 
 import io.github.jass2125.sistema.alocacao.core.business.Room;
+import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.RoomDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
@@ -13,6 +14,7 @@ import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,19 +32,24 @@ public class EditRoomAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         try {
             Long idRoom = Long.parseLong(request.getParameter("idRoom"));
+            Room room = dao.findById(idRoom);
             String nameRoom = request.getParameter("nameRoom");
-            Long idFloor = Long.parseLong(request.getParameter("idFloor"));
+            Long idFloor = Long.parseLong(request.getParameter("floor"));
             Integer capacicity = Integer.parseInt(request.getParameter("capacity"));
-
-            String typeRoom = String.valueOf(request.getParameter("typeRoom"));
-            Room room = new Room();
+            String typeRoom = request.getParameter("typeRoom");
+            room.setCapacity(capacicity);
+            room.setNameRoom(nameRoom);
+            room.setTypeRoom(typeRoom);
             dao.update(room);
-            return "gerenciarsala.jsp";
+            request.getSession().setAttribute("rooms", dao.listRooms());
+            return user.getRole() + "/gerenciarsala.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "gerenciarsala.jsp";
+            return user.getRole() + "/gerenciarsala.jsp";
         }
     }
 
