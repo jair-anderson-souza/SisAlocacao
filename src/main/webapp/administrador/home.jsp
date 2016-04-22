@@ -46,7 +46,7 @@
                     <!--<img src="../img/logo.png" style="width:20px;">-->
                     <br>
                     <h4 class="navbar-form">Sistema Sisloc</a><br><br>
-                    <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
+                        <h4 class="navbar-form">Logado como ${sessionScope.user.role}</h4>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -133,12 +133,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;">
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Salas</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar Salas</p>
+                            <a href="../front?action=listRooms" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
         <hr>
-
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

@@ -112,18 +112,6 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row text-left">
-                <c:if test="${crud != null}">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            ${crud}
-                        </div>
-                    </div>
-                </c:if>
-            </div>
-        </div>
-
 
         <!-- Page Content -->
         <div class="container">
@@ -148,6 +136,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
@@ -156,6 +145,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">
@@ -183,7 +174,7 @@
                             <tr>
                                 <td>${materialList.description}</td>
                                 <td>${materialList.tombamento}</td>
-                                <td>${materialList.status}</td>
+                                <td>${materialList.status eq null ? "N/A" : materialList.status}</td>
                                 <td>${materialList.materialRoom eq null ? "N/A" : materialList.materialRoom}</td>
                                 <td>
                                     <form action="../front?action=loadMaterialToEdit&tombamento=${materialList.tombamento}" method="post">

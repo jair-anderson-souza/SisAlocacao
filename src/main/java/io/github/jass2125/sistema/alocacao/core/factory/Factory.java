@@ -39,6 +39,7 @@ public abstract class Factory {
     public abstract MaterialDao createMaterialDao();
 
     public abstract RoomDao createRoomDao();
+
     public abstract LocationDao createLocationDao();
 
 }

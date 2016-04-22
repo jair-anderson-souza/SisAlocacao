@@ -19,6 +19,8 @@ import io.github.jass2125.sistema.alocacao.core.actions.holiday.LoadHolidayEditA
 import io.github.jass2125.sistema.alocacao.core.actions.material.DeleteMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterialAction;
 import io.github.jass2125.sistema.alocacao.core.actions.material.LoadMaterialToEditAction;
+import io.github.jass2125.sistema.alocacao.core.actions.room.ListRoomsAction;
+import io.github.jass2125.sistema.alocacao.core.actions.room.RegisterRoomAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.DeleteUserAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.EditUserAction;
 import io.github.jass2125.sistema.alocacao.core.actions.user.ListUsersAction;
@@ -76,12 +78,18 @@ public final class ActionFactory {
         
         actions.put("listMaterials", new ListMaterialAction());
         
-        /*Blocos*/
+        /* Blocos*/
         actions.put("listFloors", new ListFloorAction());
         actions.put("registerFloor", new RegisterFloorAction());
         actions.put("loadFloorToEdit", new LoadFloorToEditAction());
         actions.put("editFloor", new EditFloorAction());
         actions.put("deleteFloor", new DeleteFloorAction());
+        actions.put("registerFloor", new RegisterFloorAction());
+        
+        /* Salas */
+        actions.put("listRooms", new ListRoomsAction());
+        actions.put("registerRoom", new RegisterRoomAction());
+        
         return actions.get(request.getParameter("action"));
     }
 

@@ -36,8 +36,7 @@ public class ListMaterialAction implements Action {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         try {
-            List<Material> listMaterials = dao.listMaterial();
-            request.getSession().setAttribute("listMaterial", listMaterials);
+            request.getSession().setAttribute("listMaterial", dao.listMaterial());
             return user.getRole() + "/gerenciarmaterial.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

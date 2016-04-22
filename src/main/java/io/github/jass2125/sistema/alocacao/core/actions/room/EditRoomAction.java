@@ -10,7 +10,6 @@ import io.github.jass2125.sistema.alocacao.core.dao.RoomDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
-import io.github.jass2125.sistema.alocacao.core.util.RoomTypeEnum;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +36,7 @@ public class EditRoomAction implements Action {
             Long idFloor = Long.parseLong(request.getParameter("idFloor"));
             Integer capacicity = Integer.parseInt(request.getParameter("capacity"));
 
-            RoomTypeEnum typeRoom = RoomTypeEnum.valueOf(request.getParameter("typeRoom"));
+            String typeRoom = String.valueOf(request.getParameter("typeRoom"));
             Room room = new Room();
             dao.update(room);
             return "gerenciarsala.jsp";

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Anderson Souza
  */
 public class EditMaterialAction implements Action {
+
     private Factory factory;
     private MaterialDao dao;
 
@@ -37,6 +38,7 @@ public class EditMaterialAction implements Action {
             material.setDescription(description);
             material.setQuantity(quantity);
             dao.update(material);
+            request.getSession().setAttribute("listMaterial", dao.listMaterial());
             return "administrador/gerenciarmaterial.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

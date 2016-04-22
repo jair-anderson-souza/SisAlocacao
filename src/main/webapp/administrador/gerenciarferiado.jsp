@@ -157,24 +157,28 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <a href="" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a href="" data-toggle="modal" data-target="#uploadCsv"><span class="glyphicon glyphicon-file"></span></a>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a href="" data-toggle="modal" data-target="#uploadCsv"><span class="glyphicon glyphicon-file"></span></a>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-10">
                     <div class="form-group">
                         <input type="text" alt="table" class="busca form-control" placeholder="Busque aqui">
                     </div>
                 </div>
             </div>
         </div>
+        <br>
         <div class="container">
             <div class="table-responsive">
                 <table class="table table-responsive" id="table">

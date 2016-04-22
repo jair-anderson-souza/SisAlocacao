@@ -5,7 +5,6 @@
  */
 package io.github.jass2125.sistema.alocacao.core.business;
 
-import io.github.jass2125.sistema.alocacao.core.util.RoomTypeEnum;
 import java.io.Serializable;
 
 /**
@@ -15,14 +14,14 @@ import java.io.Serializable;
 public class Room implements Serializable {
     private Long idRoom;
     private String nameRoom;
-    private Long idFloor;
-    private Integer capacicity;
-    private RoomTypeEnum typeRoom;
+    private Long floor;
+    private Integer capacity;
+    private String typeRoom;
 
-    public Room(String nameRoom, Long idFloor, int capacicity, RoomTypeEnum typeRoom) {
+    public Room(String nameRoom, Long floor, int capacicity, String typeRoom) {
         this.nameRoom = nameRoom;
-        this.idFloor = idFloor;
-        this.capacicity = capacicity;
+        this.floor = floor;
+        this.capacity = capacicity;
         this.typeRoom = typeRoom;
     }
 
@@ -46,26 +45,26 @@ public class Room implements Serializable {
     }
 
     public Long getIdFloor() {
-        return idFloor;
+        return floor;
     }
 
-    public void setIdFloor(Long idFloor) {
-        this.idFloor = idFloor;
+    public void setIdFloor(Long floor) {
+        this.floor = floor;
     }
 
-    public int getCapacicity() {
-        return capacicity;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setCapacicity(int capacicity) {
-        this.capacicity = capacicity;
+    public void setCapacity(int capacicity) {
+        this.capacity = capacicity;
     }
 
-    public RoomTypeEnum getTypeRoom() {
+    public String getTypeRoom() {
         return typeRoom;
     }
 
-    public void setTypeRoom(RoomTypeEnum typeRoom) {
+    public void setTypeRoom(String typeRoom) {
         this.typeRoom = typeRoom;
     }
 
