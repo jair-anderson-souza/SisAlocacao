@@ -1,7 +1,7 @@
 <%-- 
     Document   : gerenciarsala
     Created on : Mar 19, 2016, 5:18:11 PM
-    Author     : jairanderson
+    Author     : Anderson Souza
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -152,7 +152,7 @@
                     </div>
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="../front?action=listUsers">Gerenciamento de Bloco</li>
+                        <li><a href="../front?action=listRooms">Gerenciamento de Sala</a></li>
                     </ol>
                 </div>
             </div>

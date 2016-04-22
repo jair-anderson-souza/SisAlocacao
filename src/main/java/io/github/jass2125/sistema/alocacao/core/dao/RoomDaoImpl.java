@@ -70,9 +70,9 @@ public class RoomDaoImpl implements RoomDao {
         while (rs.next()) {
             Long id = rs.getLong("id_sala");
             String nameRoom = rs.getString("nome_da_sala");
-            Long floor = rs.getLong("id_bloco");
+            Long floor = rs.getLong("bloco");
             Integer capacity = rs.getInt("capacidade_fisica");
-            String typeRoom = rs.getString("capacidade_fisica");
+            String typeRoom = rs.getString("tipo_de_sala");
             return new Room(id, nameRoom, floor, capacity, typeRoom);
         }
         return null;

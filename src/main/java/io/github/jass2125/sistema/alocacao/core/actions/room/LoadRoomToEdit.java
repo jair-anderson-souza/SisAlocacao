@@ -9,6 +9,7 @@ import io.github.jass2125.sistema.alocacao.core.business.Room;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.RoomDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
+import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Action;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,17 +25,24 @@ public class LoadRoomToEdit implements Action {
     private Factory factory;
     private RoomDao dao;
 
+    public LoadRoomToEdit() {
+        factory = new FactoryDao();
+        dao = factory.createRoomDao();
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         try {
-            Long id = Long.parseLong(request.getParameter("id"));
-            Room room = dao.findById(id);
+            String id = request.getParameter("id");
+            Long idRoom = Long.parseLong(id);
+            Room room = dao.findById(idRoom);
             request.getSession().setAttribute("room", room);
             return user.getRole() + "/editarsala.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             request.getSession().setAttribute("error", "Erro, retorne e tente novamente!!");
+            e.printStackTrace();
             return user.getRole() + "/editarsala.jsp";
         }
     }
