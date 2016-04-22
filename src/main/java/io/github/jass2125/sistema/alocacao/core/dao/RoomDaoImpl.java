@@ -93,7 +93,11 @@ public class RoomDaoImpl implements RoomDao {
 
     @Override
     public void delete(Long idRoom) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "delete from sala where id_sala = ?;";
+        Connection con = conFactory.getConnection();
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setLong(1, idRoom);
+        ps.execute();
     }
 
 }

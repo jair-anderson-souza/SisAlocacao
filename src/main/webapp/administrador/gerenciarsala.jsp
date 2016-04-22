@@ -214,7 +214,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?action=deleteFloor&idFloor=${floor.idFloor}" method="post">
+                                    <form action="../front?action=deleteRoom&idRoom=${room.idRoom}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
                                     </form>
                                 </td>
