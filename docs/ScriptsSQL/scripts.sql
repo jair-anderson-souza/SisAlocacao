@@ -43,6 +43,17 @@ create table material(
 	constraint ref_pkey_sala
 	primary key(tombamento)
 )AUTO_INCREMENT = 1000000;
+create table evento(
+	id_evento bigint AUTO_INCREMENT,
+	nome varchar(50),
+	descricao varchar(50),
+	numero_participantes int not null,
+	responsavel int,
+	inicio timestamp,
+	fim timestamp,
+	foreign key(responsavel) references usuario(id_usuario) on update cascade on delete restrict, 
+	primary key(id_evento)
+);
 insert into usuario(name, username, senha, email, matricula, papel, status) values('Anderson Souza', 'root', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2BE', 'jair_anderson_bs@hotmail.com', '000000', 'administrador', 1);
 insert into bloco values(1, 'Bloco 4');
 insert into sala values(1, 'Sala 2', 1, 40, 'COMUM');

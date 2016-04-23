@@ -5,6 +5,8 @@
  */
 package io.github.jass2125.sistema.alocacao.controller;
 
+import io.github.jass2125.sistema.alocacao.core.actions.events.ListEventsAction;
+import io.github.jass2125.sistema.alocacao.core.actions.events.RegisterEventAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.DeleteFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.EditFloorAction;
 import io.github.jass2125.sistema.alocacao.core.actions.floor.ListFloorAction;
@@ -95,6 +97,10 @@ public final class ActionFactory {
         actions.put("loadRoom", new LoadRoomToEditAction());
         actions.put("editRoom", new EditRoomAction());
         actions.put("deleteRoom", new DeleteRoomAction());
+        
+        /* Eventos */
+        actions.put("listEvents", new ListEventsAction());
+        actions.put("registerEvent", new RegisterEventAction());
         
         return actions.get(request.getParameter("action"));
     }

@@ -6,7 +6,8 @@
 package io.github.jass2125.sistema.alocacao.core.business;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  *
@@ -14,13 +15,34 @@ import java.util.Calendar;
  */
 public class Event implements Serializable {
 
+    private int idEvent;
     private String name;
     private String description;
     private int number;
-    private String responsavel;
-    private Calendar Horáriodeinícioefim;
+    private Long responsable;
+    private Timestamp begin;
+    private Timestamp end;
 
     public Event() {
+    }
+
+    public Event(int idEvent, String name, String description, int number, Long responsable, Timestamp begin, Timestamp end) {
+        this.idEvent = idEvent;
+        this.name = name;
+        this.description = description;
+        this.number = number;
+        this.responsable = responsable;
+        this.begin = begin;
+        this.end = end;
+    }
+
+    public Event(String name, String description, int number, Long responsable, Timestamp begin, Timestamp end) {
+        this.name = name;
+        this.description = description;
+        this.number = number;
+        this.responsable = responsable;
+        this.begin = begin;
+        this.end = end;
     }
 
     public String getName() {
@@ -47,20 +69,27 @@ public class Event implements Serializable {
         this.number = number;
     }
 
-    public String getResponsavel() {
-        return responsavel;
+    public Long getResponsable() {
+        return responsable;
     }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
+    public void setResponsable(Long responsable) {
+        this.responsable = responsable;
     }
 
-    public Calendar getHoráriodeinícioefim() {
-        return Horáriodeinícioefim;
+    public Timestamp getBegin() {
+        return begin;
     }
 
-    public void setHoráriodeinícioefim(Calendar Horáriodeinícioefim) {
-        this.Horáriodeinícioefim = Horáriodeinícioefim;
+    public void setBegin(Timestamp begin) {
+        this.begin = begin;
     }
 
+    public Timestamp getEnd() {
+        return end;
+    }
+
+    public void setEnd(Timestamp end) {
+        this.end = end;
+    }
 }
