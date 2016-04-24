@@ -54,11 +54,11 @@ public final class CommandFactory {
         commands = new HashMap<>();
         commands.put("login", new LoginUserCommand());
         commands.put("logout", new LogoutUserCommand());
-        
         commands.put("listUsers", new ListUsersCommand());
         commands.put("registerUser", new RegisterUserCommand());
         commands.put("loadUser", new LoadUserEditionCommand());
         commands.put("editUser", new EditUserCommand());
+        
         commands.put("deleteUser", new DeleteUserCommand());
 //        commands.put("readerCsvFile", new ReaderCsvFileCommand());
         commands.put("listHolidays", new ListHolidaysCommand());

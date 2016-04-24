@@ -29,14 +29,17 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class EditUserCommand implements Command  {
+public class EditUserCommand implements Command {
 
-    private CryptographyPasswordStrategy cryptographer;
-    private ValidationUserTemplate validator;
+    private ValidationUser validator;
+    private Factory factory;
+    private UserDao dao;
+    private String roleUserSession;
 
     public EditUserCommand() {
-        validator = new ValidationUser();
-        cryptographer = new CryptographerPasswordSHA();
+        this.validator = new ValidationUser();
+        this.factory = new FactoryDao();
+        this.dao = factory.createUserDao();
     }
 
     /**
@@ -49,30 +52,33 @@ public class EditUserCommand implements Command  {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User userSession = (User) session.getAttribute("user");
+        this.roleUserSession = userSession.getRole();
         try {
-            HttpSession session = request.getSession();
+            /* Pegando parametros */
             int idUser = Integer.parseInt(request.getParameter("idUser"));
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             String name = request.getParameter("name");
-            String password = request.getParameter("password");
-
             String registry = request.getParameter("registry");
             String role = request.getParameter("role");
-            User user = new User(idUser, name, username, password, email, registry, role, true);
-            validator.validatorDataUser(user);
-            password = cryptographer.cryptographerSHA(password);
-            Factory factory = new FactoryDao();
-            UserDao dao = factory.createUserDao();
+            User user = new User(idUser, name, username, email, registry, role, true);
+            validator.validatorEmail(email);
+            validator.validatorRegistry(registry);
+            validator.validatorUsername(username);
+                        
             dao.edit(user);
-            session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
-            return "administrador/gerenciarusuario.jsp";
-        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
+            session.setAttribute("listUsers", dao.list(userSession.getIdUser()));
+            return this.roleUserSession + "/gerenciarusuario.jsp";
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "error.jsp";
-        }catch(FieldEmptyException e){
+            request.getSession().setAttribute("error", "Verifique os dados e tente novamente.");
+            return this.roleUserSession + "/gerenciarusuario.jsp";
+        } catch (FieldEmptyException | RegexException e) {
             e.printStackTrace();
-            return "error.jsp";
+            request.getSession().setAttribute("error", e.getMessage());
+            return this.roleUserSession + "/gerenciarusuario.jsp";
         }
     }
 }

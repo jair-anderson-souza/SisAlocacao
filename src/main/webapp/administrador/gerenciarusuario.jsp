@@ -139,19 +139,6 @@
             </div>
         </div>
 
-        <!--        <div class="container">
-                    <div class="row text-left">
-        <c:if test="${crud != null} ">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-            ${crud}
-        </div>
-    </div>
-        </c:if>
-    </div>
-</div>-->
-
-
         <!-- Page Content -->
         <div class="container">
             <!-- Page Heading/Breadcrumbs -->
@@ -163,7 +150,7 @@
                         <div class="row">
                             <c:if test="${sessionScope.error != null}">
                                 <div class="col-md-12">
-                                    <div class="alert alert-success">
+                                    <div class="alert alert-danger">
                                         ${sessionScope.error}
                                     </div>
                                 </div>
@@ -212,7 +199,7 @@
                     <tbody id="table">
                         <c:forEach items="${sessionScope.listUsers}" var="userList">
                             <tr>
-                                <td>${userList.name}</td>
+                                <td id="name">${userList.name}</td>
                                 <td>${userList.email}</td>
                                 <td>${userList.role}</td>
                                 <td>${userList.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
@@ -224,11 +211,30 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
-                                        <c:if test="${userList.role != 'administrador'}">
-                                            <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
-                                        </c:if>
-                                    </form>
+                                    <c:if test="${userList.role != 'administrador'}">
+                                        <a href="" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-pencil btn btn-default"></span></a>
+                                        <!-- Modal -->
+                                        <div id="delete" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content - Modal do Cadastro -->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Tem certeza que deseja deletar o usuario ${userList.name}?</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form role="form" action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
+                                                            <div class="form-group">
+                                                                <label for="username">Email do usuario</label>
+                                                                <input type="text" name="username" value="${userList.email}" class="form-control" id="username" required="true"/>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-danger">Deletar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

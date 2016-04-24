@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
  */
 public class RegisterUserCommand implements Command {
 
-    private ValidationUserTemplate validator;
+    private ValidationUser validator;
     private CryptographyPasswordStrategy cryptographer;
     private Factory factory;
     private UserDao dao;
@@ -77,10 +77,10 @@ public class RegisterUserCommand implements Command {
                 request.getSession().setAttribute("error", "Email e/ou Username existentes");
                 return "administrador/gerenciarusuario.jsp";
             }
-        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
+        } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
             return "error.jsp";
-        } catch (FieldEmptyException e) {
+        } catch (FieldEmptyException | RegexException e) {
             e.printStackTrace();
             request.getSession().setAttribute("error", e.getMessage());
             return "error.jsp";

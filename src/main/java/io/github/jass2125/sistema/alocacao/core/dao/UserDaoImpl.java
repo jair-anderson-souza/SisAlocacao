@@ -149,18 +149,23 @@ public class UserDaoImpl implements UserDao {
                 + "status = ? "
                 + "where id_usuario = ?;";
         Connection con = connectionFactory.getConnection();
-        Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, usuario.getName());
-        ps.setString(2, usuario.getUsername());
-        ps.setString(3, usuario.getPassword());
-        ps.setString(4, usuario.getEmail());
-        ps.setString(5, usuario.getRegistry());
-        ps.setString(6, usuario.getRole());
-        ps.setBoolean(7, usuario.isStatus());
-        ps.setInt(8, usuario.getIdUser());
-        ps.execute();
-        ps.close();
+        try {
+            ps.setString(1, usuario.getName());
+            ps.setString(2, usuario.getUsername());
+            ps.setString(3, usuario.getPassword());
+            ps.setString(4, usuario.getEmail());
+            ps.setString(5, usuario.getRegistry());
+            ps.setString(6, usuario.getRole());
+            ps.setBoolean(7, usuario.isStatus());
+            ps.setInt(8, usuario.getIdUser());
+            ps.execute();
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            ps.close();
+            con.close();
+            throw new SQLException(e);
+        }
+        
     }
 
     /**

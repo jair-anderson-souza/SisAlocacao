@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * @author Anderson Souza
  * @since 2015
  */
-public class ValidationUser extends ValidationUserTemplate {
+public class ValidationUser {
 
     private final String usernamePattern;
     private final String passwordPattern;
@@ -38,7 +38,6 @@ public class ValidationUser extends ValidationUserTemplate {
      * @throws RegexException Padrao de entrada invalido
      * @throws FieldEmptyException
      */
-    @Override
     public void validatorUsername(String username) throws RegexException, FieldEmptyException {
         Pattern regex = Pattern.compile(usernamePattern);
         Matcher matcher = regex.matcher(username);
@@ -56,7 +55,6 @@ public class ValidationUser extends ValidationUserTemplate {
      * @param password Senha do usuario
      * @throws RegexException Padrao de entrada invalido
      */
-    @Override
     public void validatorPassword(String password) throws RegexException {
         Pattern regexPassword = Pattern.compile(passwordPattern);
         Matcher matcher = regexPassword.matcher(password);
@@ -72,7 +70,6 @@ public class ValidationUser extends ValidationUserTemplate {
      * @param email Email do usuario
      * @throws RegexException Padrao de entrada invalido
      */
-    @Override
     public void validatorEmail(String email) throws RegexException {
         Pattern regexEmail = Pattern.compile(emailPattern);
         Matcher matcher = regexEmail.matcher(email);
@@ -88,7 +85,6 @@ public class ValidationUser extends ValidationUserTemplate {
      * @param registry Matricula do usuario
      * @throws RegexException Padrao de entrada invalido
      */
-    @Override
     public void validatorRegistry(String registry) throws RegexException {
         Pattern regexMatricula = Pattern.compile(matriculaPattern);
         Matcher matcher = regexMatricula.matcher(registry);
@@ -104,7 +100,6 @@ public class ValidationUser extends ValidationUserTemplate {
      * @param user User
      * @throws RegexException Padrao de entrada invalido
      */
-    @Override
     public void validatorDataUser(User user) throws RegexException, FieldEmptyException {
         this.validatorEmail(user.getEmail());
         this.validatorRegistry(user.getRegistry());

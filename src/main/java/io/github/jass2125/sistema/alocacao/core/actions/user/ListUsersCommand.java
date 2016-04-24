@@ -42,22 +42,18 @@ public class ListUsersCommand implements Command {
      * @param response Resposta
      * @return String Retorna a pagina para qual a aplicação será encaminhada
      */
-
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        User user = (User) request.getSession().getAttribute("user");
+        this.role = user.getRole();
         try {
-            User user = (User) request.getSession().getAttribute("user");
-            this.role = user.getRole();
             List<User> listUsers = dao.list(user.getIdUser());
             HttpSession session = request.getSession();
             session.setAttribute("listUsers", listUsers);
             return this.role + "/gerenciarusuario.jsp";
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "error.jsp";
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ListUsersCommand.class.getName()).log(Level.SEVERE, null, ex);
-            return "error.jsp";
+            return this.role + "/home.jsp";
         }
     }
 }

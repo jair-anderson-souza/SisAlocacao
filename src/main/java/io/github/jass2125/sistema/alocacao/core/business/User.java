@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package io.github.jass2125.sistema.alocacao.core.business;
 
 import java.io.Serializable;
 
 /**
  * CLasse que representa o Usuario
+ *
  * @author Anderson Souza
  * @since 2015
  */
 public class User implements Serializable {
+
     private int idUser;
     private String name;
     private String email;
@@ -27,7 +28,17 @@ public class User implements Serializable {
         this(name, username, password, email, registry, role, status);
         this.idUser = idUser;
     }
-    
+
+    public User(int idUser, String name, String username, String email, String registry, String role, boolean status) {
+        this.idUser = idUser;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.registry = registry;
+        this.role = role;
+        this.status = status;
+    }
+
     public User(String name, String username, String password, String email, String registry, String role, boolean status) {
         this.email = email;
         this.username = username;
@@ -37,81 +48,94 @@ public class User implements Serializable {
         this.role = role;
         this.status = status;
     }
-    
+
     public User() {
     }
+
     /**
      * Metodo que retorna o Id do usuario
+     *
      * @return int Id do usuário
      */
     public int getIdUser() {
         return this.idUser;
     }
-    
+
     /**
      * Metodo que retorna o email do usuario
+     *
      * @return email String
      */
     public String getEmail() {
         return email;
     }
-    
+
     /**
      * Metodo que altera o email do usario
+     *
      * @param email String
      */
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     /**
      * Metodo que retorna o username do usuario
+     *
      * @return username String
      */
     public String getUsername() {
         return username;
     }
+
     /**
      * Metodo que altera o username do usario
+     *
      * @param username String
      */
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     /**
      * Método que altera o nome do usuário
+     *
      * @param name String
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
      * Metodo que retorna a senha do usuario
+     *
      * @return password String
      */
     public String getPassword() {
         return this.password;
     }
-    
+
     /**
      * Metodo que altera o password do usario
+     *
      * @param password String
      */
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * Metodo que retorna a matricula do usuario
+     *
      * @return registry String
      */
     public String getRegistry() {
         return this.registry;
     }
+
     /**
      * Metodo que altera a matricula do usario
+     *
      * @param registry String
      */
     public void setRegistry(String registry) {
@@ -120,30 +144,34 @@ public class User implements Serializable {
 
     /**
      * Metodo que retorna o papel do usuario
+     *
      * @return role String
      */
     public String getRole() {
         return this.role;
     }
-    
+
     /**
      * Metodo que altera o papel do usario
+     *
      * @param role String
      */
     public void setRole(String role) {
         this.role = role;
     }
-    
+
     /**
      * Metodo que retorna o status do usuario
+     *
      * @return status Boolean
      */
     public boolean isStatus() {
         return status;
     }
-    
+
     /**
      * Metodo que altera o status do usario
+     *
      * @param status String
      */
     public void setStatus(boolean status) {
@@ -152,6 +180,7 @@ public class User implements Serializable {
 
     /**
      * Metodo que retorna o nome do usuario
+     *
      * @return nome String
      */
     public String getName() {

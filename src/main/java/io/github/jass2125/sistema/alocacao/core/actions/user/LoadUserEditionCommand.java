@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @since 2015
  */
 public class LoadUserEditionCommand implements Command  {
-
+    private String role;
     /**
      * Método que efetua o carregameto de um usuario da base de dados
      * @param request Requisição
@@ -33,9 +33,10 @@ public class LoadUserEditionCommand implements Command  {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        this.role = (String) ((User) session.getAttribute("user")).getRole();
         try{
-            HttpSession session = request.getSession();
-            String id = request.getParameter("idUser");
+           String id = request.getParameter("idUser");
             int idUser = Integer.parseInt(id);
             Factory factory = new FactoryDao();
             UserDao dao = factory.createUserDao();
@@ -43,9 +44,10 @@ public class LoadUserEditionCommand implements Command  {
             
             if(user != null) {
                 session.setAttribute("userEditing", user);
-                return "administrador/editarusuario.jsp";
+                return this.role + "/editarusuario.jsp";
             } else {
-                return "error.jsp";
+                session.setAttribute("error", "Não foi possivel realizar a operação, tente novamente.");
+                return this.role + "/gerenciarusuario.jsp";
             }
         } catch(NumberFormatException | SQLException e) {
             e.printStackTrace();

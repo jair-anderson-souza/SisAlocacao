@@ -48,6 +48,7 @@ public class LoginUserCommand implements Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+
         try {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
@@ -67,7 +68,8 @@ public class LoginUserCommand implements Command {
             }
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            return "error.jsp";
+            request.getSession().setAttribute("error", "Ocorreu um erro, por favor tente novamente.");
+            return "index.jsp";
 
         }
 
