@@ -46,9 +46,53 @@ import javax.servlet.http.HttpServletRequest;
  */
 public final class CommandFactory {
 
-    private static Map<String, Command> actions;
+    private Map<String, Command> commands;
 
     public CommandFactory() {
+        commands = new HashMap<>();
+        /* Usuario */
+        commands = new HashMap<>();
+        commands.put("login", new LoginUserCommand());
+        commands.put("logout", new LogoutUserCommand());
+        
+        commands.put("listUsers", new ListUsersCommand());
+        commands.put("registerUser", new RegisterUserCommand());
+        commands.put("loadUser", new LoadUserEditionCommand());
+        commands.put("editUser", new EditUserCommand());
+        commands.put("deleteUser", new DeleteUserCommand());
+//        commands.put("readerCsvFile", new ReaderCsvFileCommand());
+        commands.put("listHolidays", new ListHolidaysCommand());
+        commands.put("deleteHoliday", new DeleteHolidayCommand());
+        commands.put("loadHoliday", new LoadHolidayEditCommand());
+        commands.put("editHoliday", new EditHolidayCommand());
+
+        /* Material Actions */
+        commands.put("listMaterial", new ListMaterialCommand());
+        commands.put("registerMaterial", new RegisterMaterialCommand());
+        commands.put("loadMaterialToEdit", new LoadMaterialToEditCommand());
+        commands.put("updateMaterial", new EditMaterialCommand());
+        commands.put("deleteMaterial", new DeleteMaterialCommand());
+
+        commands.put("listMaterials", new ListMaterialCommand());
+
+        /* Blocos*/
+        commands.put("listFloors", new ListFloorCommand());
+        commands.put("registerFloor", new RegisterFloorCommand());
+        commands.put("loadFloorToEdit", new LoadFloorToEditCommand());
+        commands.put("editFloor", new EditFloorCommand());
+        commands.put("deleteFloor", new DeleteFloorCommand());
+        commands.put("registerFloor", new RegisterFloorCommand());
+
+        /* Salas */
+        commands.put("listRooms", new ListRoomsCommand());
+        commands.put("registerRoom", new RegisterRoomCommand());
+        commands.put("loadRoom", new LoadRoomToEditCommand());
+        commands.put("editRoom", new EditRoomCommand());
+        commands.put("deleteRoom", new DeleteRoomCommand());
+
+        /* Eventos */
+        commands.put("listEvents", new ListEventsCommand());
+        commands.put("registerEvent", new RegisterEventCommand());
     }
 
     /**
@@ -57,52 +101,8 @@ public final class CommandFactory {
      * @param request Requisição do usuario
      * @return commands Comando a ser executado
      */
-    public static Command getCommand(HttpServletRequest request) {
-        
-        //Fazer um lazy loading aqui
-        actions = new HashMap<>();
-        actions.put("login", new LoginUserCommand());
-        actions.put("logout", new LogoutUserCommand());
-        actions.put("listUsers", new ListUsersCommand());
-        actions.put("registerUser", new RegisterUserCommand());
-        actions.put("loadUser", new LoadUserEditionCommand());
-        actions.put("editUser", new EditUserCommand());
-        actions.put("deleteUser", new DeleteUserCommand());
-//        commands.put("readerCsvFile", new ReaderCsvFileCommand());
-        actions.put("listHolidays", new ListHolidaysCommand());
-        actions.put("deleteHoliday", new DeleteHolidayCommand());
-        actions.put("loadHoliday", new LoadHolidayEditCommand());
-        actions.put("editHoliday", new EditHolidayCommand());
-        
-        /* Material Actions */
-        actions.put("listMaterial", new ListMaterialCommand());
-        actions.put("registerMaterial", new RegisterMaterialCommand());
-        actions.put("loadMaterialToEdit", new LoadMaterialToEditCommand());
-        actions.put("updateMaterial", new EditMaterialCommand());
-        actions.put("deleteMaterial", new DeleteMaterialCommand());
-        
-        actions.put("listMaterials", new ListMaterialCommand());
-        
-        /* Blocos*/
-        actions.put("listFloors", new ListFloorCommand());
-        actions.put("registerFloor", new RegisterFloorCommand());
-        actions.put("loadFloorToEdit", new LoadFloorToEditCommand());
-        actions.put("editFloor", new EditFloorCommand());
-        actions.put("deleteFloor", new DeleteFloorCommand());
-        actions.put("registerFloor", new RegisterFloorCommand());
-        
-        /* Salas */
-        actions.put("listRooms", new ListRoomsCommand());
-        actions.put("registerRoom", new RegisterRoomCommand());
-        actions.put("loadRoom", new LoadRoomToEditCommand());
-        actions.put("editRoom", new EditRoomCommand());
-        actions.put("deleteRoom", new DeleteRoomCommand());
-        
-        /* Eventos */
-        actions.put("listEvents", new ListEventsCommand());
-        actions.put("registerEvent", new RegisterEventCommand());
-        
-        return actions.get(request.getParameter("action"));
+    public Command getCommand(HttpServletRequest request) {
+        return commands.get(request.getParameter("command"));
     }
 
 }

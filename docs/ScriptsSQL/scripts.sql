@@ -55,6 +55,7 @@ create table evento(
 	primary key(id_evento)
 );
 insert into usuario(name, username, senha, email, matricula, papel, status) values('Anderson Souza', 'root', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2BE', 'jair_anderson_bs@hotmail.com', '000000', 'administrador', 1);
+insert into usuario(name, username, senha, email, matricula, papel, status) values('Diogo Moreira', 'diogo', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2BE', 'diogo@hotmail.com', '000000', 'administrador', 1);
 insert into bloco values(1, 'Bloco 4');
 insert into sala values(1, 'Sala 2', 1, 40, 'COMUM');
 insert into material values(1111111, 'RetroProjetor', 20, 'Disponivel', 1);

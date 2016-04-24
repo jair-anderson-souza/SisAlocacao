@@ -37,7 +37,8 @@ public class FrontController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            Command action = CommandFactory.getCommand(request);
+            CommandFactory factory = new CommandFactory();
+            Command action = factory.getCommand(request);
             String view = action.execute(request, response);
             response.sendRedirect(view);
         }catch(Exception e){

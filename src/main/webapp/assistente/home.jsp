@@ -17,7 +17,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" type="image/png" href="../logo.ico" />
-        <title>Home - Aluno</title>
+        <title>Home - Assistente</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">

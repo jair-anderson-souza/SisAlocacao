@@ -51,7 +51,7 @@
 
                 <div class="col-sm-4">
                     <label style="color: #d43f3a">${sessionScope.error}</label>
-                    <form class="form-horizontal" action="front?action=login" method="post" role="form">
+                    <form class="form-horizontal" action="front?command=login" method="post" role="form">
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="email" style="color: #181EC7;">Email:</label>
                             <div class="col-sm-9">

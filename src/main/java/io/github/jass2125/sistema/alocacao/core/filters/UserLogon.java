@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  * File Name UserLogon.java
  */
 
-@WebFilter (filterName = "filterUserLogon", urlPatterns = {"/administrador/*"})
+@WebFilter (filterName = "filterUserLogon", urlPatterns = {"/administrador/*", "/aluno/*", "/assistente/*"})
 public class UserLogon implements Filter {
 
     @Override

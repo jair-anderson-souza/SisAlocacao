@@ -92,7 +92,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Usuarios</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listUsers" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listUsers" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Feriados</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listHolidays" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listHolidays" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Material</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listMaterials" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listMaterials" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Blocos</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listFloors" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listFloors" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Salas</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar Salas</p>
-                            <a href="../front?action=listRooms" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listRooms" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                         <div class="panel-body">
                             <h3><b>Gerenciar Eventos</b></h3>
                             <p>Adicionar, Editar, Excluir e Visualizar</p>
-                            <a href="../front?action=listEvents" class="btn btn-primary">Abrir</a>
+                            <a href="../front?command=listEvents" class="btn btn-primary">Abrir</a>
                         </div>
                     </div>
                 </div>

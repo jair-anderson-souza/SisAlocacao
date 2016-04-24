@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
 public class LoginUserCommand implements Command  {
 
     private CryptographyPasswordStrategy cryptographer;
+    private String role;
 
     public LoginUserCommand() {
         cryptographer = new CryptographerPasswordSHA();
@@ -57,7 +58,8 @@ public class LoginUserCommand implements Command  {
             if (user != null) {
                 session.setAttribute("user", user);
                 session.setMaxInactiveInterval(60 * 60);
-                return user.getRole() + "/home.jsp";
+                role = (String) ((User)request.getSession().getAttribute("user")).getRole();
+                return this.role + "/home.jsp";
             } else {
                 session.setAttribute("error", "Usuario e senha desconhecidos. Por favor, tente novamente.");
                 return "index.jsp";
