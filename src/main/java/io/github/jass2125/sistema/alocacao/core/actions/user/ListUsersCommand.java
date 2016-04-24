@@ -24,7 +24,16 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class ListUsersCommand implements Command  {
+public class ListUsersCommand implements Command {
+
+    private Factory factory;
+    private UserDao dao;
+    private String role;
+
+    public ListUsersCommand() {
+        factory = new FactoryDao();
+        dao = factory.createUserDao();
+    }
 
     /**
      * Método que efetua a busca por todos os usuarios
@@ -33,16 +42,16 @@ public class ListUsersCommand implements Command  {
      * @param response Resposta
      * @return String Retorna a pagina para qual a aplicação será encaminhada
      */
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
-            Factory factory = new FactoryDao();
-            UserDao dao = factory.createUserDao();
             User user = (User) request.getSession().getAttribute("user");
+            this.role = user.getRole();
             List<User> listUsers = dao.list(user.getIdUser());
             HttpSession session = request.getSession();
             session.setAttribute("listUsers", listUsers);
-            return "administrador/gerenciarusuario.jsp";
+            return this.role + "/gerenciarusuario.jsp";
         } catch (SQLException e) {
             e.printStackTrace();
             return "error.jsp";

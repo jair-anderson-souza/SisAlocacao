@@ -102,30 +102,30 @@
                         <h4 class="modal-title">Cadastro de Usuario</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form" action="../front?action=registerUser" method="post">
+                        <form role="form" action="../front?command=registerUser" method="post">
                             <div class="form-group">
                                 <label for="username">Nome de usuário</label>
-                                <input type="text" name="username" class="form-control" id="username">
+                                <input type="text" name="username" class="form-control" id="username" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="nome">Nome</label>
-                                <input type="text" name="name" class="form-control" id="nome">
+                                <input type="text" name="name" class="form-control" id="nome" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password</label>
-                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial.">
+                                <input type="password" name="password" class="form-control" id="pwd" pattern="((?=.*[A-Z])(?=.*[@#$!%!]).{8,30})" title="A senha precisa conter pelo menos uma letra maiuscula e um caracterer especial." required="true">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido">
+                                <input type="email" name="email" class="form-control" id="email" pattern="[a-zA-Z0-9_.-]+@{1}[a-zA-Z0-9_.-]+.{1}[a-z]+" title="O email precisa estar no padrao requerido"  required="true">
                             </div>
                             <div class="form-group">
                                 <label for="registry">Matrícula</label>
-                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos.">
+                                <input type="text" name="registry" class="form-control" id="registry" pattern="^\d{6}$" title="A matricula deve conter 6 digitos númericos."  required="true">
                             </div>
                             <div class="form-group">
-                                <label for="sel1">Papel</label>
-                                <select class="form-control" name="role" id="sel1">
+                                <label for="role">Papel</label>
+                                <select class="form-control" name="role" id="role">
                                     <option value="aluno">Aluno</option>
                                     <option value="monitor">Monitor</option>
                                     <option value="assistente">Assistente de Sala</option>
@@ -135,9 +135,6 @@
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
                     </div>
-                    <!--                    <div class="modal-footer">
-                                            
-                                        </div>-->
                 </div>
             </div>
         </div>
@@ -159,18 +156,21 @@
         <div class="container">
             <!-- Page Heading/Breadcrumbs -->
             <div class="row">
-                <div class="col-lg-12"><h1 class="page-header">Lista de Usuarios</h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Lista de Usuarios</h1>
+
                     <div class="container">
-                        <div class="row text-left">
-                            <c:if test="${crud != null} ">
+                        <div class="row">
+                            <c:if test="${sessionScope.error != null}">
                                 <div class="col-md-12">
                                     <div class="alert alert-success">
-                                        ${crud}
+                                        ${sessionScope.error}
                                     </div>
                                 </div>
                             </c:if>
                         </div>
                     </div>
+
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
                         <li><a href="../front?action=listUsers">Gerenciamento de Usuario</li>
@@ -242,16 +242,6 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row text-left">
-                <c:if test="${sessionScope.error != null}">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            ${sessionScope.error}
-                        </div>
-                    </div>
-                </c:if>
-            </div>
-        </div>
+
     </body>
 </html>

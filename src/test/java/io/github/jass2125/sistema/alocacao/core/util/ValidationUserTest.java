@@ -7,7 +7,6 @@ package io.github.jass2125.sistema.alocacao.core.util;
 
 import io.github.jass2125.sistema.alocacao.core.exceptions.FieldEmptyException;
 import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +17,10 @@ import org.junit.Test;
 public class ValidationUserTest {
 
     private ValidationUser val;
+    String username;
+    String password;
+    String registry;
+    String email;
 
     @Before
     public void setUp() {
@@ -26,13 +29,14 @@ public class ValidationUserTest {
 
     /**
      * Test of validatorUsername method, of class ValidationUser.
+     *
      * @throws RegexException
      * @throws FieldEmptyException
      */
     @Test(expected = RegexException.class)
     public void testValidatorUsername() throws RegexException, FieldEmptyException {
         //%-$_#@ . pode
-        String username = "jass2125#";
+        username = "jass2125#";
         val.validatorUsername(username);
 
         username = "@diogo";
@@ -49,114 +53,138 @@ public class ValidationUserTest {
 
         username = "jair_anderson";
         val.validatorUsername(username);
-
     }
 
     @Test(expected = FieldEmptyException.class)
     public void testValidatorEmpty() throws RegexException, FieldEmptyException {
-        String username = "";
-        val.validatorUsername(username);
-
+            String username = "";
+            val.validatorUsername(username);
     }
 
     @Test
-    public void testValidandoUsername() throws RegexException, FieldEmptyException {
-        String username = "jair.anderson";
-        val.validatorUsername(username);
+    public void testValidandoUsername() {
+        try {
+            username = "jair.anderson";
+            val.validatorUsername(username);
 
-        username = "jairanderson.";
-        val.validatorUsername(username);
+            username = "jairanderson.";
+            val.validatorUsername(username);
 
-        username = "2125";
-        val.validatorUsername(username);
+            username = "2125";
+            val.validatorUsername(username);
 
-        username = ".jair";
-        val.validatorUsername(username);
-
+            username = ".jair";
+            val.validatorUsername(username);
+        } catch (FieldEmptyException | RegexException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Test of validatorPassword method, of class ValidationUser.
      *
-     * 
-     * @throws RegexException
+     *
      */
     @Test(expected = RegexException.class)
-    public void testValidatorPassword() throws RegexException  {
-        String password = "dfter5fsd7575";
-        val.validatorPassword(password);
+    public void testValidatorPassword() throws RegexException {
+//        try {
+            password = "dfter5fsd7575";
+            val.validatorPassword(password);
 
-        password = "DHfter5fsd7575";
-        val.validatorPassword(password);
+            password = "DHfter5fsd7575";
+            val.validatorPassword(password);
 
-        password = "#fter5fsd7575";
-        val.validatorPassword(password);
+            password = "#fter5fsd7575";
+            val.validatorPassword(password);
 
-        password = "fter5fsd7575";
-        val.validatorPassword(password);
-
+            password = "fter5fsd7575";
+            val.validatorPassword(password);
+//        } catch (RegexException e) {
+//            e.printStackTrace();
+//        }
     }
-    
-    public void testPassword() throws RegexException{
-//        String password = "D$fsdf5sd6f5s67";
-//        val.validatorPassword(password);
+
+    @Test
+    public void testPassword() {
+        try {
+            password = "D$fsdf5sd6f5s67";
+            val.validatorPassword(password);
+
+            password = "$76576sdhfsdjF";
+            val.validatorPassword(password);
 //        
-//        password = "$76576sdhfsdj";
-//        val.validatorPassword(password);
-//        
-//        password = "fsdf5sd6f5s67D#";
-//        val.validatorPassword(password);
-//        
-//        password = "#346785djfkhgE";
-//        val.validatorPassword(password);
-//        
-//        password = "Dt5dd&";
-//        val.validatorPassword(password);
-        
-        fail("Completar Teste");
-        
+            password = "fsdf5sd6f5s67D#";
+            val.validatorPassword(password);
+
+            password = "#346785djfkhgE";
+            val.validatorPassword(password);
+        } catch (RegexException e) {
+            e.printStackTrace();
+        }
     }
-    /**
-     * Test of validatorEmail method, of class ValidationUser.
-     */
-//    @Test
-//    public void testValidatorEmail() throws Exception {
-//        System.out.println("validatorEmail");
-//        String email = "";
-//        ValidationUser instance = new ValidationUser();
-//        instance.validatorEmail(email);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
     /**
      * Test of validatorRegistry method, of class ValidationUser.
-     * @throws io.github.jass2125.sistema.alocacao.core.exceptions.RegexException
+     *
      */
     @Test
-    public void testValidatorRegistry() throws RegexException {
-        String registry = "111111";
-        val.validatorRegistry(registry);
+    public void testValidatorRegistry() {
+        try {
+            registry = "111111";
+            val.validatorRegistry(registry);
+
+            registry = "000000";
+            val.validatorRegistry(registry);
+
+            registry = "345987";
+            val.validatorRegistry(registry);
+        } catch (RegexException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     @Test(expected = RegexException.class)
     public void testValidatorRegistryException() throws RegexException {
-        String registry = "111111";
-        val.validatorRegistry(registry);
-        
-        registry = "aaa333";
-        val.validatorRegistry(registry);
-        
-        registry = "a33333";
-        val.validatorRegistry(registry);
-        
-        registry = "a33333";
-        val.validatorRegistry(registry);
-        
-        registry = "33333a";
-        val.validatorRegistry(registry);
-        
-        
+//        try {
+            registry = "11111";
+            val.validatorRegistry(registry);
+
+            registry = "aaa333";
+            val.validatorRegistry(registry);
+
+            registry = "a33333";
+            val.validatorRegistry(registry);
+
+            registry = "a33333";
+            val.validatorRegistry(registry);
+
+            registry = "33333a";
+            val.validatorRegistry(registry);
+
+            registry = "33333";
+            val.validatorRegistry(registry);
+//        } catch (RegexException e) {
+//            e.printStackTrace();
+//        }
     }
-    
-    
+
+    public void testValidatorEmail() throws RegexException {
+        try {
+            
+            email = "jair_anderson_bs@hotmail.com";
+            val.validatorEmail(email);
+            
+            email = "jair_anderson_bs@hotmail@hotmail.com";
+            val.validatorEmail(email);
+            
+            email = "jair_anderson_bs@.com";
+            val.validatorEmail(email);
+            
+            email = "jair_anderson_bs@com";
+            val.validatorEmail(email);
+        } catch (RegexException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

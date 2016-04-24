@@ -5,7 +5,6 @@
  */
 package io.github.jass2125.sistema.alocacao.core.actions.user;
 
-
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.UserDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
@@ -27,13 +26,17 @@ import javax.servlet.http.HttpSession;
  * @author Anderson Souza
  * @since 2015
  */
-public class LoginUserCommand implements Command  {
+public class LoginUserCommand implements Command {
 
     private CryptographyPasswordStrategy cryptographer;
     private String role;
+    private Factory factory;
+    private UserDao dao;
 
     public LoginUserCommand() {
         cryptographer = new CryptographerPasswordSHA();
+        factory = new FactoryDao();
+        dao = factory.createUserDao();
     }
 
     /**
@@ -49,8 +52,6 @@ public class LoginUserCommand implements Command  {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
 
-            Factory factory = new FactoryDao();
-            UserDao dao = factory.createUserDao();
             password = cryptographer.cryptographerSHA(password);
             User user = dao.findByLoginAndPassword(login, password);
             HttpSession session = request.getSession();
@@ -58,7 +59,7 @@ public class LoginUserCommand implements Command  {
             if (user != null) {
                 session.setAttribute("user", user);
                 session.setMaxInactiveInterval(60 * 60);
-                role = (String) ((User)request.getSession().getAttribute("user")).getRole();
+                role = (String) ((User) request.getSession().getAttribute("user")).getRole();
                 return this.role + "/home.jsp";
             } else {
                 session.setAttribute("error", "Usuario e senha desconhecidos. Por favor, tente novamente.");

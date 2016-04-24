@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.sistema.alocacao.core.dao;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.factory.ConnectionFactory;
 import java.sql.Connection;
@@ -69,22 +70,28 @@ public class UserDaoImpl implements UserDao {
      *
      * @param user Usuario
      * @throws SQLException Erro de conexão com o banco de dados
+     * @throws java.lang.ClassNotFoundException
      */
     @Override
     public void add(User user) throws SQLException, ClassNotFoundException {
         String sql = "insert into usuario(name, username, senha, email, matricula, papel, status) values(?, ?, ?, ?, ?, ?, ?);";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, user.getName());
-        ps.setString(2, user.getUsername());
-        ps.setString(3, user.getPassword());
-        ps.setString(4, user.getEmail());
-        ps.setString(5, user.getRegistry());
-        ps.setString(6, user.getRole());
-        ps.setBoolean(7, user.isStatus());
-        ps.execute();
-        ps.close();
-        con.close();
+        try {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getUsername());
+            ps.setString(3, user.getPassword());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getRegistry());
+            ps.setString(6, user.getRole());
+            ps.setBoolean(7, user.isStatus());
+            ps.execute();
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            ps.close();
+            con.close();
+            throw new SQLException(e);
+        }
+
     }
 
     /**

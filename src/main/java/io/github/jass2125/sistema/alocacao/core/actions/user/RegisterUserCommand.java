@@ -31,14 +31,19 @@ import javax.swing.JOptionPane;
  * @author Anderson Souza
  * @since 2015
  */
-public class RegisterUserCommand implements Command  {
+public class RegisterUserCommand implements Command {
 
     private ValidationUserTemplate validator;
     private CryptographyPasswordStrategy cryptographer;
+    private Factory factory;
+    private UserDao dao;
+    private String role;
 
     public RegisterUserCommand() {
         validator = new ValidationUser();
         cryptographer = new CryptographerPasswordSHA();
+        factory = new FactoryDao();
+        dao = factory.createUserDao();
     }
 
     /**
@@ -53,14 +58,11 @@ public class RegisterUserCommand implements Command  {
         try {
             String email = request.getParameter("email");
             String username = request.getParameter("username");
-            Factory factory = new FactoryDao();
-            UserDao dao = factory.createUserDao();
-            User user = dao.findByUsernameOrEmail(username, email);
 
+            User user = dao.findByUsernameOrEmail(username, email);
             if (user == null) {
                 String name = request.getParameter("name");
                 String password = request.getParameter("password");
-                //Adicionar Expressão Regular pra validar essa merda
                 String registry = request.getParameter("registry");
                 String role = request.getParameter("role");
                 user = new User(name, username, password, email, registry, role, true);
@@ -68,11 +70,11 @@ public class RegisterUserCommand implements Command  {
                 user.setPassword(cryptographer.cryptographerSHA(password));
                 dao.add(user);
                 HttpSession session = request.getSession();
+                this.role = (String)((User)session.getAttribute("user")).getRole();
                 session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
-                return "administrador/gerenciarusuario.jsp";
+                return this.role + "/gerenciarusuario.jsp";
             } else {
-                JOptionPane.showMessageDialog(null, "Entrou");
-                request.getSession().setAttribute("crud", "Email e/ou Username existentes");
+                request.getSession().setAttribute("error", "Email e/ou Username existentes");
                 return "administrador/gerenciarusuario.jsp";
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException | RegexException e) {
@@ -85,6 +87,5 @@ public class RegisterUserCommand implements Command  {
         }
 
     }
-    
-   
+
 }
