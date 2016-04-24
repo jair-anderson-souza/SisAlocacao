@@ -217,14 +217,17 @@
                                 <td>${userList.role}</td>
                                 <td>${userList.status eq 'true'  ? 'Ativo' : 'Inativo'}</td>
                                 <td>
-                                    <form action="../front?action=loadUser&idUser=${userList.idUser}" method="post">
-                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
-                                        <!--<button type="submit" class="btn btn-info"></button>-->
+                                    <form action="../front?command=loadUser&idUser=${userList.idUser}" method="post">
+                                        <c:if test="${userList.role != 'administrador'}">
+                                            <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                        </c:if> 
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?action=deleteUser&idUser=${userList.idUser}" method="post">
-                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                    <form action="../front?command=deleteUser&idUser=${userList.idUser}" method="post">
+                                        <c:if test="${userList.role != 'administrador'}">
+                                            <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                        </c:if>
                                     </form>
                                 </td>
                             </tr>

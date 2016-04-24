@@ -55,7 +55,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
-                            <li><a href="../front?action=logout">Sair</a></li>
+                            <li><a href="../front?command=logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form class="form-horizontal" action="../front?action=editUser&idUser=${sessionScope.userEditing.idUser}" method="post">
+                    <form class="form-horizontal" action="../front?command=editUser&idUser=${sessionScope.userEditing.idUser}" method="post">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="username">Username</label>
                             <div class="col-sm-10">

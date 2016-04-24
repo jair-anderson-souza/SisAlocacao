@@ -10,7 +10,6 @@ package io.github.jass2125.sistema.alocacao.core.dao;
 import io.github.jass2125.sistema.alocacao.core.business.User;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Interface do DAO de user
@@ -22,6 +21,7 @@ public interface UserDao {
      * Metodo abstrato que adiciona um usuario
      * @param user User
      * @throws SQLException Erro de conexão com o banco de dados
+     * @throws java.lang.ClassNotFoundException
      */
     public void add(User user) throws SQLException, ClassNotFoundException;
     
