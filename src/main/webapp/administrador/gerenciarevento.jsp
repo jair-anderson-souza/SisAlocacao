@@ -70,7 +70,7 @@
         <br>
         <br>
         <br>
-        <!-- Modal -->
+        <!-- Modal Cadastro de Evento -->
         <div id="cadastro" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content - Modal do Cadastro -->
@@ -107,6 +107,46 @@
                             </div>
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Alocação -->
+        <div id="alocarSala" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content - Modal do Cadastro -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cadastro de Evento</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" value="${pageScope.name}" class="form-control" id="name" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Descrição</label>
+                            <textarea name="description" class="form-control" id="description" required="true"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="number">Participantes</label>
+                            <input type="number" name="number" min="1" class="form-control" id="number" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="responsable">Responsável</label>
+                            <input type="text" name="responsable" class="form-control" id="responsable" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="begin">Início</label>
+                            <input type="text" name="begin" class="form-control" id="begin" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="end">Fim</label>
+                            <input type="date" name="end" class="form-control" id="end" required="true">
+                        </div>
+                        <button class="close btn btn-success" data-dismiss="modal">Cadastrar</button>
                     </div>
                 </div>
             </div>
@@ -151,6 +191,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <a href="#" data-toggle="modal" data-target="#cadastro"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a href="#" data-toggle="modal" data-target="#alocarSala"><span class="glyphicon glyphicon-plus"></span></a>
                     </div>
                 </div>
             </div>
@@ -178,22 +219,26 @@
                         </tr>
                     </thead>
                     <tbody id="table">
-                    <c:forEach items="${sessionScope.listFloors}" var="floor">
-                        <tr>
-                            <td>${floor.description}</td>
-                            <td>
-                                <form action="../front?action=loadFloorToEdit&idFloor=${floor.idFloor}" method="post">
-                                    <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
-                                    <!--<button type="submit" class="btn btn-info"></button>-->
-                                </form>
-                            </td>
-                            <td>
-                                <form action="../front?action=deleteFloor&idFloor=${floor.idFloor}" method="post">
-                                    <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach items="${sessionScope.events}" var="event">
+                            <tr>
+                                <td>${event.begin}</td>
+                                <td>${event.begin}</td>
+                                <td>${event.name}</td>
+                                <td>${event.name}</td>
+                                <td>${event.name}</td>
+                                <td>
+                                    <form action="../front?action=loadFloorToEdit&idFloor=${floor.idFloor}" method="post">
+                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                        <!--<button type="submit" class="btn btn-info"></button>-->
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="../front?action=deleteFloor&idFloor=${floor.idFloor}" method="post">
+                                        <button type="submit" class="glyphicon glyphicon-pencil btn btn-default"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div> 
@@ -207,6 +252,6 @@
                 </div>
             </div>
         </div>
-
+        <h1>${pageScope.name}</h1>
     </body>
 </html>

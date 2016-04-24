@@ -7,7 +7,6 @@ package io.github.jass2125.sistema.alocacao.core.business;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.Instant;
 
 /**
  *
