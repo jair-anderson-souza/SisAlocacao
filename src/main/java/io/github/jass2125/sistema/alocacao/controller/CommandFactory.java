@@ -16,6 +16,7 @@ import io.github.jass2125.sistema.alocacao.core.actions.holiday.DeleteHolidayCom
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.EditHolidayCommand;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.ListHolidaysCommand;
 import io.github.jass2125.sistema.alocacao.core.actions.holiday.LoadHolidayEditCommand;
+import io.github.jass2125.sistema.alocacao.core.actions.holiday.RegisterHolidayCommand;
 import io.github.jass2125.sistema.alocacao.core.actions.material.DeleteMaterialCommand;
 import io.github.jass2125.sistema.alocacao.core.actions.material.EditMaterialCommand;
 import io.github.jass2125.sistema.alocacao.core.actions.material.ListMaterialCommand;
@@ -58,10 +59,12 @@ public final class CommandFactory {
         commands.put("registerUser", new RegisterUserCommand());
         commands.put("loadUser", new LoadUserEditionCommand());
         commands.put("editUser", new EditUserCommand());
-        
         commands.put("deleteUser", new DeleteUserCommand());
-//        commands.put("readerCsvFile", new ReaderCsvFileCommand());
+        /* Feriados */
         commands.put("listHolidays", new ListHolidaysCommand());
+        commands.put("registerholiday", new RegisterHolidayCommand());
+//        commands.put("readerCsvFile", new ReaderCsvFileCommand());
+        
         commands.put("deleteHoliday", new DeleteHolidayCommand());
         commands.put("loadHoliday", new LoadHolidayEditCommand());
         commands.put("editHoliday", new EditHolidayCommand());

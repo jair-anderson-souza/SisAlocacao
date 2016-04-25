@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
         ps.setString(4, password);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            int idUser = rs.getInt("id_usuario");
+            Long idUser = rs.getLong("id_usuario");
             String name = rs.getString("name");
             String username2 = rs.getString("username");
             String email = rs.getString("email");
@@ -103,16 +103,16 @@ public class UserDaoImpl implements UserDao {
      * @throws java.lang.ClassNotFoundException
      */
     @Override
-    public List<User> list(int idUser) throws SQLException, ClassNotFoundException {
+    public List<User> list(Long idUser) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where id_usuario <> ? and status = true;";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idUser);
+        ps.setLong(1, idUser);
         List<User> list = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            int id = rs.getInt("id_usuario");
+            Long id = rs.getLong("id_usuario");
             String name = rs.getString("name");
             String email = rs.getString("email");
             String username = rs.getString("username");
@@ -158,7 +158,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(5, usuario.getRegistry());
             ps.setString(6, usuario.getRole());
             ps.setBoolean(7, usuario.isStatus());
-            ps.setInt(8, usuario.getIdUser());
+            ps.setLong(8, usuario.getIdUser());
             ps.execute();
         } catch (MySQLIntegrityConstraintViolationException e) {
             ps.close();
@@ -176,12 +176,12 @@ public class UserDaoImpl implements UserDao {
      * @throws java.lang.ClassNotFoundException
      */
     @Override
-    public void delete(int idUsuario) throws SQLException, ClassNotFoundException {
+    public void delete(Long idUsuario) throws SQLException, ClassNotFoundException {
         String sql = "delete from usuario where id_usuario = ?;";
         Connection con = connectionFactory.getConnection();
         Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idUsuario);
+        ps.setLong(1, idUsuario);
         ps.execute();
     }
 
@@ -193,11 +193,11 @@ public class UserDaoImpl implements UserDao {
      * @throws SQLException UsuarioDao
      */
     @Override
-    public User findById(int idUser) throws SQLException, ClassNotFoundException {
+    public User findById(Long idUser) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where id_usuario = ?";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idUser);
+        ps.setLong(1, idUser);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             String nome = rs.getString("name");
@@ -235,7 +235,7 @@ public class UserDaoImpl implements UserDao {
         ps.setString(2, email);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            int idUsuario = rs.getInt("id_usuario");
+            Long idUsuario = rs.getLong("id_usuario");
             String name = rs.getString("name");
             String password = rs.getString("senha");
             String username2 = rs.getString("username");

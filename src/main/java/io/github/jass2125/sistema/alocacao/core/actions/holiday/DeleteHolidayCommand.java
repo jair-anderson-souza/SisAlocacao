@@ -34,7 +34,7 @@ public class DeleteHolidayCommand implements Command  {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             String id = request.getParameter("idHoliday");
-            int idHoliday = Integer.parseInt(id);
+            Long idHoliday = Long.parseLong(id);
             Factory factory = new FactoryDao();
             HolidayDao dao = factory.createHolidayDao();
             dao.delete(idHoliday);

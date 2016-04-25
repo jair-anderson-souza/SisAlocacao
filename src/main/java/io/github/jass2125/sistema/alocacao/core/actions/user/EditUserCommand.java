@@ -12,12 +12,7 @@ import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Command;
-import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
-import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
 import io.github.jass2125.sistema.alocacao.core.util.ValidationUser;
-import io.github.jass2125.sistema.alocacao.core.util.ValidationUserTemplate;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +52,7 @@ public class EditUserCommand implements Command {
         this.roleUserSession = userSession.getRole();
         try {
             /* Pegando parametros */
-            int idUser = Integer.parseInt(request.getParameter("idUser"));
+            Long idUser = Long.parseLong(request.getParameter("idUser"));
             String email = request.getParameter("email");
             String username = request.getParameter("username");
             String name = request.getParameter("name");

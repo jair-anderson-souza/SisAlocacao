@@ -6,14 +6,13 @@
 package io.github.jass2125.sistema.alocacao.core.actions.holiday;
 
 import io.github.jass2125.sistema.alocacao.core.business.Holiday;
+import io.github.jass2125.sistema.alocacao.core.business.User;
 import io.github.jass2125.sistema.alocacao.core.dao.HolidayDao;
 import io.github.jass2125.sistema.alocacao.core.factory.Factory;
 import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Command;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,16 @@ import javax.servlet.http.HttpSession;
  * @since 2015
  */
 public class ListHolidaysCommand implements Command {
+    private String role;
+    private Factory factory;
+    private HolidayDao dao;
 
+    public ListHolidaysCommand() {
+        factory = new FactoryDao();
+        dao = factory.createHolidayDao();
+    }
+    
+    
     /**
      * Método que efetua a busca por todos os feriados
      *
@@ -35,18 +43,15 @@ public class ListHolidaysCommand implements Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        this.role = (String) ((User) session.getAttribute("user")).getRole();
         try {
-            Factory factory = new FactoryDao();
-            HolidayDao dao = factory.createHolidayDao();
             List<Holiday> list = dao.list();
-            HttpSession session = request.getSession();
             session.setAttribute("listHolidays", list);
-            return "administrador/gerenciarferiado.jsp";
-        } catch (SQLException e) {
-            return "error.jsp";
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ListHolidaysCommand.class.getName()).log(Level.SEVERE, null, ex);
-            return "error.jsp";
+            return this.role + "/gerenciarferiado.jsp";
+        } catch (SQLException | ClassNotFoundException e) {
+            session.setAttribute("error", "Ocorreu um problema. Tente novamente.");
+            return this.role + "/home.jsp";
         }
     }
 

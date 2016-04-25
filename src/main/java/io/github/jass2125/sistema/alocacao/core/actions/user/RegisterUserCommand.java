@@ -13,7 +13,6 @@ import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographerPasswordSHA;
 import io.github.jass2125.sistema.alocacao.core.util.CryptographyPasswordStrategy;
 import io.github.jass2125.sistema.alocacao.core.util.ValidationUser;
-import io.github.jass2125.sistema.alocacao.core.util.ValidationUserTemplate;
 import io.github.jass2125.sistema.alocacao.core.exceptions.RegexException;
 import io.github.jass2125.sistema.alocacao.core.util.Command;
 import java.io.UnsupportedEncodingException;
@@ -22,7 +21,6 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  * Classe que atua como Action, recebe a solicitação para cadastrar um novo
@@ -37,7 +35,7 @@ public class RegisterUserCommand implements Command {
     private CryptographyPasswordStrategy cryptographer;
     private Factory factory;
     private UserDao dao;
-    private String role;
+    private String roleUserSession;
 
     public RegisterUserCommand() {
         validator = new ValidationUser();
@@ -70,20 +68,21 @@ public class RegisterUserCommand implements Command {
                 user.setPassword(cryptographer.cryptographerSHA(password));
                 dao.add(user);
                 HttpSession session = request.getSession();
-                this.role = (String)((User)session.getAttribute("user")).getRole();
+                this.roleUserSession = (String) ((User) session.getAttribute("user")).getRole();
                 session.setAttribute("listUsers", dao.list(((User) session.getAttribute("user")).getIdUser()));
-                return this.role + "/gerenciarusuario.jsp";
+                return this.roleUserSession + "/gerenciarusuario.jsp";
             } else {
                 request.getSession().setAttribute("error", "Email e/ou Username existentes");
-                return "administrador/gerenciarusuario.jsp";
+                return this.roleUserSession + "/gerenciarusuario.jsp";
             }
         } catch (SQLException | ClassNotFoundException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
-            return "error.jsp";
+            request.getSession().setAttribute("error", "Ocorreu um erro, por favor tente novamente.");
+            return this.roleUserSession + "/gerenciarusuario.jsp";
         } catch (FieldEmptyException | RegexException e) {
             e.printStackTrace();
             request.getSession().setAttribute("error", e.getMessage());
-            return "error.jsp";
+            return this.roleUserSession + "/gerenciarusuario.jsp";
         }
 
     }

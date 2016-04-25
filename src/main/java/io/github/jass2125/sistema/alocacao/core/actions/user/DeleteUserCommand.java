@@ -33,7 +33,7 @@ public class DeleteUserCommand implements Command  {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
-            int idUser = Integer.parseInt(request.getParameter("idUser"));
+            Long idUser = Long.parseLong(request.getParameter("idUser"));
             Factory factory = new FactoryDao();
             UserDao dao = factory.createUserDao();
             dao.delete(idUser);

@@ -22,6 +22,7 @@ public interface HolidayDao {
      *
      * @param holiday Holiday
      * @throws SQLException Erro de conexão com o banco de dados
+     * @throws java.lang.ClassNotFoundException
      */
     public void add(Holiday holiday) throws SQLException, ClassNotFoundException;
 
@@ -30,14 +31,16 @@ public interface HolidayDao {
      *
      * @param idFeriado Id de feriado
      * @throws SQLException IFeriadoDao
+     * @throws java.lang.ClassNotFoundException
      */
-    public void delete(int idFeriado) throws SQLException, ClassNotFoundException;
+    public void delete(Long idFeriado) throws SQLException, ClassNotFoundException;
 
     /**
      * Metodo abstrato que edita um feriado
      *
      * @param holiday Feriado
      * @throws SQLException IFeriadoDao
+     * @throws java.lang.ClassNotFoundException
      */
     public void edit(Holiday holiday) throws SQLException, ClassNotFoundException;
 
@@ -46,6 +49,7 @@ public interface HolidayDao {
      *
      * @return list Set de feriado
      * @throws SQLException IFeriadoDao
+     * @throws java.lang.ClassNotFoundException
      */
     public List<Holiday> list() throws SQLException, ClassNotFoundException;
 
@@ -55,11 +59,17 @@ public interface HolidayDao {
      * @param idHoliday Id de feriado
      * @return Feriado feriado
      * @throws SQLException IFeriadoDao
+     * @throws java.lang.ClassNotFoundException
      */
-    public Holiday findById(int idHoliday) throws SQLException, ClassNotFoundException;
+    public Holiday findById(Long idHoliday) throws SQLException, ClassNotFoundException;
 
     /**
      *
+     * @param date
+     * @return
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
-    public Holiday findByDate(String date) throws SQLException, ClassNotFoundException;
+    Holiday findByDate(String date) throws SQLException, ClassNotFoundException;
+
 }

@@ -39,7 +39,7 @@ public class EditHolidayCommand implements Command  {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try{
-            Integer idFeriado = Integer.parseInt(request.getParameter("idHoliday"));
+            Long idFeriado = Long.parseLong(request.getParameter("idHoliday"));
             String descricao = request.getParameter("description");
             String dataDeFeriado = request.getParameter("date");
         

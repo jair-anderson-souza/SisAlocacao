@@ -14,14 +14,14 @@ import java.io.Serializable;
  * @since 2015
  */
 public class Holiday implements Serializable {
-    private int idHoliday;
+    private Long idHoliday;
     private String description;
     private String date;
 
     public Holiday() {
     }
 
-    public Holiday(int idHoliday, String description, String date) {
+    public Holiday(Long idHoliday, String description, String date) {
         this(description, date);
         this.idHoliday = idHoliday;
     }
@@ -65,7 +65,7 @@ public class Holiday implements Serializable {
      * Metodo que retorna o id do feriado
      * @return idHoliday int
      */
-    public int getIdHoliday() {
+    public Long getIdHoliday() {
         return this.idHoliday;
     }
     

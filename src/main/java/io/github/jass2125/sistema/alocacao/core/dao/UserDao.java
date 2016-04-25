@@ -48,14 +48,14 @@ public interface UserDao {
      * @return list Set
      * @throws SQLException IUsuarioDao
      */
-    public List<User> list(int idUser) throws SQLException, ClassNotFoundException;
+    public List<User> list(Long idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que exclui um usuario pelo seu identificador
      * @param idUser Id de usuario
      * @throws SQLException IUsuarioDao
      */
-    public void delete(int idUser) throws SQLException, ClassNotFoundException;
+    public void delete(Long idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Metodo abstrato que busca um usuario pelo seu identificador
@@ -63,7 +63,7 @@ public interface UserDao {
      * @return User user
      * @throws SQLException Erro de conexão com o banco de dados
      */
-    public User findById(int idUser) throws SQLException, ClassNotFoundException;
+    public User findById(Long idUser) throws SQLException, ClassNotFoundException;
     
     /**
      * Método abstrato que busca um usuario pelo seu username e pelo seu email

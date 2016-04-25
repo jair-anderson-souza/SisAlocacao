@@ -70,7 +70,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Editar Perfil</a></li>
-                            <li><a href="../front?action=logout">Sair</a></li>
+                            <li><a href="../front?command=logout">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -122,14 +122,14 @@
                         <h4 class="modal-title">Cadastrar Feriado</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="front?action=cadastrarferiado" method="post">
+                        <form action="../front?command=registerholiday" method="post">
                             <div class="form-group">
                                 <label for="descricao">Descriçao</label>
-                                <input type="text" name="descricao" class="form-control" id="descricao" title="Three letter country code">
+                                <input type="text" name="description" class="form-control" id="descricao" title="Three letter country code">
                             </div>
                             <div class="form-group">
                                 <label for="data">Data</label>
-                                <input type="text" name="data" class="form-control" id="data" title="Three letter country code">
+                                <input type="text" name="date" class="form-control" id="data" title="Three letter country code">
                             </div>
                             <button type="submit" class="glyphicon glyphicon-trash btn btn-default"  data-toggle="modal" data-target="#exclusaferiado"></button>
 
@@ -152,7 +152,7 @@
                     <!--<small>AdministraÃ§Ã£o</small>-->
                     <ol class="breadcrumb">
                         <li><a href="home.jsp">Home</a></li>
-                        <li><a href="../front?command=">Gerenciamento de Feriado</a></li>
+                        <li><a href="../front?command=listHolidays">Gerenciamento de Feriado</a></li>
                     </ol>
                 </div>
             </div>
@@ -196,12 +196,12 @@
                                 <td>${holiday.description}</td>
                                 <td>${holiday.date}</td>
                                 <td>
-                                    <form action="../front?action=loadHoliday&idHoliday=${holiday.idHoliday}" method="post">
+                                    <form action="../front?command=loadHoliday&idHoliday=${holiday.idHoliday}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-plus btn btn-pencil"></button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="../front?action=deleteHoliday&idHoliday=${holiday.idHoliday}" method="post">
+                                    <form action="../front?command=deleteHoliday&idHoliday=${holiday.idHoliday}" method="post">
                                         <button type="submit" class="glyphicon glyphicon-pencil btn btn-trash"></button>
                                     </form>
                                 </td>

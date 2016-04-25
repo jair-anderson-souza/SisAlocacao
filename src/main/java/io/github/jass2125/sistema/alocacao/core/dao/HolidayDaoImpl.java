@@ -21,8 +21,9 @@ import java.util.List;
  * @since 2015
  */
 public class HolidayDaoImpl implements HolidayDao {
+
     private ConnectionFactory connectionFactory;
-    
+
     public HolidayDaoImpl() {
         connectionFactory = new ConnectionFactory();
     }
@@ -43,7 +44,7 @@ public class HolidayDaoImpl implements HolidayDao {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            int idHoliday = rs.getInt("id_feriado");
+            Long idHoliday = rs.getLong("id_feriado");
             String data_feriado = rs.getString("dataFeriado");
             String descricao = rs.getString("descricao");
             Holiday feriado = new Holiday(idHoliday, descricao, data_feriado);
@@ -59,72 +60,64 @@ public class HolidayDaoImpl implements HolidayDao {
     /**
      * Método responsavel por adicionar um novo feriado
      *
-     * @param feriado Feriado
      * @throws SQLException FeriadoDao
      */
     @Override
     public void add(Holiday holiday) throws SQLException, ClassNotFoundException {
         String sql = "insert into feriado(dataFeriado, descricao) values(?, ?);";
         Connection con = connectionFactory.getConnection();
-        Class.forName("com.mysql.jdbc.Driver");
+        Holiday hol = this.findByDate(holiday.getDate());
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, holiday.getDate());
         ps.setString(2, holiday.getDescription());
         ps.execute();
-        ps.close();
-        con.close();
+
     }
 
     /**
      * Método responsável por editar um feriado
      *
-     * @param feriado Feriado
      * @throws SQLException FeriadoDao
      */
     @Override
     public void edit(Holiday holiday) throws SQLException, ClassNotFoundException {
-        String sql = "update feriado set descricao = ?, dataFeriado = ? where id_feriado = ?;";
+        String sql = "update feriado set dataFeriado = ?, set descricao = ? where id_feriado = ?;";
         Connection con = connectionFactory.getConnection();
-        Class.forName("com.mysql.jdbc.Driver");
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, holiday.getDescription());
-        ps.setString(2, holiday.getDate());
-        ps.setInt(3, holiday.getIdHoliday());
-        ps.execute();
-        ps.clearParameters();
-        ps.close();
-        con.close();
+        ps.setString(1, holiday.getDate());
+        ps.setString(2, holiday.getDescription());
+        ps.setLong(3, holiday.getIdHoliday());
+        ps.executeUpdate();
     }
 
     /**
      * Método responsável por excluir um feriado
      *
-     * @param idFeriado int
+     * @param idHoliday
      * @throws SQLException FeriadoDao
      */
     @Override
-    public void delete(int idHoliday) throws SQLException, ClassNotFoundException {
+    public void delete(Long idHoliday) throws SQLException, ClassNotFoundException {
         String sql = "delete from feriado where id_feriado = ?;";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idHoliday);
+        ps.setLong(1, idHoliday);
         ps.execute();
     }
 
     /**
      * Método responsável por buscar um feriado pelo seu identificador
      *
-     * @param idFeriado int
      * @return Feriado Feriado
      * @throws SQLException FeriadoDao
      * @throws ClassNotFoundException
      */
     @Override
-    public Holiday findById(int idHoliday) throws SQLException, ClassNotFoundException {
+    public Holiday findById(Long idHoliday) throws SQLException, ClassNotFoundException {
         String sql = "select * from feriado where id_feriado = ?;";
         Connection con = connectionFactory.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idHoliday);
+        ps.setLong(1, idHoliday);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             String date = rs.getString("dataFeriado");
@@ -139,6 +132,23 @@ public class HolidayDaoImpl implements HolidayDao {
 
     @Override
     public Holiday findByDate(String date) throws SQLException, ClassNotFoundException {
+        String sql = "select * from feriado where dataFeriado = ?;";
+        Connection con = connectionFactory.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, date);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Long idHoliday = rs.getLong("id_feriado");
+            String description = rs.getString("descricao");
+            return new Holiday(idHoliday, description, date);
+        }
         return null;
     }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        HolidayDaoImpl d = new HolidayDaoImpl();
+
+        d.add(new Holiday(5L, "Dia D", "20/12/2016"));
+    }
+
 }

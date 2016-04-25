@@ -12,8 +12,6 @@ import io.github.jass2125.sistema.alocacao.core.factory.FactoryDao;
 import io.github.jass2125.sistema.alocacao.core.util.Command;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,6 +51,7 @@ public class ListUsersCommand implements Command {
             return this.role + "/gerenciarusuario.jsp";
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            request.getSession().setAttribute("error", "Ocorreu um problema. Tente novamente.");
             return this.role + "/home.jsp";
         }
     }

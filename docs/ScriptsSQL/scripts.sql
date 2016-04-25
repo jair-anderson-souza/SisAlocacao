@@ -14,9 +14,6 @@ create table feriado(
 	id_feriado int auto_increment,
 	dataFeriado varchar(12),
 	descricao varchar(50) not null,
-	id_usuario int,
-	foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete restrict, 
-	constraint ref_pkey_feriado
 	primary key(id_feriado)
 );
 create table bloco(
@@ -56,6 +53,10 @@ create table evento(
 );
 insert into usuario(name, username, senha, email, matricula, papel, status) values('Anderson Souza', 'root', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2BE', 'jair_anderson_bs@hotmail.com', '000000', 'administrador', 1);
 insert into usuario(name, username, senha, email, matricula, papel, status) values('Diogo Moreira', 'diogo', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2BE', 'diogo@hotmail.com', '000000', 'administrador', 1);
+insert into usuario(name, username, senha, email, matricula, papel, status) values('Dijalma Silva', 'dijalma', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AEDR', 'dijalma@hotmail.com', '897654', 'assistente', 1);
+insert into usuario(name, username, senha, email, matricula, papel, status) values('Joseph', 'joseph', 'D642F1F70197E0FCF3D1BA6E5B0159087459A0678FC18E8FEDF47BB08F4AA2GT', 'joseph@hotmail.com', '098432', 'professor', 1);
+insert into feriado(id_feriado, dataFeriado, descricao) values(1, '20/10/2016', 'Feriado 1');
+insert into feriado(id_feriado, dataFeriado, descricao) values(2, '24/05/2016', 'Feriado 2');
 insert into bloco values(1, 'Bloco 4');
 insert into sala values(1, 'Sala 2', 1, 40, 'COMUM');
 insert into material values(1111111, 'RetroProjetor', 20, 'Disponivel', 1);

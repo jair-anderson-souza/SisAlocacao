@@ -69,7 +69,7 @@ public class ReaderCsvFileCommand extends HttpServlet {
                     String date = scanner.next();
                     String description = scanner.next();
                     if (date.matches("^([0-9]{2}\\/[0-9]{2}\\/[0-9]{4})$") && description.matches("^[a-zA-Z]+$")) {
-                        Holiday holiday = new Holiday(description, date);
+                        Holiday holiday = new Holiday(5L, description, date);
                         dao.add(holiday);
                     }
                 }
